@@ -18,7 +18,7 @@ VAPI_GET_USER_SERVER=r'http://vapi.vaders.tv/user/server?action=getUserServer&us
 VAPI_SERVER_CHANGE=r'http://vapi.vaders.tv/user/server?action=serverChange&username=%(USER)s&password=%(PWD)s&serverIp=%(SERVER)s'
 TS_RE=r'.*/live/(?P<user>[a-zA-Z0-9]+)/(?P<pwd>[a-zA-Z0-9]+)/[0-9]+\.(ts|m3u8).*'
 
-DEBUG=True
+DEBUG=False
 DEBUG_FILE='/tmp/balancer-debug.log'
 def debug(s):
   if DEBUG:
