@@ -19,8 +19,8 @@ following keys can be used to control it:
 These keys will, respectively:
 - rewind the timeline;
 - forward the timeline;
-- pause the stream;
 - display stream information;
+- pause the stream;
 - reload the stream at the current/selected
 timeline time;
 - do nothing and continue as is.
