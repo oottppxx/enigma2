@@ -1,1 +1,1 @@
-It will be here as soon as I clean up enough not to be (too) ashamed of the code.
+The Python code will be here as soon as code is cleaned up enough to not shame the author (too much).
