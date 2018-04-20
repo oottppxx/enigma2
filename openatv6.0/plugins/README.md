@@ -4,6 +4,6 @@ Although dev/tested in Open ATV 6.0, these plugins were reported to also work in
 
 Open ATV 6.2 (@Eddie Wilkes, @falleen)
 
-OpenVIX 5.0.1 (@SomeKewlName)
+OpenViX 5.0.1 (@SomeKewlName)
 
 WooshBuild v? (@BillHicks)
