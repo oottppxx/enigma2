@@ -11,10 +11,12 @@ in Heinz to point to
 this script will look for said file to mark all catchup supporting channels
 with a
 
-"*"
+"!!!"
 
-suffix to the channel name.
+suffix on the channel name.
 
+NOTE: if you don't use one or several exclamation marks as the suffix, the
+channel renaming will probably stop the correct channel picons display.
 
 
 The script can be run manually, but it's better if ran via cron, as Suls
@@ -23,6 +25,5 @@ as such:
 
 */5 * * * * /usr/lib/enigma2/python/Plugins/Extensions/Heinz/frenchs.sh
 
-
-NOTE: on the current form, renaming the channels will kill the picons for
-catchup supporting channels, sorry!
+NOTE: if the script doesn't seem to work, make sure you edit the PROVIDER
+parameter on the script itself (should be in your plugins/Heinz directory).

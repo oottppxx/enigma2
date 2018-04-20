@@ -38,4 +38,12 @@ namely after it's stuck for long, will desync
 the timeline current time with the real stream
 time.
 
+NOTE: from version 6.0.3j, a keymap.xml file
+is used that also maps other keys to the
+relevant actions during timeline display.
+Check/edit this file in your plugins/Heinz
+directory, namely if you require a custom
+keymap (a reload of enigma2 will be required
+after any change to the keymap).
+
 Dev/Testing on OpenATV 6.0, Caveat Emptor.
