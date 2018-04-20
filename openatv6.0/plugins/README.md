@@ -2,7 +2,7 @@ Thanks to the folks in PMC:Enigma (namely @falleen, @BillHicks, @Bill) and Death
 
 Although dev/tested in Open ATV 6.0, these plugins were reported to also work in:
 
-Open ATV 6.2 (@Eddie Wilkes, @falleen)
+Open ATV 6.2 (@corkman, @falleen)
 
 OpenViX 5.0.1 (@SomeKewlName)
 
