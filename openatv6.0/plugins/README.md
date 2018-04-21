@@ -9,4 +9,4 @@ Open ATV 6.2 (@corkman, @falleen)
 
 OpenViX 5.1.x (@SomeKewlName)
 
-WooshBuild v7 (@BillHicks)
+WooshBuild 7 / OpenATV 6.1 (@BillHicks)
