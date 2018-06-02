@@ -1,4 +1,4 @@
-**NOTE: currently these plugins are provider specific (Vaders+resellers); if you have a multi provider configuration, and you activate the plugin on another provider stream, there's a chance you'll be leaking your other providers' credentials to Vaders, namely on the Balancer plugin - for the Heinz pluging, that will depend on the vFilter configuration, where the default value is safe.**
+**NOTE: currently these plugins are provider specific (Vaders+resellers); if you have a multi provider configuration, and you activate the plugin on another provider stream, there's a chance you'll be leaking your other providers' credentials to Vaders, namely on the Balancer plugin - for the Heinz plugin, that will depend on the vFilter configuration (the default value is safe).**
 
 
 Thanks to the folks in PMC:Enigma (namely @falleen, @BillHicks, @Bill) and DeathStar (namely @agentsmith1, @SomeKewlName).
