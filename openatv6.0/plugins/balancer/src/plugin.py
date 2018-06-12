@@ -1,3 +1,4 @@
+import base64
 import json
 import re
 import urllib2
@@ -16,7 +17,9 @@ from Screens.Screen import Screen
 VAPI_GET_SERVERS=r'http://vapi.vaders.tv/user/server?action=getServers&username=%(USER)s&password=%(PWD)s'
 VAPI_GET_USER_SERVER=r'http://vapi.vaders.tv/user/server?action=getUserServer&username=%(USER)s&password=%(PWD)s'
 VAPI_SERVER_CHANGE=r'http://vapi.vaders.tv/user/server?action=serverChange&username=%(USER)s&password=%(PWD)s&serverIp=%(SERVER)s'
-TS_RE=r'.*/live/(?P<user>[a-zA-Z0-9]+)/(?P<pwd>[a-zA-Z0-9]+)/[0-9]+\.(ts|m3u8).*'
+TS_RE_1=r'.*/live/(?P<user>[a-zA-Z0-9]+)/(?P<pwd>[a-zA-Z0-9]+)/[0-9]+\.(ts|m3u8).*'
+TS_RE_2=r'.*/play/[0-9]+\.(ts|m3u8)\?token=(?P<token>[a-zA-Z0-9+/=]+).*'
+
 
 DEBUG=False
 DEBUG_FILE='/tmp/balancer-debug.log'
@@ -135,10 +138,22 @@ class ServerSelectionScreen(Screen):
 
 
 def selectFromTS(session, ts=None, service=None):
-  m = re.match(TS_RE, ts, re.IGNORECASE)
+  user = None
+  pwd = None
+  m = re.match(TS_RE_1, ts, re.IGNORECASE)
   if m:
     user = m.group('user')
     pwd = m.group('pwd')
+  m = re.match(TS_RE_2, ts, re.IGNORECASE)
+  if m:
+    token = m.group('token')
+    try:
+      auth = json.loads(base64.b64decode(token))
+      user = str(auth['username'])
+      pwd = str(auth['password'])
+    except:
+      pass
+  if user and pwd:
     debug('u: %s, p: %s\n' % (user, pwd))
     session.open(ServerSelectionScreen, title='Balancer', user=user, pwd=pwd)
     return True
