@@ -1,6 +1,6 @@
 * Create VOD bouquet
 
-Bring up bouquet list, then menu, then add bouquet: make sure to call it vod
+Bring up bouquet list, then menu, then add bouquet: make sure to call it "vod" (no quotes).
 
 * Make sure of the new bouquet file name
 
