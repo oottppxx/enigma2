@@ -15,15 +15,14 @@ with a
 
 suffix on the channel name.
 
-NOTE: if you don't use one or several exclamation marks as the suffix, the
-channel renaming will probably stop the correct channel picons display.
+NOTE: if you don't use exclamation mark(s) as the suffix, the channel
+renaming will break the proper picons display.
 
 
 The script can be run manually, but it's better if ran via cron, as Suls
 generally also runs periodically. A crontab line to run it every 5 minutes is
 as such:
 
-*/5 * * * * /usr/lib/enigma2/python/Plugins/Extensions/Heinz/frenchs.sh
+*/5 * * * * /usr/lib/enigma2/python/Plugins/Extensions/Heinz/frenchs.sh pmc
 
-NOTE: if the script doesn't seem to work, make sure you edit the PROVIDER
-parameter on the script itself (should be in your plugins/Heinz directory).
+NOTE: the provider name is provided as the first argument of the script.
