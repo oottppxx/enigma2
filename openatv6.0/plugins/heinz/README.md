@@ -3,42 +3,53 @@ by binding a key to it, to be able to invoke
 it directly from a live stream and/or
 "ketchup" stream.
 
-When invoked during a live stream, settings
-can be changed from the mini-EPG screen
+When *invoked during a supported live stream*,
+settings can be changed from the EPG screen
 using the
 
  Menu
 
 key.
 
-When invoked during a "ketchup" stream, the
+If *invoked during an unsupported live stream*,
+letting the timeout expire will take you to
+the setup menu where you can adjust the
+settings.
+
+If *invoked during a "ketchup" stream*, the
 following keys can be used to control it:
 
- Left, Right, Up, Down, Back, OK, Info, and Exit
+ Left, Right, Up, Down, OK, Back, and Exit
 
 These keys will, respectively:
 - rewind the timeline;
 - forward the timeline;
 - display stream information;
 - pause the stream;
-- stop the stream and return to the previous one;
 - reload the stream at the current/selected
 timeline time;
-- obtain some information on the stream;
-- do nothing and continue as is.
+- stop the stream and return to the previous one;
+- exit the timeline and continue as is.
 
-If the stream is reloaded without any change
-to the timeline, the stream will go back by
+If *the stream is reloaded without any change
+to the timeline*, the stream will go back by
 the configured number of minutes (see
 settings):  this is useful if a stream gets
 stuck and just a reload is needed.
 
-NOTE: from version 6.0.3j, a keymap.xml file
-is used that also maps other keys to the
-relevant actions during timeline display.
-Check/edit this file in your plugins/Heinz
-directory, namely if you require a custom
-keymap (a reload of enigma2 will be required
-after any change to the keymap).
+From version 6.0.3j, a keymap.xml file (located in
+the usual plugins/Heinz directory) is used that
+also maps other keys to the relevant actions during
+timeline display, for example:
+
+Rewind/PreviousSong, FastForward/NextSong, Info/EPG,
+Pause/Play+Pause, Play, and Stop.
+
+Depending on your remote, you might need to edit this
+file, namely regarding the mapping of the pause/play/
+play+pause keys, or if you just want to map/unmap the
+keys you're more comfortable with using. Make sure to
+keep a copy of the edited file, as upgrades to newer
+versions of the plugin will overwrite it.
 
 Dev/Testing on OpenATV 6.0, Caveat Emptor.
