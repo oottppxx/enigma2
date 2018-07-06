@@ -1,9 +1,9 @@
 NOTE: The easiest way to use this plugin is
-by binding a key to it, to be able to invoke
-it directly from a live stream and/or
+by **binding a key to it**, to be able to
+invoke it directly from a live stream and/or
 "ketchup" stream.
 
-When *invoked during a supported live stream*,
+When **invoked during a supported live stream**,
 settings can be changed from the EPG screen
 using the
 
@@ -11,12 +11,12 @@ using the
 
 key.
 
-If *invoked during an unsupported live stream*,
+If **invoked during an unsupported live stream**,
 letting the timeout expire will take you to
 the setup menu where you can adjust the
 settings.
 
-If *invoked during a "ketchup" stream*, the
+If **invoked during a "ketchup" stream**, the
 following keys can be used to control it:
 
  Left, Right, Up, Down, OK, Back, and Exit
@@ -31,11 +31,11 @@ timeline time;
 - stop the stream and return to the previous one;
 - exit the timeline and continue as is.
 
-If *the stream is reloaded without any change
-to the timeline*, the stream will go back by
-the configured number of minutes (see
-settings):  this is useful if a stream gets
-stuck and just a reload is needed.
+If **the stream is reloaded without any change to
+the timeline**, the stream will go back by
+the configured number of minutes (see settings):
+this is useful if a stream gets stuck and just a
+reload is needed.
 
 From version 6.0.3j, a keymap.xml file (located in
 the usual plugins/Heinz directory) is used that
