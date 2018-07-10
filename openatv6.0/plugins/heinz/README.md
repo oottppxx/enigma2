@@ -21,6 +21,10 @@ following keys can be used to control it:
 
  Left, Right, Up, Down, OK, Back, and Exit
 
+as well as
+
+1 2 3 4 5 6 7 8 9 0
+
 These keys will, respectively:
 - rewind the timeline;
 - forward the timeline;
@@ -29,7 +33,8 @@ These keys will, respectively:
 - reload the stream at the current/selected
 timeline time;
 - stop the stream and return to the previous one;
-- exit the timeline and continue as is.
+- exit the timeline and continue as is;
+- forward the timeline 1..10 minutes.
 
 If **the stream is reloaded without any change to
 the timeline**, the stream will go back by
