@@ -1,5 +1,5 @@
-enigma2-plugin-extensions-heinz-6.0.4k.ipk
+enigma2-plugin-extensions-heinz-6.0.4l.ipk
 
-MD5 268ad50a0ea590c43128a074492481b2
+MD5 c72713816b94b648a414fc6623faad33
 
-SHA 7edbedcc0049c2d1d4eef705a07c3d585fbf6cff
+SHA 9b79ae0d0cc7c244782aa4ec0d4ca9aea189a296
