@@ -19,7 +19,7 @@ letting the timeout expire will take you to
 the setup menu where you can adjust the
 settings.
 
-![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/settings-example.jpg)
+![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/setup-example.jpg)
 
 If **invoked during a "ketchup" stream**,
 
