@@ -4,9 +4,6 @@ invoke it directly from a live stream and/or
 "ketchup" stream.
 
 When **invoked during a supported live stream**,
-
-![EPG Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-0.jpg)
-
 settings can be changed from the EPG screen
 using the
 
@@ -19,13 +16,8 @@ letting the timeout expire will take you to
 the setup menu where you can adjust the
 settings.
 
-![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/setup-example.jpg)
-
-If **invoked during a "ketchup" stream**,
-
-![Timeline Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-1.jpg)
-
-the following keys can be used to control it:
+If **invoked during a "ketchup" stream**, the
+following keys can be used to control it:
 
  Left, Right, Up, Down, OK, Back, and Exit
 
@@ -37,13 +29,7 @@ These keys will, respectively:
 - rewind the timeline;
 - forward the timeline;
 - display stream information;
-
-![Info Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-2.jpg)
-
 - pause the stream;
-
-![Pause Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-3.jpg)
-
 - reload the stream at the current/selected
 timeline time;
 - stop the stream and return to the previous one;
