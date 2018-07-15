@@ -3,8 +3,7 @@
 * Balancer is a server switcher for Vaders (and resellers).
 
 **NOTE:** the Balancer plugin can leak your credentials in a multi-provider setup, if not
-invoked from a Vaders' stream. Heinz avoids this by using the vFilter and xFilter settings,
-make sure to use/edit those (separate multiple matches in each filter with "!").
+invoked from a Vaders' stream.
 
 Thanks to the folks in PMC:Enigma (namely @falleen, @BillHicks, @Bill) and DeathStar (namely @agentsmith1, @SomeKewlName).
 
