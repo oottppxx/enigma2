@@ -17,8 +17,7 @@ from Screens.Screen import Screen
 VAPI_GET_SERVERS=r'http://vapi.vaders.tv/user/server?action=getServers&username=%(USER)s&password=%(PWD)s'
 VAPI_GET_USER_SERVER=r'http://vapi.vaders.tv/user/server?action=getUserServer&username=%(USER)s&password=%(PWD)s'
 VAPI_SERVER_CHANGE=r'http://vapi.vaders.tv/user/server?action=serverChange&username=%(USER)s&password=%(PWD)s&serverIp=%(SERVER)s'
-TS_RE_1=r'.*/live/(?P<user>[a-zA-Z0-9]+)/(?P<pwd>[a-zA-Z0-9]+)/[0-9]+\.(ts|m3u8).*'
-TS_RE_2=r'.*/play/[0-9]+\.(ts|m3u8)\?token=(?P<token>[a-zA-Z0-9+/=]+).*'
+TS_RE=r'.*/play/[0-9]+\.(ts|m3u8)\?token=(?P<token>[a-zA-Z0-9+/=]+).*'
 
 
 DEBUG=False
@@ -140,11 +139,7 @@ class ServerSelectionScreen(Screen):
 def selectFromTS(session, ts=None, service=None):
   user = None
   pwd = None
-  m = re.match(TS_RE_1, ts, re.IGNORECASE)
-  if m:
-    user = m.group('user')
-    pwd = m.group('pwd')
-  m = re.match(TS_RE_2, ts, re.IGNORECASE)
+  m = re.match(TS_RE, ts, re.IGNORECASE)
   if m:
     token = m.group('token')
     try:
@@ -170,7 +165,7 @@ def main(session, **kwargs):
     return
   if selectFromTS(session, ts=ts, service=service_ref):
     return
-  info(session, text='Unsupported Stream!')
+  info(session, text='Non-Vaders\' Stream!')
 
 
 def Plugins(**kwargs):
