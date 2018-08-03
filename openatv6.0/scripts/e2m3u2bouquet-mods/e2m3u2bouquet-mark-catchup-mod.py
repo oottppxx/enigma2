@@ -117,20 +117,20 @@ class IPTVSetup:
         print('----Uninstall complete----')
 
     def getJsonURL(self, url):
-        request = urllib2.Request(url)                                                                                     
-        request.add_header('Accept-Encoding', 'gzip')                                                                      
-        response = urllib2.urlopen(request)                                                                                
-        gzipped = response.info().get('Content-Encoding') == 'gzip'                                                        
-        data = ''                                                                                                          
-        dec_obj = zlib.decompressobj(16+zlib.MAX_WBITS)                                                                    
-        while True:                                                                                                        
-            res_data = response.read()                                                                                       
-            if not res_data:                                                                                                 
-                break                                                                           
-            if gzipped:                                                                 
-                data += dec_obj.decompress(res_data)                                      
-            else:                                                                       
-                data += res_data                                                          
+        request = urllib2.Request(url)
+        request.add_header('Accept-Encoding', 'gzip')
+        response = urllib2.urlopen(request)
+        gzipped = response.info().get('Content-Encoding') == 'gzip'
+        data = ''
+        dec_obj = zlib.decompressobj(16+zlib.MAX_WBITS)
+        while True:
+            res_data = response.read()
+            if not res_data:
+                break
+            if gzipped:
+                data += dec_obj.decompress(res_data)
+            else:
+                data += res_data
         return json.loads(data)
 
     def bang_catchup_names(self, dictchannels, username, password):
@@ -148,11 +148,11 @@ class IPTVSetup:
                 if stream_url:
                     break
             if stream_url:
-                break            
+                break
         if not stream_url:
             print 'No channel in dictchannels!'
             return
-        vapi = re.compile(VTS_RE)          
+        vapi = re.compile(VTS_RE)
         xapi = re.compile(XTS_RE)
         epg_prompt = ''
         name = 'name'
@@ -183,6 +183,9 @@ class IPTVSetup:
             for data in cat_data:
                 if data.get('stream-name') in streams:
                     data['stream-name'] = data.get('stream-name')+' !!!'
+                    nameOverride = data.get('nameOverride')
+                    if nameOverride:
+                        data['nameOverride'] = nameOverride+' !!!'
         return
 
     def download_m3u(self, url):
@@ -1179,11 +1182,11 @@ class config:
         f = open(configfile, 'wb')
         f.write("""<!--\r
     E2m3u2bouquet supplier config file\r
-    Add as many suppliers as required and run the script with no parameters\r 
-    this config file will be used and the relevant bouquets set up for all suppliers entered\r 
+    Add as many suppliers as required and run the script with no parameters\r
+    this config file will be used and the relevant bouquets set up for all suppliers entered\r
     0 = No/false\r
     1 = Yes/true\r
-    For elements with <![CDATA[]] enter value between brackets e.g. <![CDATA[mypassword]]>\r 
+    For elements with <![CDATA[]] enter value between brackets e.g. <![CDATA[mypassword]]>\r
 -->\r
 <config>\r
     <supplier>\r
@@ -1473,7 +1476,7 @@ USAGE
                 e2m3uSetup.bang_catchup_names(dictchannels, username, password)
             except:
                 pass
-        
+
         list_xmltv_sources = e2m3uSetup.parse_map_xmltvsources_xml(provider)
         # save xml mapping - should be after m3u parsing
         e2m3uSetup.save_map_xml(categoryorder, category_options, dictchannels, list_xmltv_sources, provider)

@@ -1109,11 +1109,11 @@ class config:
         f = open(configfile, 'wb')
         f.write("""<!--\r
     E2m3u2bouquet supplier config file\r
-    Add as many suppliers as required and run the script with no parameters\r 
-    this config file will be used and the relevant bouquets set up for all suppliers entered\r 
+    Add as many suppliers as required and run the script with no parameters\r
+    this config file will be used and the relevant bouquets set up for all suppliers entered\r
     0 = No/false\r
     1 = Yes/true\r
-    For elements with <![CDATA[]] enter value between brackets e.g. <![CDATA[mypassword]]>\r 
+    For elements with <![CDATA[]] enter value between brackets e.g. <![CDATA[mypassword]]>\r
 -->\r
 <config>\r
     <supplier>\r
