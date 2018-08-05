@@ -1,5 +1,5 @@
-enigma2-plugin-extensions-balancer-6.0.0f.ipk
+enigma2-plugin-extensions-balancer-6.0.0g.ipk
 
-MD5 2169ab76bb5e2513ef4594e29107f4be
+MD5 619184f7a4665ddf28a6e892479c61b5
 
-SHA df2f74f791155e4209bd9a55eab6a87a16394592
+SHA a73111496cc2d8eed4387e367144416d68434285
