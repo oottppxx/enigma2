@@ -173,9 +173,9 @@ class IPTVSetup:
         for stream in data:
             if stream['tv_archive_duration']:
                 sdn = stream[name]
-                index = sdn.find(':')
-                if index != -1:
-                    sdn = sdn[:index]
+#                index = sdn.find(':')
+#                if index != -1:
+#                    sdn = sdn[:index]
                 sdn.rstrip()
                 streams.append(sdn)
         streams = set(streams)
