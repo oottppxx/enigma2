@@ -11,3 +11,5 @@ Open ATV 6.2 (@corkman, @falleen)
 OpenViX 5.1.x (@SomeKewlName)
 
 WooshBuild 7 / OpenATV 6.1 (@BillHicks)
+
+For Balancer only: OpenPLi 6.2 (@DutchDude6X)
