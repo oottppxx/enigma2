@@ -25,6 +25,9 @@ import ssl
 import hashlib
 import base64
 import socket
+import json
+import urllib2
+import zlib
 from PIL import Image
 from collections import OrderedDict
 from collections import deque
@@ -40,9 +43,9 @@ from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 
 __all__ = []
-__version__ = '0.7.5'
+__version__ = '0.7.6'
 __date__ = '2017-06-04'
-__updated__ = '2018-06-08'
+__updated__ = '2018-09-14'
 
 DEBUG = 0
 TESTRUN = 0
@@ -77,7 +80,7 @@ class IPTVSetup:
     def display_welcome(self):
         # welcome message
         print('\n********************************')
-        print('Starting Engima2 IPTV bouquets v{}'.format(__version__))
+        print('Starting Enigma2 IPTV bouquets v{}'.format(__version__))
         print(str(datetime.datetime.now()))
         print("********************************\n")
 
@@ -112,6 +115,76 @@ class IPTVSetup:
             print('Unable to uninstall')
             raise
         print('----Uninstall complete----')
+
+    def getJsonURL(self, url):
+        request = urllib2.Request(url)
+        request.add_header('Accept-Encoding', 'gzip')
+        response = urllib2.urlopen(request)
+        gzipped = response.info().get('Content-Encoding') == 'gzip'
+        data = ''
+        dec_obj = zlib.decompressobj(16+zlib.MAX_WBITS)
+        while True:
+            res_data = response.read()
+            if not res_data:
+                break
+            if gzipped:
+                data += dec_obj.decompress(res_data)
+            else:
+                data += res_data
+        return json.loads(data)
+
+    def bang_catchup_names(self, dictchannels, username, password):
+        print("\n----Banging catchup names----")
+        VTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/play/(?P<stream>[0-9]+)\.(ts|m3u8)\?token=(?P<token>[a-zA-Z0-9+/=]+).*'
+        VAPI_EPG_PROMPT=(r'http://vapi.vaders.tv/epg/channels?username=%(USER)s&password=%(PWD)s&'
+                          'action=get_live_streams&start=99990000000000')
+        XTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/live/(?P<user>[^/]+)/(?P<pwd>[^/]+)/(?P<stream>[0-9]+)\.(?P<ctype>ts|m3u8).*'
+        XAPI_EPG_PROMPT=(r'http://%(HOST)s/player_api.php?username=%(USER)s&password=%(PWD)s&'
+                          'action=get_live_streams&start=99990000000000')
+        stream_url = ''
+        for cat_data in dictchannels.itervalues():
+            for data in cat_data:
+                stream_url = data.get('stream-url')
+                is_vod = data.get('is-vod')
+                if stream_url and not is_vod:
+                    break
+            if stream_url:
+                break
+        if not stream_url:
+            print 'No channel in dictchannels!'
+            return
+        vapi = re.compile(VTS_RE)
+        xapi = re.compile(XTS_RE)
+        epg_prompt = ''
+        name = 'name'
+        vaders = False
+        m = xapi.search(stream_url)
+        if m:
+            epg_prompt = XAPI_EPG_PROMPT % {'HOST': m.group('host'), 'USER': username, 'PWD': password}
+        else:
+            m = vapi.search(stream_url)
+            if m:
+                epg_prompt = VAPI_EPG_PROMPT % {'USER': username, 'PWD': password}
+                name = 'stream_display_name'
+        if not epg_prompt:
+            print 'No EPG prompt data!'
+            return
+        data = self.getJsonURL(epg_prompt)
+        streams = []
+        for stream in data:
+            if stream['tv_archive_duration']:
+                sdn = stream[name]
+                sdn.rstrip()
+                streams.append(sdn)
+        streams = set(streams)
+        for cat, cat_data in dictchannels.iteritems():
+            for data in cat_data:
+                if data.get('stream-name') in streams:
+                    data['stream-name'] = data.get('stream-name')+' !!!'
+                    nameOverride = data.get('nameOverride')
+                    if nameOverride:
+                        data['nameOverride'] = nameOverride+' !!!'
+        return
 
     def download_m3u(self, url):
         """Download m3u file from url"""
@@ -342,17 +415,21 @@ class IPTVSetup:
         """
         parsed_stream_url = urlparse.urlparse(channeldict['stream-url'])
 
+        # check for vod streams ending .*.m3u8 e.g. 2345.mp4.m3u8
+        is_m3u8_vod = re.search('\.[^/]+\.m3u8$', parsed_stream_url.path)
+
         if (parsed_stream_url.path.endswith('.ts') or parsed_stream_url.path.endswith('.m3u8')) \
-                and not (parsed_stream_url.path.endswith('mp4.m3u8') or parsed_stream_url.path.endswith('mkv.m3u8')
-                                 or parsed_stream_url.path.endswith('avi.m3u8')) \
+                and not is_m3u8_vod \
                 and not channeldict['group-title'].startswith('VOD'):
             channeldict['stream-type'] = '4097' if all_iptv_stream_types else '1'
             if tv_stream_type:
                 # Set custom TV stream type if supplied - this overrides all_iptv_stream_types
                 channeldict['stream-type'] = str(tv_stream_type)
+            channeldict['is-vod'] = False
         else:
             channeldict['group-title'] = u"VOD - {}".format(channeldict['group-title'])
             channeldict['stream-type'] = '4097' if not vod_stream_type else str(vod_stream_type)
+            channeldict['is-vod'] = True
 
     def parse_map_bouquet_xml(self, dictchannels, providername):
         """Check for a mapping override file and parses it if found
@@ -990,7 +1067,7 @@ class IPTVSetup:
         with open(os.path.join(EPGIMPORTPATH, source_filename), "w+") as f:
             f.write('<sources>\n')
             f.write('{}<sourcecat sourcecatname="IPTV Bouquet Maker - E2m3u2bouquet">\n'.format(indent))
-            f.write('{}<source type="gen_xmltv" channels="{}">\n'
+            f.write('{}<source type="gen_xmltv" nocheck="1" channels="{}">\n'
                     .format(2 * indent, channels_filename))
             f.write('{}<description>{}</description>\n'.format(3 * indent, self.xml_escape(source_name)))
             for source in sources:
@@ -1397,6 +1474,14 @@ USAGE
         # parse m3u file
         categoryorder, category_options, dictchannels = e2m3uSetup.parse_m3u(m3ufile, iptvtypes, sttv, stvod, panel_bouquet,
                                                                              xcludesref, provider)
+
+        # bang bang bang catchup channels' names
+        if (True):
+            try:
+                e2m3uSetup.bang_catchup_names(dictchannels, username, password)
+            except:
+                pass
+
         list_xmltv_sources = e2m3uSetup.parse_map_xmltvsources_xml(provider)
         # save xml mapping - should be after m3u parsing
         e2m3uSetup.save_map_xml(categoryorder, category_options, dictchannels, list_xmltv_sources, provider)
