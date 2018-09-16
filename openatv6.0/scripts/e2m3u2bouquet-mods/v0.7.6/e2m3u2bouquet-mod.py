@@ -136,8 +136,9 @@ class IPTVSetup:
     def bang_catchup_names(self, dictchannels, username, password):
         print("\n----Banging catchup names----")
         VTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/play/(?P<stream>[0-9]+)\.(ts|m3u8)\?token=(?P<token>[a-zA-Z0-9+/=]+).*'
-        VAPI_EPG_PROMPT=(r'http://vapi.vaders.tv/epg/channels?username=%(USER)s&password=%(PWD)s&'
-                          'action=get_live_streams&start=99990000000000')
+        VAPI_CAT_PROMPT=r'http://vapi.vaders.tv/epg/categories?username=%(USER)s&password=%(PWD)s'
+        VAPI_CAT_EPG=(r'http://vapi.vaders.tv/epg/channels?username=%(USER)s&password=%(PWD)s&'
+                       'category_id=%(CAT)s&action=get_live_streams&start=99990000000000')
         XTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/live/(?P<user>[^/]+)/(?P<pwd>[^/]+)/(?P<stream>[0-9]+)\.(?P<ctype>ts|m3u8).*'
         XAPI_EPG_PROMPT=(r'http://%(HOST)s/player_api.php?username=%(USER)s&password=%(PWD)s&'
                           'action=get_live_streams&start=99990000000000')
@@ -155,21 +156,22 @@ class IPTVSetup:
             return
         vapi = re.compile(VTS_RE)
         xapi = re.compile(XTS_RE)
-        epg_prompt = ''
         name = 'name'
         vaders = False
         m = xapi.search(stream_url)
+        data = []
         if m:
-            epg_prompt = XAPI_EPG_PROMPT % {'HOST': m.group('host'), 'USER': username, 'PWD': password}
+            data = self.getJsonURL(XAPI_EPG_PROMPT % {'HOST': m.group('host'), 'USER': username, 'PWD': password})
         else:
             m = vapi.search(stream_url)
             if m:
-                epg_prompt = VAPI_EPG_PROMPT % {'USER': username, 'PWD': password}
                 name = 'stream_display_name'
-        if not epg_prompt:
+                categories = self.getJsonURL(VAPI_CAT_PROMPT % {'USER': username, 'PWD': password})
+                for cat in categories.iterkeys():
+                    data.extend(self.getJsonURL(VAPI_CAT_EPG % {'USER': username, 'PWD': password, 'CAT': str(cat)}))
+        if not data:
             print 'No EPG prompt data!'
             return
-        data = self.getJsonURL(epg_prompt)
         streams = []
         for stream in data:
             if stream['tv_archive_duration']:

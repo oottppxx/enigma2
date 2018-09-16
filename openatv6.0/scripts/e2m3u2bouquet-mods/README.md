@@ -1,9 +1,6 @@
 * e2m3u2bouquet/Suls mods
 
-These are currently mods against Suls, for both version
-0.7.5 and 0.7.6:
-
-https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.5
+These are currently mods against Suls v0.7.6.
 
 https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.6
 
