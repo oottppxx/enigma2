@@ -1,5 +1,5 @@
-enigma2-plugin-extensions-plheinz-6.0.4qPLans.ipk
+enigma2-plugin-extensions-plheinz-6.0.4qPLa20.ipk
 
-MD5 8da7dc3cb9aea296e98fa10c1b916f7c
+MD5 033ef2821e2f9163a92b61d60fc31a69
 
-SHA 019c1a00a4ff43a7974b8e5e07f361da5384931f
+SHA 6d9da0b315def76399a346d9a84ea50b89122493
