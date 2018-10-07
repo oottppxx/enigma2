@@ -789,12 +789,7 @@ class IPTVSetup:
         if type(name) is unicode:
             name = name.encode('utf-8')
         name = unicodedata.normalize('NFKD', unicode(name, 'utf_8')).encode('ASCII', 'ignore')
-        exclude_chars = ['/', '\\', '\'', '"', '`', '?', ' ', '(', ')', ':', '<', '>', '|', '.', '\n', '!']
-        name = re.sub('[%s]' % ''.join(exclude_chars), '', name)
-        name = name.replace('&', 'and')
-        name = name.replace('+', 'plus')
-        name = name.replace('*', 'star')
-        name = name.lower()
+        name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
         return name
 
     def get_safe_filename(self, filename):
