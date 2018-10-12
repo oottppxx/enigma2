@@ -10,6 +10,8 @@ e2m3u2bouquet.e2m3u2bouquet -- Enigma2 IPTV m3u to bouquet parser
 @deffield    updated: Updated
 """
 
+BANG=' !!!'
+
 import sys
 import os
 import errno
@@ -118,6 +120,7 @@ class IPTVSetup:
 
     def getJsonURL(self, url):
         request = urllib2.Request(url)
+        request.add_header('User-Agent', 'Enigma2 Suls mod @oottppxx')
         request.add_header('Accept-Encoding', 'gzip')
         response = urllib2.urlopen(request)
         gzipped = response.info().get('Content-Encoding') == 'gzip'
@@ -186,10 +189,10 @@ class IPTVSetup:
         for cat, cat_data in dictchannels.iteritems():
             for data in cat_data:
                 if data.get('stream-name') in streams:
-                    data['stream-name'] = data.get('stream-name')+' !!!'
+                    data['stream-name'] = data.get('stream-name')+BANG
                     nameOverride = data.get('nameOverride')
                     if nameOverride:
-                        data['nameOverride'] = nameOverride+' !!!'
+                        data['nameOverride'] = nameOverride+BANG
         return
 
     def download_m3u(self, url):
@@ -1481,7 +1484,7 @@ USAGE
             try:
                 e2m3uSetup.bang_catchup_names(dictchannels, username, password)
             except:
-                pass
+                print 'Ooopsie, something happened while trying to bang catchup names...'
 
         list_xmltv_sources = e2m3uSetup.parse_map_xmltvsources_xml(provider)
         # save xml mapping - should be after m3u parsing
