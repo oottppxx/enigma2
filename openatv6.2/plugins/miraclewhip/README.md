@@ -4,8 +4,8 @@ Point your browser to:
 
     http://<enigma2 box address>:<port>/
 
-where the <port> parameter comes from the
-settings, and <enigma2 box address> is
+where the *port* parameter comes from the
+settings, and *enigma2 box address* is
 whatever IP address your Enigma2 box has
 on your LAN. By default, the port is 6677.
 
