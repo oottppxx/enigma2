@@ -10,20 +10,21 @@ VAPI_INFO='http://vapi.vaders.tv/vod/user?username=%(USER)s&password=%(PWD)s'
 TIME_FMT='%Y-%m-%d %H:%M:%S'
 
 def getJsonURL(url):
-  request = urllib2.Request(url)                                                                                     
-  request.add_header('Accept-Encoding', 'gzip')                                                                      
-  response = urllib2.urlopen(request)                                                                                
-  gzipped = response.info().get('Content-Encoding') == 'gzip'                                                        
-  data = ''                                                                                                          
-  dec_obj = zlib.decompressobj(16+zlib.MAX_WBITS)                                                                    
-  while True:                                                                                                        
-    res_data = response.read()                                                                                       
-    if not res_data:                                                                                                 
-      break                                                                           
-    if gzipped:                                                                 
-      data += dec_obj.decompress(res_data)                                      
-    else:                                                                       
-      data += res_data                                                          
+  request = urllib2.Request(url)
+  request.add_header('User-Agent', 'Enigma2 Vaders subinfo @oottppxx')
+  request.add_header('Accept-Encoding', 'gzip')
+  response = urllib2.urlopen(request)
+  gzipped = response.info().get('Content-Encoding') == 'gzip'
+  data = ''
+  dec_obj = zlib.decompressobj(16+zlib.MAX_WBITS)
+  while True:
+    res_data = response.read()
+    if not res_data:
+      break
+    if gzipped:
+      data += dec_obj.decompress(res_data)
+    else:
+      data += res_data
   return json.loads(data)
 
 if len(sys.argv) < 3:
