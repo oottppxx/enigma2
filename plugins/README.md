@@ -3,12 +3,14 @@
 * PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
   making it difficult (to me) to use SingleEPG builtin screens.
 
-* Subway is a plugin do display subscription info, if the service supports it.
+* Subway is a plugin to display subscription info, if the service supports it.
 
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
 
 * Balancer is a server switcher for Vaders (and resellers).
+
+* McDonnells is a match center events lister/zapper for Vaders (and resellers).
 
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
 numbers of the plugins generally track the major/minor release for the system where
