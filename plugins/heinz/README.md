@@ -5,7 +5,7 @@ invoke it directly from a live stream and/or
 
 When **invoked during a supported live stream**,
 
-![EPG Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-0.jpg)
+![EPG Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/abc-ku-example-0.jpg)
 
 settings can be changed from the EPG screen
 using the
@@ -19,11 +19,11 @@ letting the timeout expire will take you to
 the setup menu where you can adjust the
 settings.
 
-![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/setup-example.jpg)
+![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/setup-example.jpg)
 
 If **invoked during a "ketchup" stream**,
 
-![Timeline Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-1.jpg)
+![Timeline Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/abc-ku-example-1.jpg)
 
 the following keys can be used to control it:
 
@@ -38,11 +38,11 @@ These keys will, respectively:
 - forward the timeline;
 - display stream information;
 
-![Info Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-2.jpg)
+![Info Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/abc-ku-example-2.jpg)
 
 - pause the stream;
 
-![Pause Screen Image](https://github.com/oottppxx/enigma2/blob/master/openatv6.0/plugins/heinz/screenshots/abc-ku-example-3.jpg)
+![Pause Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/abc-ku-example-3.jpg)
 
 - reload the stream at the current/selected
 timeline time;
