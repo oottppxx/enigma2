@@ -57,4 +57,12 @@ keys you're more comfortable with using. Make sure to
 keep a copy of the edited file, as upgrades to newer
 versions of the plugin will overwrite it.
 
+From version 6.2.0a, "recording" functionality was
+added, that allows one to download content from the
+archive into the local drive.
+
 Dev/Testing on OpenATV 6.0, Caveat Emptor.
+
+For new versions with "recording" functionality:
+
+Dev/Testing on OpenATV 6.2, Caveat Emptor.
