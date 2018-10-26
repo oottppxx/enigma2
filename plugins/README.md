@@ -14,7 +14,7 @@
 
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
 numbers of the plugins generally track the major/minor release for the system where
-they were developed and tested (e.g., Heinz 6.0.xy was developed and tested on an
+they were developed and tested (e.g., Heinz up to 6.0.4u was developed and tested on an
 OpenATV 6.0 system). For minor updates, the major/minor release tracking isn't expected
 to change, even if the current system has evolved - let me know about innaccuracies.
 
