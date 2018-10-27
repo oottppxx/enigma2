@@ -1,5 +1,5 @@
-enigma2-plugin-extensions-plheinz-6.0.4tPLi.ipk
+enigma2-plugin-extensions-plheinz-6.0.4ttPLi.ipk
 
-MD5 5dc38669119a73f1384ddcdaeb5c07c6
+MD5 59005f2f12be87a24d810f6a6c2deb0c
 
-SHA d6c31308e5ead3ab94e9f73c6c0a15cd6d848649
+SHA bf5c37bb50869b60f9b8f32c334897ac1ef59fde
