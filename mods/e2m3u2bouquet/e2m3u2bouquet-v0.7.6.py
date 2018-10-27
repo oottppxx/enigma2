@@ -144,7 +144,7 @@ class IPTVSetup:
         VAPI_CAT_PROMPT=r'http://vapi.vaders.tv/epg/categories?username=%(USER)s&password=%(PWD)s'
         VAPI_CAT_EPG=(r'http://vapi.vaders.tv/epg/channels?username=%(USER)s&password=%(PWD)s&'
                        'category_id=%(CAT)s&action=get_live_streams&start=99990000000000')
-        XTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/live/(?P<user>[^/]+)/(?P<pwd>[^/]+)/(?P<stream>[0-9]+)\.(?P<ctype>ts|m3u8).*'
+        XTS_RE=r'.*//(?P<host>[%a-zA-Z0-9:.-]+)/live/(?P<user>[^/]+)/(?P<pwd>[^/]+)/(?P<stream>[0-9]+).*'
         XAPI_EPG_PROMPT=(r'http://%(HOST)s/player_api.php?username=%(USER)s&password=%(PWD)s&'
                           'action=get_live_streams&start=99990000000000')
         stream_url = ''
