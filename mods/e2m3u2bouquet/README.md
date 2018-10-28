@@ -19,4 +19,9 @@ to download from github as RAW!)
 
 On the next bouquet update, changes will take effect.
 
+NOTE: if you want to mark channels with something other than 3
+exclamation marks, just modify the line of the script after the
+copyright string at the top, that says BANG=' !!!' (edit the
+content within the single quotes, don't touch the rest).
+
 @oottppxx
