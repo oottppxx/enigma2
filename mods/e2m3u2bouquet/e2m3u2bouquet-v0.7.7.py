@@ -550,7 +550,7 @@ class IPTVSetup:
                             if new_cat and new_cat != cat:
                                 dictchannels.setdefault(new_cat, [])
                                 dictchannels[new_cat].append(x)
-                                # dictchannels[cat].remove(x
+                                #dictchannels[cat].remove(x)
 
             print('custom channel order parsed...')
 
