@@ -546,6 +546,11 @@ class IPTVSetup:
                             clear_stream_url = node.attrib.get('clearStreamUrl') == 'true'
                             if clear_stream_url:
                                 x['stream-url'] = ''
+                            new_cat = str(node.attrib.get('category', ''))
+                            if new_cat and new_cat != cat:
+                                dictchannels.setdefault(new_cat, [])
+                                dictchannels[new_cat].append(x)
+                                # dictchannels[cat].remove(x
 
             print('custom channel order parsed...')
 
@@ -1481,16 +1486,16 @@ USAGE
         categoryorder, category_options, dictchannels = e2m3uSetup.parse_m3u(m3ufile, iptvtypes, sttv, stvod, panel_bouquet,
                                                                              xcludesref, provider)
 
+        list_xmltv_sources = e2m3uSetup.parse_map_xmltvsources_xml(provider)
+        # save xml mapping - should be after m3u parsing
+        e2m3uSetup.save_map_xml(categoryorder, category_options, dictchannels, list_xmltv_sources, provider)
+
         # bang bang bang catchup channels' names
         if (True):
             try:
                 e2m3uSetup.bang_catchup_names(dictchannels, username, password)
             except:
                 print 'Ooopsie, something happened while trying to bang catchup names...'
-
-        list_xmltv_sources = e2m3uSetup.parse_map_xmltvsources_xml(provider)
-        # save xml mapping - should be after m3u parsing
-        e2m3uSetup.save_map_xml(categoryorder, category_options, dictchannels, list_xmltv_sources, provider)
 
         # Download picons
         if picons:

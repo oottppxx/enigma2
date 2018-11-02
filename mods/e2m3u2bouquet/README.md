@@ -1,14 +1,14 @@
 * e2m3u2bouquet/Suls mods
 
-These are currently mods against Suls v0.7.6 and v0.7.7
+These are currently mods against Suls v0.7.7.
 
-https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.6
 https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.7
 
 They generally enable catchup markings (!!!) on supported
 channels/providers, fix some VOD matching issues across
-different providers' m3u, and do picon file name replacements
-properly.
+different providers' m3u, do picon file name replacements
+properly, and allow category name overrides (including to
+a fresh new category).
 
 * Pick the version appropriate mod Python file (NOTE: you need
 to download from github as RAW!)
