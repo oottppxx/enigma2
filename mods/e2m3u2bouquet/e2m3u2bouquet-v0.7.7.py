@@ -560,7 +560,6 @@ class IPTVSetup:
                                 y['processed'] = True
                                 dictchannels.setdefault(new_cat, [])
                                 dictchannels[new_cat].append(y)
-                                print('New cat channel %s\n%s' % (new_cat, str(y)))
                                 continue
                             if node.attrib.get('enabled') == 'false':
                                 x['enabled'] = False
