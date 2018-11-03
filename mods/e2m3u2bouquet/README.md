@@ -1,14 +1,21 @@
 * e2m3u2bouquet/Suls mods
 
-These are currently mods against Suls v0.7.7.
+Mods against Suls v0.7.7 (https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.7)
 
-https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.7
+Features/fixes:
 
-They generally enable catchup markings (!!!) on supported
-channels/providers, fix some VOD matching issues across
-different providers' m3u, do picon file name replacements
-properly, and allow category name overrides (including to
-a fresh new category).
+* Enables catchup markings (!!!) on supported channels/providers
+* Enables channel moves and/or copies across categories/bouquets,
+including to newly created categories/bouquets, via the override file
+* Fixes VOD matching issues for particular provider(s)
+* Fixes picon files' name generation
+
+NOTE: if you want to mark channels with something other than 3
+exclamation marks, just modify the line of the script after the
+copyright string at the top, that says BANG=' !!!' (edit the
+content within the single quotes, don't touch the rest).
+
+How to use/install:
 
 * Pick the version appropriate mod Python file (NOTE: you need
 to download from github as RAW!)
@@ -18,10 +25,5 @@ to download from github as RAW!)
 * Restart the GUI/Enigma2/box.
 
 On the next bouquet update, changes will take effect.
-
-NOTE: if you want to mark channels with something other than 3
-exclamation marks, just modify the line of the script after the
-copyright string at the top, that says BANG=' !!!' (edit the
-content within the single quotes, don't touch the rest).
 
 @oottppxx
