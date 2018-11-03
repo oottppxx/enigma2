@@ -875,7 +875,7 @@ class IPTVSetup:
 
         for cat in category_order:
             # Add check for enabled categories, as we're no longer removing those
-            if cat in dictchannels and category_options[cat].get('enabled', True):
+            if cat in dictchannels and category_options.get(cat, {'enabled': True}).get('enabled', True):
                 cat_title = self.get_category_title(cat, category_options)
                 # create file
                 cat_filename = self.get_safe_filename(cat_title)
