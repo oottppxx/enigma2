@@ -468,8 +468,11 @@ class IPTVSetup:
                     dictoption["enabled"] = False
                     # Remove category/bouquet
                     if category != "VOD":
-                        if category in dictchannels:
-                            dictchannels.pop(category, None)
+                        # Not removing it, as we might want to process channels
+                        # in disabled categories anyway
+                        #if category in dictchannels:
+                            #dictchannels.pop(category, None)
+                        pass
                     else:
                         keys_to_remove = []
                         for k in dictchannels.iterkeys():
@@ -531,8 +534,34 @@ class IPTVSetup:
                     dictchannels[cat].sort(key=lambda x: channel_order_dict[x['stream-name']])
 
                     for x in dictchannels[cat]:
-                        node = tree.find(u'.//channel[@name="{}"]'.format(x['stream-name']))
-                        if node is not None:
+                        if x.get('processed', False):
+                            continue
+                        nodes = tree.findall(u'.//channel[@name="{}"]'.format(x['stream-name']))
+                        for node in nodes:
+                            new_cat = str(node.attrib.get('category', ''))
+                            if new_cat and new_cat != cat:
+                                # Note, this is a shallow copy!
+                                y = x.copy()
+                                if node.attrib.get('enabled') == 'false':
+                                    y['enabled'] = False
+                                else:
+                                    y['enabled'] = True
+                                y['nameOverride'] = node.attrib.get('nameOverride', '')
+                                # default to current values if attribute doesn't exist
+                                y['tvg-id'] = node.attrib.get('tvg-id', x['tvg-id'])
+                                if node.attrib.get('serviceRef', None) and not xcludesref:
+                                    y['serviceRef'] = node.attrib.get('serviceRef', x['serviceRef'])
+                                    y['serviceRefOverride'] = True
+                                # streamUrl no longer output to xml file but we still check and process it
+                                y['stream-url'] = node.attrib.get('streamUrl', x['stream-url'])
+                                clear_stream_url = node.attrib.get('clearStreamUrl') == 'true'
+                                if clear_stream_url:
+                                    y['stream-url'] = ''
+                                y['processed'] = True
+                                dictchannels.setdefault(new_cat, [])
+                                dictchannels[new_cat].append(y)
+                                print('New cat channel %s\n%s' % (new_cat, str(y)))
+                                continue
                             if node.attrib.get('enabled') == 'false':
                                 x['enabled'] = False
                             x['nameOverride'] = node.attrib.get('nameOverride', '')
@@ -546,11 +575,7 @@ class IPTVSetup:
                             clear_stream_url = node.attrib.get('clearStreamUrl') == 'true'
                             if clear_stream_url:
                                 x['stream-url'] = ''
-                            new_cat = str(node.attrib.get('category', ''))
-                            if new_cat and new_cat != cat:
-                                dictchannels.setdefault(new_cat, [])
-                                dictchannels[new_cat].append(x)
-                                #dictchannels[cat].remove(x)
+                        x['processed'] = True
 
             print('custom channel order parsed...')
 
@@ -850,7 +875,8 @@ class IPTVSetup:
         channel_number_start_offset_output = False
 
         for cat in category_order:
-            if cat in dictchannels:
+            # Add check for enabled categories, as we're no longer removing those
+            if cat in dictchannels and category_options[cat].get('enabled', True):
                 cat_title = self.get_category_title(cat, category_options)
                 # create file
                 cat_filename = self.get_safe_filename(cat_title)
