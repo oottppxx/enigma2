@@ -13,7 +13,7 @@
 * McDonnells is a match center events lister/zapper for Vaders (and resellers).
 
 * PyShell is a plugin for developers/coders - it provides a very simple Python
-  shell with access to Enigma2 runtime environment, so small (or not so small)
+  shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
