@@ -7,8 +7,8 @@ Point your telnet client to:
 where the <port> parameter comes from the
 settings. By default, the port is 8089.
 
-Example usage:
-```
+### START OF EXAMPLE USAGE ###
+
 # telnet localhost 8089
 !h for help
 >>> !h      
@@ -50,6 +50,8 @@ StdOut/StdErr:
 [SCREENNAME]  ['MessageBoxSimple']
 Last Unhandled Exception:
 None
-```
+
+### END OF EXAMPLE USAGE ###
+
 
 Dev/Testing on OpenATV 6.2, Caveat Emptor.
