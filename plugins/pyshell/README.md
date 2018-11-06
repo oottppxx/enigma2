@@ -7,10 +7,10 @@ Point your telnet client to:
 where the <port> parameter comes from the
 settings. By default, the port is 8089.
 
+Example usage:
+
 ![Hello World Image](https://github.com/oottppxx/enigma2/blob/master/plugins/pyshell/screenshots/helloworld.jpg)
 
-
-Example usage:
 ```
 # telnet localhost 8089
 !h for help
