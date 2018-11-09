@@ -16,6 +16,8 @@
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
+* Innocent is a local M3U proxy for SmoothStreams.
+
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
 numbers of the plugins generally track the major/minor release for the system where
 they were developed and tested (e.g., Heinz up to 6.0.4u was developed and tested on an
