@@ -17,6 +17,10 @@ content within the single quotes, don't touch the rest).
 
 How to use/install:
 
+* Install the package e2m3u2bouquet_0.7.7_mod.ipk
+
+OR
+
 * Pick the version appropriate mod Python file (NOTE: you need
 to download from github as RAW!)
 * Rename it to e2m3u2bouquet.py
