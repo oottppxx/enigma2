@@ -1,4 +1,4 @@
-Vaders' MatchCenter listings.
+Vaders' MatchCenter and Smooth Streams listings.
 
 Features:
 
