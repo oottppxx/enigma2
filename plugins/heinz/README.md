@@ -21,7 +21,8 @@ settings.
 
 ![Settings Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/setup-example.jpg)
 
-If **invoked during a "ketchup" stream**,
+If **invoked during a "ketchup" stream** (from v6.2.1c, reinvoking is only needed if you exit the "ketchup" and then
+resume it via zap history),
 
 ![Timeline Screen Image](https://github.com/oottppxx/enigma2/blob/master/plugins/heinz/screenshots/abc-ku-example-1.jpg)
 
