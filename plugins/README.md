@@ -1,7 +1,7 @@
 * Heinz is a "ketchup" plugin, supporting both Vaders API as well as Xtream-Codes API.
 
 * PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
-  making it difficult (to me) to use SingleEPG builtin screens.
+  making it difficult (for me) to use SingleEPG builtin screens.
 
 * Subway is a plugin to display subscription info, if the service supports it.
 
@@ -10,7 +10,8 @@
 
 * Balancer is a server switcher for Vaders (and resellers).
 
-* McDonnells is a match center events lister/zapper for Vaders (and resellers).
+* McDonnells is a match center events lister/zapper for Vaders (and resellers), and
+  also an events lister/zapper for Smooth Streams.
 
 * PyShell is a plugin for developers/coders - it provides a very simple Python
   shell with access to the Enigma2 runtime environment, so small (or not so small)
