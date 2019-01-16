@@ -8,8 +8,6 @@
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
 
-* Balancer is a server switcher for Vaders (and resellers).
-
 * McDonnells is a match center events lister/zapper for Vaders (and resellers), and
   also an events lister/zapper for Smooth Streams.
 
@@ -32,7 +30,7 @@ Typically, the README files for each plugin/script will provide the necessary in
 regarding where they were developed/tested, so one can make an educated guess if they'd
 work on a particular system. In the end, there's nothing like trying it out.
 
-Original greetings regarding Heinz and Balancer below:
+Original greetings regarding Heinz and Balancer (the latter now removed) below:
 
 Thanks to the folks in PMC:Enigma (now extinct, namely @falleen, @BillHicks, @Bill) and DeathStar (namely @agentsmith1, @SomeKewlName).
 
