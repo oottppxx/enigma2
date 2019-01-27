@@ -31,6 +31,6 @@ Optional parameters:
 Example of a typical XC API URL that would prefix
 a marker of '[+] ':
 
-http://127.0.0.1/?marker=%5B%2B%5D%20&prefix=1&url=http%3A%2F%2FHOST%3APORT%2Fget.php%3Fusername%3DUSERNAME%26password%3DPASSWORD%26type%3Dm3u_plus
+http://127.0.0.1/?marker=**%5B%2B%5D%20**&prefix=1&url=**http%3A%2F%2FHOST%3APORT%2Fget.php%3Fusername%3DUSERNAME%26password%3DPASSWORD%26type%3Dm3u_plus**
 
 Dev/Testing on OpenATV 6.2, Caveat Emptor.
