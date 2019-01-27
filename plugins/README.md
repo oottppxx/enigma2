@@ -33,8 +33,8 @@ Typically, the README files for each plugin/script will provide the necessary in
 regarding where they were developed/tested, so one can make an educated guess if they'd
 work on a particular system. In the end, there's nothing like trying it out.
 
-Thanks to all folks in the Enigma2Talk Telegram chatroom who help with testing, ideas and
-all kind of suggestions and comments!
+Thanks to all folks in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2) who
+help with testing, ideas and all kind of suggestions and comments!
 
 Original greetings regarding Heinz and Balancer (the latter now removed) below:
 
