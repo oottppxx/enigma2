@@ -1,5 +1,8 @@
 * Heinz is a "ketchup" plugin, supporting both Vaders API as well as Xtream-Codes API.
 
+* Frenchs adds some spice to Heinz, by allowing to mark channels supporting catchup,
+  and it also supports both Vaders API as well as Xtream-Codes API.
+
 * PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
   making it difficult (for me) to use SingleEPG builtin screens.
 
@@ -29,6 +32,9 @@ it was based/updated from.
 Typically, the README files for each plugin/script will provide the necessary information
 regarding where they were developed/tested, so one can make an educated guess if they'd
 work on a particular system. In the end, there's nothing like trying it out.
+
+Thanks to all folks in the Enigma2Talk Telegram chatroom who help with testing, ideas and
+all kind of suggestions and comments!
 
 Original greetings regarding Heinz and Balancer (the latter now removed) below:
 

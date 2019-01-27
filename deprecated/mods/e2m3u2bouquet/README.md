@@ -1,5 +1,8 @@
 * e2m3u2bouquet/Suls mods
 
+NOTE: this mod functionality is deprecated by recent changes to E2m3u2bouquet
+and the French's plugin.
+
 Mods against Suls v0.7.7 (https://github.com/su1s/e2m3u2bouquet/releases/tag/v0.7.7)
 
 Features/fixes:
