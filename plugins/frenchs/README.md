@@ -31,7 +31,7 @@ Optional parameters:
 Example of a typical XC API URL that would prefix
 a marker of '[+] ':
 
-http://<span></span>127.0.0.1/?marker=<b>%5B%2B%5D%20</b>&prefix=1&url=<b>http%3A%2F%2FHOST%3APORT%2Fget.php%3Fusername%3DUSERNAME%26password%3DPASSWORD%26type%3Dm3u_plus</b>
+http://<span></span>127.0.0.1:7290/?marker=<b>%5B%2B%5D%20</b>&prefix=1&url=<b>http%3A%2F%2FHOST%3APORT%2Fget.php%3Fusername%3DUSERNAME%26password%3DPASSWORD%26type%3Dm3u_plus</b>
 
 Notice how only the "marker" and "url" parameter
 values (in bold) should be encoded, the remainder
