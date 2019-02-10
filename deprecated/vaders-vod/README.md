@@ -1,5 +1,9 @@
 * Create VOD bouquet
 
+NOTE: you probably want to take a peek at the Absolut
+plugin, these days (although at the time of this
+writing it doesn't support TV series).
+
 Bring up bouquet list, then menu, then add bouquet: make sure to call it "vod" (no quotes).
 
 * Make sure of the new bouquet file name
