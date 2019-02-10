@@ -20,6 +20,10 @@
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
+* Absolut is a VODka plugin, still under development, supporting both Vaders API
+  (limited to movies right now) as well as Xtream-Codes API (takes a long time to
+  fetch all movies and shows, be warned...)
+
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
 numbers of the plugins generally track the major/minor release for the system where
 they were developed and tested (e.g., Heinz up to 6.0.4u was developed and tested on an
