@@ -1,4 +1,4 @@
 enigma2-plugin-extensions-absolut-6.2.0alfa.ipk
-MD5 e117723c4172bceecbb62a515f0e227a
-SHA 087f9c051d509d75e841b78b68d12b2d533547f8
+MD5 6d3204a542562bad549bbde9ed53cdc9
+SHA 1c50a841be0ba806e0e19c8c53b35b0dbe88ce29
 
