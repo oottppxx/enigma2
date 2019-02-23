@@ -1,28 +1,27 @@
+* Absolut is a VODka plugin, supporting both Vaders API as well as Xtream-Codes API.
+
+* Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
+  as the M3U download is proxied through it; as usual, it supports both Vaders API
+  as well as Xtream-Codes API.
+
 * Heinz is a "ketchup" plugin, supporting both Vaders API as well as Xtream-Codes API.
 
-* Frenchs adds some spice to Heinz, by allowing to mark channels supporting catchup,
-  and it also supports both Vaders API as well as Xtream-Codes API.
+* Innocent is a local M3U proxy for SmoothStreams.
 
-* PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
-  making it difficult (for me) to use SingleEPG builtin screens.
-
-* Subway is a plugin to display subscription info, if the service supports it.
+* McDonnells is a match center events lister/zapper for Vaders (and resellers), and
+  also an events lister/zapper for Smooth Streams.
 
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
 
-* McDonnells is a match center events lister/zapper for Vaders (and resellers), and
-  also an events lister/zapper for Smooth Streams.
+* PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
+  making it difficult (for me) to use SingleEPG builtin screens.
 
 * PyShell is a plugin for developers/coders - it provides a very simple Python
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
-* Innocent is a local M3U proxy for SmoothStreams.
-
-* Absolut is a VODka plugin, still under development, supporting both Vaders API
-  (limited to movies right now) as well as Xtream-Codes API (takes a long time to
-  fetch all movies and shows, be warned...)
+* Subway is a plugin to display subscription info, if the service supports it.
 
 Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
 numbers of the plugins generally track the major/minor release for the system where
