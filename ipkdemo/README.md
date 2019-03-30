@@ -10,7 +10,7 @@ How to run this demo:
 * You should now be able to install the resulting package: cd /tmp/ipkdemo ; opkg install ipkdemo*ipk
 * It installs a file called README.md on /tmp
 * Confirm it was successful: cat /tmp/README.txt
-* You should now be able to remove the pacakge (opkg remove ipkdemo)
+* You should now be able to remove the package (opkg remove ipkdemo)
 * Confirm the file /tmp/README.md was removed
 
 Adjust to taste, you can also build plugins by changing the name, path, files, etc...
