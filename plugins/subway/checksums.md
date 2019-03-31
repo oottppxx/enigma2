@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-subway-6.2.0d.ipk
-MD5 1a305d2bbeeb2f1ebc460b8ae6bab1b3
-SHA 26751c25b894c7155234516e9737bd318fc79a47
+enigma2-plugin-extensions-subway-6.2.0e.ipk
+MD5 af0cac5ec01ace82daf2b909490079c2
+SHA ff540436c5f0b97f7b54de0f6407784782eb953c
 
