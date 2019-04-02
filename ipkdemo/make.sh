@@ -3,7 +3,7 @@ PKG_NAME=ipkdemo
 CONTROL_FILES="postrm postinst preinst"
 DATA_PATH=/tmp
 DATA_FILES="README.md"
-VERSION_FILE=README.md
+VERSION_FILE=version.txt
 VERSION=$(grep VERSION= ${VERSION_FILE} | cut -d= -f2 | tr -d \')
 
 rm -rf ipk
