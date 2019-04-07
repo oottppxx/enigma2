@@ -23,32 +23,37 @@
 
 * Subway is a plugin to display subscription info, if the service supports it.
 
-Most plugins, except for PLHeinz, were developed and tested on OpenATV. The version
-numbers of the plugins generally track the major/minor release for the system where
-they were developed and tested (e.g., Heinz up to 6.0.4u was developed and tested on an
-OpenATV 6.0 system). For minor updates, the major/minor release tracking isn't expected
-to change, even if the current system has evolved - let me know about innaccuracies.
+Plugin release versions have 3 fields, major.minor.update, the major and minor
+being numeric and the update being alfanumeric.
+
+For most plugins, except for PLHeinz, the major and minor release numbers track the
+corresponding fields of the version of the OpenATV system where they were developed
+(currently OpenATV 6.2).
+
+The update field is generally (but not always) some number followed by one or more
+letters; numbers are bumped up when major changes are made to the code; letters are
+bumped up when any fix is applied or reflect some other feature (e.g., alfa, beta).
+
+For minor updates, the major/minor release tracking isn't expected to change, even
+if the current system has evolved - let me know about innaccuracies.
 
 PLHeinz is a different animal, and its version number tracks the closest Heinz release
 it was based/updated from.
 
 Typically, the README files for each plugin/script will provide the necessary information
 regarding where they were developed/tested, so one can make an educated guess if they'd
-work on a particular system. In the end, there's nothing like trying it out.
+work on a particular system. In the end, there's nothing like trying it out. OpenATV and
+OpenPLi are particularly targeted, but compatible distributions might also work
+(e.g., WooshBuild, OpenViX, ...)
 
-Thanks to all folks in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2) who
-help with testing, ideas and all kind of suggestions and comments!
 
-Original greetings regarding Heinz and Balancer (the latter now removed) below:
+Special thanks and greetings to:
 
-Thanks to the folks in PMC:Enigma (now extinct, namely @falleen, @BillHicks, @Bill) and DeathStar (namely @agentsmith1, @SomeKewlName).
+* folks in PMC:Enigma (now extinct), namely @falleen, @BillHicks, @Bill, @corkman
 
-Although dev/tested in Open ATV 6.0, these plugins were reported to also work in:
+* folks in DeathStar (now extinct), namely @agentsmith1, @SomeKewlName
 
-Open ATV 6.2 (@corkman, @falleen)
+* folks in Enigma2Talk, namely @danny187, @DutchDude6X, @duoduo80
 
-OpenViX 5.1.x (@SomeKewlName)
-
-WooshBuild 7 / OpenATV 6.1 (@BillHicks)
-
-For Balancer only: OpenPLi 6.2 (@DutchDude6X)
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
