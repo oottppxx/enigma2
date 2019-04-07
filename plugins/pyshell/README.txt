@@ -54,4 +54,5 @@ None
 ### END OF EXAMPLE USAGE ###
 
 
-Dev/Testing on OpenATV 6.2, Caveat Emptor.
+Dev/Testing on OpenATV 6.2 and OpenPLi 6.2,
+            Caveat Emptor.
