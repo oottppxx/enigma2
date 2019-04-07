@@ -37,4 +37,5 @@ Notice how only the "marker" and "url" parameter
 values (in bold) should be encoded, the remainder
 of the new/proxied URL should not.
 
-Dev/Testing on OpenATV 6.2, Caveat Emptor.
+Dev/Testing on OpenATV 6.2 and OpenPLi 6.2,
+            Caveat Emptor.
