@@ -1,5 +1,5 @@
-enigma2-plugin-extensions-miraclewhip-6.2.1a.ipk
+enigma2-plugin-extensions-miraclewhip-6.2.1b.ipk
 
-MD5 3b41ff00eb7dc09ee82eddf0d2b86121
+MD5 6f9a7aee3bc4d4c308436a7004342fe6
 
-SHA 023bcb6d8b5a6ed2b451f4b027242f7dbde0339f
+SHA 9d03fdaa6ac3bfab9ed28ef3b6d16bc5b6607990
