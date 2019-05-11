@@ -1,4 +1,4 @@
-pwdreset-0.0.0a.ipk
-MD5 90dceb2417d9f88efe63f62b5894ca60
-SHA f85ad634964665fea4b9e9b46b0836ad81eab626
+pwdreset-0.0.1a.ipk
+MD5 ab7ab83f877bdd807584a895ebef285d
+SHA fe5c71503fb240594c72bdfdf7a28cb47b9f3014
 

@@ -1,6 +1,8 @@
+
+
 Enigma2 IPK root password reset.
 
-VERSION=0.0.0a
+VERSION=0.0.1a
 
 Just install the IPK, password should be reset after.
 
