@@ -1,5 +1,9 @@
 * Absolut is a VODka plugin, supporting both Vaders API as well as Xtream-Codes API.
 
+* AutoOff attempts to stop any service after the box goes to standby, and optionally
+  tries to resume the service aftwards - apparently some images don't do it by
+  default, so if you want to confirm, just activate debug and check the debug log.
+
 * Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
   as the M3U download is proxied through it; as usual, it supports both Vaders API
   as well as Xtream-Codes API.
