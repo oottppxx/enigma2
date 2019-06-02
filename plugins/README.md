@@ -4,6 +4,8 @@
   tries to resume the service afterwards - apparently some images don't do it by
   default, so if you want to confirm, just activate debug and check the debug log.
 
+* BigMac attempts to monitor IPTV streams and restart them if they get stuck.
+
 * Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
   as the M3U download is proxied through it; as usual, it supports both Vaders API
   as well as Xtream-Codes API.
