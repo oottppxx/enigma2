@@ -20,9 +20,6 @@
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
 
-* PLHeinz is the same as Heinz, but specific for OpenPLi, due to code base differences
-  making it difficult (for me) to use SingleEPG builtin screens.
-
 * PyShell is a plugin for developers/coders - it provides a very simple Python
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
