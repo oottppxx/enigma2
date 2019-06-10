@@ -29,9 +29,8 @@
 Plugin release versions have 3 fields, major.minor.update, the major and minor
 being numeric and the update being alfanumeric.
 
-For most plugins, except for PLHeinz, the major and minor release numbers track the
-corresponding fields of the version of the OpenATV system where they were developed
-(currently OpenATV 6.2).
+For most plugins, the major and minor release numbers track the corresponding fields of
+the version of the OpenATV system where they were developed (currently OpenATV 6.2).
 
 The update field is generally (but not always) some number followed by one or more
 letters; numbers are bumped up when major changes are made to the code; letters are
@@ -39,9 +38,6 @@ bumped up when any fix is applied or reflect some other feature (e.g., alfa, bet
 
 For minor updates, the major/minor release tracking isn't expected to change, even
 if the current system has evolved - let me know about innaccuracies.
-
-PLHeinz is a different animal, and its version number tracks the closest Heinz release
-it was based/updated from.
 
 Typically, the README files for each plugin/script will provide the necessary information
 regarding where they were developed/tested, so one can make an educated guess if they'd
