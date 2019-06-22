@@ -21,6 +21,11 @@ following keys can be used to control it:
 
  Left, Right, Up, Down, OK, Back, and Exit
 
+ OR
+
+ Rewind/PreviousSong, FastForward/NextSong,
+ Info/EPG, Pause/Play+Pause, Play, and Stop.
+
 as well as
 
 1 2 3 4 5 6 7 8 9 0
@@ -29,7 +34,8 @@ These keys will, respectively:
 - rewind the timeline;
 - forward the timeline;
 - display stream information;
-- pause the stream;
+- pause the stream (OK, Exit, Pause/Play+Pause/Play
+to unpause);
 - reload the stream at the current/selected
 timeline time;
 - stop the stream and return to the previous one;
@@ -42,27 +48,12 @@ the configured number of minutes (see settings):
 this is useful if a stream gets stuck and just a
 reload is needed.
 
-From version 6.0.3j, a keymap.xml file (located in
-the usual plugins/Heinz directory) is used that
-also maps other keys to the relevant actions during
-timeline display, for example:
+Additional functionality for recording "ketchup"
+streams (or their URL) can be accessed via the
+colored/record keys.
 
-Rewind/PreviousSong, FastForward/NextSong, Info/EPG,
-Pause/Play+Pause, Play, and Stop.
 
-Depending on your remote, you might need to edit this
-file, namely regarding the mapping of the pause/play/
-play+pause keys, or if you just want to map/unmap the
-keys you're more comfortable with using. Make sure to
-keep a copy of the edited file, as upgrades to newer
-versions of the plugin will overwrite it.
+Dev/Testing on OpenATV 6.2, OpenPLi 6.2.
 
-From version 6.2.0a, "recording" functionality was
-added, that allows one to download content from the
-archive into the local drive.
+Caveat Emptor.
 
-Dev/Testing on OpenATV 6.0, Caveat Emptor.
-
-For new versions with "recording" functionality:
-
-Dev/Testing on OpenATV 6.2, Caveat Emptor.
