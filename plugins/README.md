@@ -24,6 +24,9 @@
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
+* SnackBar is a trivial plugin that invokes the seek bar; apparently it's required
+  as some distros have invoking the seek bar broken via hotkey.
+
 * Subway is a plugin to display subscription info, if the service supports it.
 
 Plugin release versions have 3 fields, major.minor.update, the major and minor
