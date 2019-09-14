@@ -24,6 +24,9 @@
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
+* ReStart is a trivial plugin that stops/starts the current service. No more need
+  to zap out/in.
+
 * SnackBar is a trivial plugin that invokes the seek bar; apparently it's required
   as some distros have invoking the seek bar broken via hotkey.
 
