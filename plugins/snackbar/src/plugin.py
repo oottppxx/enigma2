@@ -2,14 +2,15 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBarGenerics import Seekbar
 
 
-PLUGIN_VERSION='6.2.0a'
+PLUGIN_VERSION='6.2.0b'
 PLUGIN_NAME='SnackBar'
 PLUGIN_DESC='Invokes Seekbar'
 PLUGIN_ICON='snackbar.png'
 
 
 def main(session, **kwargs):
-  session.open(Seekbar, True)
+  if session:
+    session.open(Seekbar, True)
 
 
 def Plugins(**kwargs):

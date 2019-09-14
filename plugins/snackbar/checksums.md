@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-snackbar-6.2.0a.ipk
-MD5 1c3bb18706adc7bec28dbb35300e9ea0
-SHA 0d4640f2daaa4053900a0effc0c9944d4679c2fc
+enigma2-plugin-extensions-snackbar-6.2.0b.ipk
+MD5 0676e7fbc3ecebea9d5b95e24d52f24c
+SHA ff90caf8fa3b438bbf4362d5ba995675de1f420c
 
