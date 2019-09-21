@@ -1,5 +1,8 @@
 Vaders' MatchCenter and Smooth Streams listings.
 
+![Selection List Image](https://github.com/oottppxx/enigma2/blob/master/plugins/mcdonnells/mc-example.jpg)
+
+
 Features:
 
 * Supports 1-click category filtering ;-)
