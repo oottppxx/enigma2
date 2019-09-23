@@ -1,4 +1,4 @@
-* Absolut is a VODka plugin, supporting both Vaders API as well as Xtream-Codes API.
+* Absolut is a VODka plugin, supporting XCAPI.
 
 * AutoOff attempts to stop any service after the box goes to standby, and optionally
   tries to resume the service afterwards - apparently some images don't do it by
@@ -6,16 +6,16 @@
 
 * BigMac attempts to monitor IPTV streams and restart them if they get stuck.
 
-* Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
-  as the M3U download is proxied through it; as usual, it supports both Vaders API
-  as well as Xtream-Codes API.
+* Buzzz is a local M3U proxy for TheHive.
 
-* Heinz is a "ketchup" plugin, supporting both Vaders API as well as Xtream-Codes API.
+* Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
+  as the M3U download is proxied through it; it supports XCAPI.
+
+* Heinz is a "ketchup" plugin, supporting XCAPI.
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
-* McDonnells is a match center events lister/zapper for Vaders (and resellers), and
-  also an events lister/zapper for Smooth Streams.
+* McDonnells is an events lister/zapper for SmoothStreams.
 
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
@@ -30,7 +30,8 @@
 * SnackBar is a trivial plugin that invokes the seek bar; apparently it's required
   as some distros have invoking the seek bar broken via hotkey.
 
-* Subway is a plugin to display subscription info, if the service supports it.
+* Subway is a plugin to display subscription info, if the service supports it; it
+  should work for both VAPI and XCAPI.
 
 Plugin release versions have 3 fields, major.minor.update, the major and minor
 being numeric and the update being alfanumeric.
