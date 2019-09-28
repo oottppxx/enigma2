@@ -48,7 +48,7 @@ Typically, the README files for each plugin/script will provide the necessary in
 regarding where they were developed/tested, so one can make an educated guess if they'd
 work on a particular system. In the end, there's nothing like trying it out. OpenATV and
 OpenPLi are particularly targeted, but compatible distributions might also work
-(e.g., WooshBuild, OpenViX, ...)
+(e.g., WooshBuild, OpenViX, ..., just make sure they're up to date!)
 
 
 Special thanks and greetings to:

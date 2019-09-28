@@ -21,12 +21,13 @@ Optional parameters:
 - prefix=<SOMETHING>: indicates we want to use
   <MARKER> as a prefix to the channel name, instead
   of the default which is to use it as a suffix;
-- vapi=<SOMETHING>: forces use of VAPI, if you're
-  using a branded Vaders reseller and can't be
-  bothered to use a canonical 'vaders.tv' M3U URL;
-  the default is to use XC API;
-  NOTE: usage of this parameter on non-Vaders
-  providers WILL leak your credentials.
+- clean=<SOMETHING>: indicates we want to cleanup
+  the M3U data from possible UTF8 (or other) errors;
+- vapi=<SOMETHING>: forces use of VAPI. NOTE WELL:
+  if you don't know what you're doing with this
+  parameter, don't touch it, as your XC provider
+  credentials may be leaked to the hardcoded VAPI
+  provider.
 
 Example of a typical XC API URL that would prefix
 a marker of '[+] ':
