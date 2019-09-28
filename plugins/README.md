@@ -7,9 +7,9 @@
 * BigMac attempts to monitor IPTV streams and restart them if they get stuck.
 
 * Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
-  as the M3U download is proxied through it; it supports XCAPI.
+  as the M3U download is proxied through it; it supports XCAPI and VAPI.
 
-* Heinz is a "ketchup" plugin, supporting XCAPI.
+* Heinz is a "ketchup" plugin, supporting XCAPI and VAPI.
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
