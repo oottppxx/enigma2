@@ -1,4 +1,4 @@
-Vaders' MatchCenter and Smooth Streams listings.
+SmoothStreams and VAPI MatchCenter listings.
 
 ![Selection List Image](https://github.com/oottppxx/enigma2/blob/master/plugins/mcdonnells/mc-example.jpg)
 

@@ -13,7 +13,7 @@
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
-* McDonnells is an events lister/zapper for SmoothStreams.
+* McDonnells is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
 
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
