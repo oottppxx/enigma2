@@ -29,7 +29,7 @@
   as some distros have invoking the seek bar broken via hotkey.
 
 * Subway is a plugin to display subscription info, if the service supports it; it
-  should work for both VAPI and XCAPI.
+  should work for both XCAPI and VAPI.
 
 Plugin release versions have 3 fields, major.minor.update, the major and minor
 being numeric and the update being alfanumeric.
