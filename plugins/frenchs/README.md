@@ -13,7 +13,7 @@ Required parameters:
   told you to use, but needs to be URL encoded;
   just use any online encoder that works;
   this parameter can be repeated if you want to
-  concatenate various M3Us.
+  concatenate various M3U files.
 
 Optional parameters:
 - marker=\<MARKER\> indicates that the provided
