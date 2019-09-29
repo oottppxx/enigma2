@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-line-6.2.0a.ipk
-MD5 d11fa101f6d15b79bc89a8f5e70b0e48
-SHA 0c8d8be6f4782f2b6afdab389d57f4a95412f0d5
+enigma2-plugin-extensions-line-6.2.0b.ipk
+MD5 9fd7229dd14f275c1ad8d7a0b4e01125
+SHA 0fb5d472193977bd4e0cf02560059be49c2e6f89
 
