@@ -5,27 +5,27 @@ should now be:
 
     http://127.0.0.1:<PORT>/?url=<ORIGINAL M3U URL>
 
-where <PORT> comes from the settings, the default
+where \<PORT\> comes from the settings, the default
 being 7290;
 
 Required parameters:
-- url=<ORIGINAL M3U URL> is whatever your provider
+- url=\<ORIGINAL M3U URL\> is whatever your provider
   told you to use, but needs to be URL encoded;
   just use any online encoder that works;
   this parameter can be repeated if you want to
   concatenate various M3Us.
 
 Optional parameters:
-- marker=<MARKER> indicates that the provided
+- marker=\<MARKER\> indicates that the provided
   string should be used to mark catchup services;
   the default is not to mark them;
   this parameter will also require encoding;
-- prefix=<SOMETHING> indicates we want to use
-  <MARKER> as a prefix to the channel name, instead
+- prefix=\<SOMETHING\> indicates we want to use
+  \<MARKER\> as a prefix to the channel name, instead
   of the default which is to use it as a suffix;
-- clean=<SOMETHING> indicates we want to cleanup
+- clean=\<SOMETHING\> indicates we want to cleanup
   the M3U data from possible UTF8 (or other) errors;
-- vapi=<SOMETHING> forces use of VAPI. NOTE WELL:
+- vapi=\<SOMETHING\> forces use of VAPI. NOTE WELL:
   if you don't know what you're doing with this
   parameter, don't touch it, as your XC provider
   credentials may be leaked to the hardcoded VAPI
