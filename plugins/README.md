@@ -13,6 +13,9 @@
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
+* Line is a trivial plugin that toggles the VGI line; apparently it's required
+  as some services are weird and can't have it done from the service selection menu.
+
 * McDonnells is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
 
 * MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
