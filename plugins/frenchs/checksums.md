@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-frenchs-6.2.1h.ipk
-MD5 a2d028bf422eb52a12c969c8df50b448
-SHA c1a45c17bd957b800b724076fcf44174a68eaddd
+enigma2-plugin-extensions-frenchs-6.2.1i.ipk
+MD5 fc540f9e5a77c986fed84f2a6f1d2574
+SHA 6d9a21513e5dfb825e55ac36dc24043ce939619c
 
