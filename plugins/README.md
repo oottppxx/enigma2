@@ -13,8 +13,9 @@
 
 * Innocent is a local M3U proxy for SmoothStreams.
 
-* Line is a plugin that automatically hides the VBI line for all services, but still
-  allows one to toggle it, if required, by invoking the plugin.
+* Line is a plugin that automatically hides the VBI line covering screen (black line
+  at the top of the image) for all services. If the need arises to toggle it within
+  a service, just invoke the plugin manually (or via hotkey, as you wish).
 
 * McDonnells is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
 
