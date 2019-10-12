@@ -6,6 +6,8 @@
 
 * BigMac attempts to monitor IPTV streams and restart them if they get stuck.
 
+* Buzzz is a local M3U proxy for TheHive.
+
 * Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
   as the M3U download is proxied through it; it supports XCAPI and VAPI.
 
