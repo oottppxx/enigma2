@@ -56,6 +56,10 @@ work on a particular system. In the end, there's nothing like trying it out. Ope
 OpenPLi are particularly targeted, but compatible distributions might also work
 (e.g., WooshBuild, OpenViX, ..., just make sure they're up to date!)
 
+If you want to bulk install all the plugins above, you can use the following command:
+
+* wget -r 'https://oottppxx.github.io/enigma2/latest/' && for i in oottppxx.github.io/enigma2/latest/*ipk ; do opkg install $i ; done
+
 
 Special thanks and greetings to:
 
