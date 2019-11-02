@@ -1,40 +1,42 @@
-* Absolut is a VODka plugin, supporting XCAPI.
+[Latest version of all plugins here.](https://oottppxx.github.io/enigma2/latest/index.html)
 
-* AutoOff attempts to stop any service after the box goes to standby, and optionally
+* [Absolut](https://github.com/oottppxx/enigma2/tree/master/plugins/absolut) is a VODka plugin, supporting XCAPI.
+
+* [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally
   tries to resume the service afterwards - apparently some images don't do it by
   default, so if you want to confirm, just activate debug and check the debug log.
 
-* BigMac attempts to monitor IPTV streams and restart them if they get stuck.
+* [BigMac](https://github.com/oottppxx/enigma2/tree/master/plugins/bigmac) attempts to monitor IPTV streams and restart them if they get stuck.
 
-* Buzzz is a local M3U proxy for TheHive.
+* [Buzzz](https://github.com/oottppxx/enigma2/tree/master/plugins/buzzz) is a local M3U proxy for TheHive.
 
-* Frenchs adds some spice to Heinz (see below), marking catchup supporting channels
+* [Frenchs](https://github.com/oottppxx/enigma2/tree/master/plugins/frenchs) adds some spice to Heinz (see below), marking catchup supporting channels
   as the M3U download is proxied through it; it supports XCAPI and VAPI.
 
-* Heinz is a "ketchup" plugin, supporting XCAPI and VAPI.
+* [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting XCAPI and VAPI.
 
-* Innocent is a local M3U proxy for SmoothStreams.
+* [Innocent](https://github.com/oottppxx/enigma2/tree/master/plugins/innocent) is a local M3U proxy for SmoothStreams.
 
-* Line is a plugin that automatically hides the VBI line covering screen (black line
+* [Line](https://github.com/oottppxx/enigma2/tree/master/plugins/line) is a plugin that automatically hides the VBI line covering screen (black line
   at the top of the image) for all services. If the need arises to toggle it within
   a service, just invoke the plugin manually (or via hotkey, as you wish).
 
-* McDonnells is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
+* [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
 
-* MiracleWhip is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
+* [MiracleWhip](https://github.com/oottppxx/enigma2/tree/master/plugins/miraclewhip) is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs
   via the webbrowser.
 
-* PyShell is a plugin for developers/coders - it provides a very simple Python
+* [PyShell](https://github.com/oottppxx/enigma2/tree/master/plugins/pyshell) is a plugin for developers/coders - it provides a very simple Python
   shell with access to the Enigma2 runtime environment, so small (or not so small)
   snippets of code can be tested and experimented with while avoiding crashes.
 
-* ReStart is a trivial plugin that stops/starts the current service. No more need
+* [ReStart](https://github.com/oottppxx/enigma2/tree/master/plugins/restart) is a trivial plugin that stops/starts the current service. No more need
   to zap out/in.
 
-* SnackBar is a trivial plugin that invokes the seek bar; apparently it's required
+* [SnackBar](https://github.com/oottppxx/enigma2/tree/master/plugins/snackbar) is a trivial plugin that invokes the seek bar; apparently it's required
   as some distros have invoking the seek bar broken via hotkey.
 
-* Subway is a plugin to display subscription info, if the service supports it; it
+* [Subway](https://github.com/oottppxx/enigma2/tree/master/plugins/subway) is a plugin to display subscription info, if the service supports it; it
   should work for both XCAPI and VAPI.
 
 Plugin release versions have 3 fields, major.minor.update, the major and minor
