@@ -25,6 +25,10 @@ Optional parameters:
   of the default which is to use it as a suffix;
 - clean=\<SOMETHING\> indicates we want to cleanup
   the M3U data from possible UTF8 (or other) errors;
+- alfa=\<SOMETHING\> indicates we want to sort the
+  services in ascending order; it assumes a minimal
+  M3U, and can screw it up if it isn't formatted as
+  expected, use with care;
 - vapi=\<SOMETHING\> forces use of VAPI. NOTE WELL:
   if you don't know what you're doing with this
   parameter, don't touch it, as your XC provider
