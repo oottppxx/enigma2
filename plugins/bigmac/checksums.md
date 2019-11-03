@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-bigmac-6.2.0e.ipk
-MD5 11fbba0192cfd844c90fee5fbd877026
-SHA 496bb360002336ee1684a2f96b87c47b5fcb541b
+enigma2-plugin-extensions-bigmac-6.2.1a.ipk
+MD5 392b5cfb1a789945ecc0d732b877536e
+SHA fee8a25c3256a96f0b5595bc1f17d2dae1bde1f6
 
