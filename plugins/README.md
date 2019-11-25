@@ -4,8 +4,6 @@
 
 * [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally tries to resume the service afterwards - apparently some images don't do it by default, so if you want to confirm, just activate debug and check the debug log.
 
-* [BigMac](https://github.com/oottppxx/enigma2/tree/master/plugins/bigmac) attempts to monitor IPTV streams and restart them if they get stuck. See also QuarterPounder below.
-
 * [Buzzz](https://github.com/oottppxx/enigma2/tree/master/plugins/buzzz) is a local M3U proxy for TheHive.
 
 * [Frenchs](https://github.com/oottppxx/enigma2/tree/master/plugins/frenchs) adds some spice to Heinz (see below), marking catchup supporting channels as the M3U download is proxied through it; it supports XCAPI and VAPI.
@@ -24,7 +22,7 @@
 
 * [PyShell](https://github.com/oottppxx/enigma2/tree/master/plugins/pyshell) is a plugin for developers/coders - it provides a very simple Python shell with access to the Enigma2 runtime environment, so small (or not so small) snippets of code can be tested and experimented with while avoiding crashes.
 
-* [QuarterPounder](https://github.com/oottppxx/enigma2/tree/master/plugins/quarterpounder) attempts to monitor IPTV streams and restart them if they get stuck. See also BigMac above.
+* [QuarterPounder](https://github.com/oottppxx/enigma2/tree/master/plugins/quarterpounder) attempts to monitor IPTV streams and restart them if they get stuck.
 
 * [ReStart](https://github.com/oottppxx/enigma2/tree/master/plugins/restart) is a trivial plugin that stops/starts the current service. No more need to zap out/in.
 
