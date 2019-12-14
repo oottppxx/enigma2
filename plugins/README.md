@@ -24,6 +24,8 @@
 
 * [QuarterPounder](https://github.com/oottppxx/enigma2/tree/master/plugins/quarterpounder) attempts to monitor IPTV streams and restart them if they get stuck.
 
+* [RDebrid](https://github.com/oottppxx/enigma2/tree/master/plugins/rdebrid) is a local M3U proxy for Real Debrid downloads.
+
 * [ReStart](https://github.com/oottppxx/enigma2/tree/master/plugins/restart) is a trivial plugin that stops/starts the current service. No more need to zap out/in.
 
 * [SnackBar](https://github.com/oottppxx/enigma2/tree/master/plugins/snackbar) is a trivial plugin that invokes the seek bar; apparently it's required as some distros have invoking the seek bar broken via hotkey.
