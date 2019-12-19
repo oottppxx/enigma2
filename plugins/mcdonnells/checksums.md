@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-mcdonnells-6.2.2l.ipk
-MD5 7d5e35f68d999cecec41b97424246423
-SHA d42d00a62746217409c31df43a778d588f2a67e5
+enigma2-plugin-extensions-mcdonnells-6.2.2m.ipk
+MD5 4f514a5663600de3d38849280cf3963e
+SHA a316408a4c41cf93d221db6f458084367c456b49
 
