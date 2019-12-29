@@ -11,12 +11,14 @@
 * [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting XCAPI and VAPI.
 
 * [Innocent](https://github.com/oottppxx/enigma2/tree/master/plugins/innocent) is a local M3U proxy for SmoothStreams.
+  See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up (using Suls).
 
 * [Line](https://github.com/oottppxx/enigma2/tree/master/plugins/line) is a plugin that automatically hides the VBI line covering screen (black line at the top of the image) for all services. If the need arises to toggle it within a service, just invoke the plugin manually (or via hotkey, as you wish).
 
 * [Love](https://github.com/oottppxx/enigma2/tree/master/plugins/love) is a plugin that adds the current service to the TV favourites bouquet, and is suitable for hotkey'ing (making it a 1-key favouriting machine) - tested on OpenATV 6.2 only!
 
 * [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
+  See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up.
 
 * [MiracleWhip](https://github.com/oottppxx/enigma2/tree/master/plugins/miraclewhip) is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs via the webbrowser.
 
