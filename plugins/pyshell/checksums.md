@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-pyshell-6.2.1a.ipk
-MD5 ad87a0fd7635732d76297a63b72f571f
-SHA bf23e83a4b02193e181525cc98aa31c0039889c4
+enigma2-plugin-extensions-pyshell-6.2.1b.ipk
+MD5 12fd5af272cf84eaee51523bf1393065
+SHA fe568234a6fd6591e4790688f0ec7036d0455608
 
