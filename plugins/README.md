@@ -22,6 +22,8 @@
 
 * [MiracleWhip](https://github.com/oottppxx/enigma2/tree/master/plugins/miraclewhip) is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs via the webbrowser.
 
+* [PFChangs](https://github.com/oottppxx/enigma2/tree/master/plugins/pfchangs) is a plugin to edit port forwarding rules from the box, via UPnP (if supported by your router).
+
 * [PyShell](https://github.com/oottppxx/enigma2/tree/master/plugins/pyshell) is a plugin for developers/coders - it provides a very simple Python shell with access to the Enigma2 runtime environment, so small (or not so small) snippets of code can be tested and experimented with while avoiding crashes.
 
 * [QuarterPounder](https://github.com/oottppxx/enigma2/tree/master/plugins/quarterpounder) attempts to monitor IPTV streams and restart them if they get stuck.
