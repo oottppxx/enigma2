@@ -6,6 +6,9 @@
 
 * [Buzzz](https://github.com/oottppxx/enigma2/tree/master/plugins/buzzz) is a local M3U proxy for TheHive.
 
+* [ColaCao](https://github.com/oottppxx/enigma2/tree/master/plugins/colacao) is a very simple line editor.
+  NOTE: it overwrites files without asking and without making a backup!
+
 * [Frenchs](https://github.com/oottppxx/enigma2/tree/master/plugins/frenchs) adds some spice to Heinz (see below), marking catchup supporting channels as the M3U download is proxied through it; it supports XCAPI and VAPI.
 
 * [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting XCAPI and VAPI.
