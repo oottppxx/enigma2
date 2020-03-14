@@ -1,6 +1,9 @@
 Enigma2 UPnP client for port forwarding.
 
-Tested on OpenATV 6.2 only!
+Tested on OpenATV 6.2, OpenSPA 7.4, Blackhole 3.0.9, ...
+
+Muchas gracias a @alber666 de t.me/Satenespanole2,
+por las muchas pruebas que ha hecho, una ayuda tremenda!!!
 
 @oottppxx
 
