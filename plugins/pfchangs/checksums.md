@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-pfchangs-6.2.0f.ipk
-MD5 f946a3cf31cb4c16696ed306f3de7b6a
-SHA 86d46752c6b03fc86660bc40195c89a089efba79
+enigma2-plugin-extensions-pfchangs-6.2.0g.ipk
+MD5 8449c98cf9897be24ed25a38047c61bb
+SHA cd004589aa2a388f6e90aa50deba82b6cd5d5e09
 
