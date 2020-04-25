@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-autooff-6.2.0c.ipk
-MD5 9d46f6e9912356237fe13f5292cd97bc
-SHA 3e6d4bbf4a365dda6b67ec997b4f8923ffb7dee2
+enigma2-plugin-extensions-autooff-6.2.0d.ipk
+MD5 bce774ea884ccd9f8d75d7a7e5e8cf0a
+SHA 1608c6b68dc5e2e5a9d2be0e0d9f99c0529466c5
 
