@@ -2,7 +2,7 @@
 
 * [Absolut](https://github.com/oottppxx/enigma2/tree/master/plugins/absolut) is a VODka plugin, supporting XCAPI.
 
-* [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally tries to resume the service afterwards - apparently some images don't do it by default, so if you want to confirm, just activate debug and check the debug log.
+* [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally tries to resume the service afterwards - apparently some images don't do it by default, so if you want to confirm, just activate debug and check the debug log. It also supports running commands when entering and exiting standby.
 
 * [Buzzz](https://github.com/oottppxx/enigma2/tree/master/plugins/buzzz) is a local M3U proxy for TheHive.
 
