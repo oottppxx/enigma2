@@ -2,7 +2,7 @@ Zgemma H7 BOX RECOVERY WITHOUT ERASING ALL
 
 RECOVERY PREREQUISITES
 1.
-- slot 4 is the recovery, so make sure it boots/works fine;
+- the below uses slot 4 for the recovery, so make sure it boots/works fine;
 - make a copy of the linuxkernel4 partition into a file, e.g.:
   dd if=/dev/mmcblk0p6 of=linuxkernel4 bs=1M
   (this is valid for oatv6.2)
@@ -22,8 +22,7 @@ If a slot (other than 4) is broken, doesn't boot, or boots into a bad system
 - have the linuxkernel4 file ready to be served from the tftpd root (right name,
   right permissions, etc...);
 - reboot the box: the 1st boot command in the STARTUP file will be able to
-  download the file and boot from it/into slot 4 (hence why it's important that
-  slot 4 is kept pristine).
+  netboot into slot 4 (hence why it's important that it's kept pristine).
 
 You can just rename the file in the tftpd root to something else when not needed,
 the 1st boot command will fail and the slot corresponding to the in use STARTUP_X
