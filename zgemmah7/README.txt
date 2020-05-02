@@ -2,7 +2,7 @@ Zgemma H7 BOX RECOVERY WITHOUT ERASING ALL
 
 RECOVERY PREREQUISITES
 1.
-- partition 4 is the recovery, so make sure it boots/works fine;
+- slot 4 is the recovery, so make sure it boots/works fine;
 - make a copy of the linuxkernel4 partition into a file, e.g.:
   dd if=/dev/mmcblk0p6 of=linuxkernel4 bs=1M
   (this is valid for oatv6.2)
@@ -26,12 +26,12 @@ If a slot (other than 4) is broken, doesn't boot, or boots into a bad system
   slot 4 is kept pristine).
 
 You can just rename the file in the tftpd root to something else when not needed,
-the 1st boot command will fail and the corresponding slot to the in use STARTUP_X
+the 1st boot command will fail and the slot corresponding to the in use STARTUP_X
 file (which is copied over the /boot/STARTUP file itself) will be used and booted
 from/into.
 
 NOTES:
-Why not use 4 TFTP boot commands, 1 for each partition, and be done with it?
+Why not use 4 TFTP boot commands, 1 for each slot, and be done with it?
 Unfortunately it seems something in the original bootloader times out after 3
 boot commands are made, so we wouldn't get down to the boot command for the slot,
 the boot would hang. I believe it's perfectly feasible to have 2 TFTP boot commands,
