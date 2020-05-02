@@ -35,3 +35,16 @@ Unfortunately it seems something in the original bootloader times out after 3
 boot commands are made, so we wouldn't get down to the boot command for the slot,
 the boot would hang. I believe it's perfectly feasible to have 2 TFTP boot commands,
 though, and might look into it.
+
+OHTER IDEAS:
+The use of the copydisk and flash commands were also attempted, to no avail.
+Using this method, a single file served from tftp would overwrite the emmcflash0.boot
+partition (or a few sectors within, even, to just overwrite the required STARTUP*
+files), providing more flexibility about recovery slots, as long as they wouldn't
+all be broken. This idea, however, was unsuccessful. Maybe if/when I get a bootloader
+serial console up this can be debugged.
+Booting a 2nd stage bootloader, like u-boot, that could eventually provide network
+access, would also be nice and relatively generic, but didn't really work on this as
+it seemed to be a lot more work and maybe a bit over my head on this system. Food
+for thought.
+
