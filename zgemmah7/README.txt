@@ -65,3 +65,6 @@ network access to the bootloader itself, if something gets stuck, would also be
 nice and relatively generic, but I didn't really work on this as it seemed to be
 a lot more work and maybe a bit over my head.
 
+Better yet, have a kernel boot with a nice initramfs that only needs to allow
+some form of network access and mounting the boot partition to edit the
+STARTUP* files.
