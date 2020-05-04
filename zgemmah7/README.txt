@@ -1,8 +1,21 @@
 Zgemma H7 BOX RECOVERY WITHOUT ERASING ALL
 
-These are some short notes on being able to boot a Zgemma H7 box when
-there is an issue with the current slot image, and without having to
-flash a recovery image that overwrites all 4 slots.
+These are some short notes on being able to boot a Zgemma H7 box when there is
+an issue with the current slot image, and without having to flash a recovery
+image that overwrites all 4 slots.
+
+The below was tested with OpenATV versions 6.2, 6.3, and 6.4. No real reason not
+to work with other versions/distros, even if they don't support multiboot
+(except for the recovery partition, of couse, as one can always go back to it
+via the TFTP netboot). Care should be taken to always flash into a slot, of
+course, otherwise if installed from USB it might overwrite the emmcflash0.boot
+partition and the recovery mechanism itself.
+
+One thing to note: while OpenATV 6.2 multiboot image selector displays the
+correct versions installed in each slot, on OpenATV 6.3 and 6.4 the parsing
+seems to have changed, and the version of the recovery partition shows up as
+being installed on all slots (which isn't true, and if you boot to a slot from
+the slot itself, it will boot the correct version of whatever is installed).
 
 RECOVERY PREREQUISITES/PREPARATION
 - a working DHCP server. Your home LAN router will do fine. One can also
