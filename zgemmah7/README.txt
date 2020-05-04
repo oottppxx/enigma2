@@ -22,7 +22,7 @@ RECOVERY PREREQUISITES/PREPARATION
   modify the ifconfig line to statically configure the address, netmask,
   and gateway;
 - a working TFTP server;
-- the below uses slot 4 for the recovery, so make sure it boots/works fine
+- the below uses slot 4 as the recovery slot, so make sure it boots/works fine
   (or adapt everything to use another slot, or a couple);
 - make a copy of the linuxkernel4 partition into a file, e.g.:
   dd if=/dev/mmcblk0p6 of=linuxkernel4 bs=1M
@@ -39,11 +39,12 @@ ping -c=4 192.168.0.50
 """
 
 RECOVERY HOWTO
-If a slot (other than 4) is broken in a way that doesn't boot at all, or
-boots into a broken system that doesn't allow you to switch to another boot
-slot, either via the multiboot menus or via manually editing the
-/boot/STARTUP file (e.g., broken libs/ld-so loader... don't ask...), then you
-can do the following, provided that you've followed the preparation steps above:
+If a slot (other than the recovery slot, 4 in this example) is broken in a way
+that doesn't boot at all, or boots into a broken system that doesn't allow you
+to switch to another boot slot, either via the multiboot menus or via manually
+editing the /boot/STARTUP file (e.g., broken libs/ld-so loader... don't ask...),
+then you can do the following, provided that you've followed the preparation
+steps above:
 - have the linuxkernel4 file ready to be served from the TFTP server
   (right name, right permissions, etc...);
 - reboot the box, making sure it will have network connectivity. If DHCP is
@@ -64,7 +65,13 @@ boot commands are made, so we wouldn't get down to the boot command for the
 slot, the boot would hang. I believe it's perfectly feasible to have 2 TFTP boot
 commands, though, and might look into it. It's also possible the use of the ping
 commands is interfering with a timer/watchdog or similar, eventually I might
-also try to eliminate them to test.
+also try to eliminate them to test. Update: it seems all the lines in STARTUP
+end up in a bootloader environment variable also named STARTUP; while, according
+to the perused documentation/source, environment variables size can go up to 32K
+(or 64K, not sure), it seems this, coupled with the length of each boot line,
+can be the issue: a strategy of using short named environment variables to
+compress the file contents was tried, but didn't really work due to other
+issues.
 
 The use of the bootloader copydisk and flash commands were also attempted, to no
 avail. Using this method, a single file served from tftp would overwrite the
@@ -76,8 +83,6 @@ if/when I get a bootloader serial console up this can be debugged.
 Booting a 2nd stage bootloader, like u-boot, that could eventually provide
 network access to the bootloader itself, if something gets stuck, would also be
 nice and relatively generic, but I didn't really work on this as it seemed to be
-a lot more work and maybe a bit over my head.
-
-Better yet, have a kernel boot with a nice initramfs that only needs to allow
-some form of network access and mounting the boot partition to edit the
-STARTUP* files.
+a lot more work and maybe a bit over my head. Better yet, have a kernel boot
+with a nice initramfs that only needs to allow some form of network access and
+mounting the boot partition to edit the STARTUP* files.
