@@ -3,7 +3,7 @@ Zgemma H7 BOX RECOVERY WITHOUT ERASING ALL
 UPDATE 2020.05.05
 Progressed a bit more and now have a couple of ideas on how to do recovery,
 in either a much simpler way, with either no need for TFTP, but requiring
-a few lines addition to STARTUP* files, or with a simpler 1-liner, buti
+a few lines addition to STARTUP* files, or with a simpler 1-liner, but
 requiring TFTP as per below - in anycase, with less convoluted preparation.
 Will do a bit more fiddling and testing before I update the below, stay tuned!
 
