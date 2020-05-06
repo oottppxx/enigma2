@@ -1,5 +1,13 @@
 Zgemma H7 BOX RECOVERY WITHOUT ERASING ALL
 
+UPDATE 2020.05.05
+Progressed a bit more and now have a couple of ideas on how to do recovery,
+in either a much simpler way, with either no need for TFTP, but requiring
+a few lines addition to STARTUP* files, or with a simpler 1-liner, buti
+requiring TFTP as per below - in anycase, with less convoluted preparation.
+Will do a bit more fiddling and testing before I update the below, stay tuned!
+
+SUMMARY
 These are some short notes on being able to boot a Zgemma H7 box when there is
 an issue with the current slot image, and without having to flash a recovery
 image that overwrites all 4 slots.
