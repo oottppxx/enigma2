@@ -55,7 +55,6 @@ You can just rename the file in the TFTP server to something else when not
 needed, then the batch command will fail and the box will boot normally into the
 currently selected slot.
 
-Note: it's possible to play around with the commands in the TFTPBOOT file,
-including enabling a console over TCP/IP (read-only, though, let me know if you
-can make it read-write), but it's also possible to brick the box messing around,
-so play safe!
+Note: it's possible to play around with the commands in the TFTPBOOT file, and
+if you prep right you can even enable a console over TCP/IP, but it's also
+possible to brick the box messing around, so play safe!
