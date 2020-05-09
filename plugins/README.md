@@ -18,7 +18,7 @@
 
 * [Line](https://github.com/oottppxx/enigma2/tree/master/plugins/line) is a plugin that automatically hides the VBI line covering screen (black line at the top of the image) for all services. If the need arises to toggle it within a service, just invoke the plugin manually (or via hotkey, as you wish).
 
-* [Love](https://github.com/oottppxx/enigma2/tree/master/plugins/love) is a plugin that adds the current service to the TV favourites bouquet, and is suitable for hotkey'ing (making it a 1-key favouriting machine) - tested on OpenATV 6.2 only!
+* [Love](https://github.com/oottppxx/enigma2/tree/master/plugins/love) is a plugin that adds the current service to the TV favourites bouquet, requires hotkey for action, otherwise it goes to setup (making it a 1-key favouriting machine) - tested on OpenATV 6.2 only!
 
 * [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
   See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up.
