@@ -11,14 +11,14 @@
 
 * [Frenchs](https://github.com/oottppxx/enigma2/tree/master/plugins/frenchs) adds some spice to Heinz (see below), marking catchup supporting channels as the M3U download is proxied through it; it supports XCAPI and VAPI.
 
-* [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting XCAPI and VAPI.
+* [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting (a couple of variants of) XCAPI and VAPI.
 
 * [Innocent](https://github.com/oottppxx/enigma2/tree/master/plugins/innocent) is a local M3U proxy for SmoothStreams.
   See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up (using Suls).
 
-* [Line](https://github.com/oottppxx/enigma2/tree/master/plugins/line) is a plugin that automatically hides the VBI line covering screen (black line at the top of the image) for all services. If the need arises to toggle it within a service, just invoke the plugin manually (or via hotkey, as you wish).
+* [Line](https://github.com/oottppxx/enigma2/tree/master/plugins/line) is a plugin that automatically hides or show (per setting) the VBI artifacts covering screen (black line at the top of the image); it can be set differently for IPTV and for DVB-C/T/S services. If the need arises to toggle the line within a service, just invoke the plugin via hotkey (the menus will just take you to setup).
 
-* [Love](https://github.com/oottppxx/enigma2/tree/master/plugins/love) is a plugin that adds the current service to the TV favourites bouquet, requires hotkey for action, otherwise it goes to setup (making it a 1-key favouriting machine) - tested on OpenATV 6.2 only!
+* [Love](https://github.com/oottppxx/enigma2/tree/master/plugins/love) is a plugin that adds the current service to the TV favourites bouquet. It requires to be invoked via hotkey for any useful action, otherwise it goes to setup (making it a 1-key favouriting machine) - tested on OpenATV 6.2 only!
 
 * [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
   See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up.
