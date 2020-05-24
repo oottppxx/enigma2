@@ -3,11 +3,13 @@
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
+BIG THANKS to BazB, this wouldn't have been possible without his generosity!!!
+
 To take into consideration:
 
 * This is a developer oriented (multi-)image, if you don't know how to flash it
   then it's probable that you shouldn't be trying it!
-  If you still want to try, flash it just like any recovery image.
+  If you still want to try, flash it just like any_recovery_image.
 
 * AFTER the multi-image is in place, flashing of each slot should be done from
   the command line, not from the menus, as ogfwrite has some assumptions
