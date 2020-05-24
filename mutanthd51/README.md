@@ -9,7 +9,9 @@ To take into consideration:
 
 * This is a developer oriented (multi-)image, if you don't know how to flash it
   then it's probable that you shouldn't be trying it!
-  If you still want to try, flash it just like any_recovery_image.
+  If you still want to try, apparently it doesn't really flash like any other
+  recovery image (ooops...) so you'll have to overwrite mmcblk0 with its
+  contents (I suggest using the "dd" command with 128M blocksize).
 
 * AFTER the multi-image is in place, flashing of each slot should be done from
   the command line, not from the menus, as ogfwrite has some assumptions
