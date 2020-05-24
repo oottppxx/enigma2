@@ -12,5 +12,8 @@ How to run this demo:
 
 Adjust to taste, you can also build plugins by changing the name, path, files, etc...
 
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
+
 @oottppxx
 

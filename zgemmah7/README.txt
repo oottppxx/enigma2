@@ -61,3 +61,5 @@ currently selected slot.
 Note: it's possible to play around with the commands in the TFTPBOOT file, and
 if you prep right you can even enable a console over TCP/IP, but it's also
 possible to brick the box messing around, so play safe!
+
+@oottppxx
