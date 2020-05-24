@@ -1,5 +1,8 @@
 [Latest version of all plugins here.](https://oottppxx.github.io/enigma2/latest/index.html)
 
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
+
 * [Absolut](https://github.com/oottppxx/enigma2/tree/master/plugins/absolut) is a VODka plugin, supporting XCAPI.
 
 * [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally tries to resume the service afterwards - apparently some images don't do it by default, so if you want to confirm, just activate debug and check the debug log. It also supports running commands when entering and exiting standby.
@@ -70,6 +73,3 @@ Special thanks and greetings to:
 * folks in DeathStar (now extinct), namely @agentsmith1, @SomeKewlName
 
 * folks in Enigma2Talk, namely @danny187, @DutchDude6X, @duoduo80
-
-Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
-to help with testing, provide ideas and all kind of suggestions or comments!

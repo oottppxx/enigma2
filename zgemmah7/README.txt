@@ -1,5 +1,8 @@
 Zgemma H7 BOX RECOVERY WITHOUT ERASING ANY BOOT SLOT
 
+Join us in the Enigma2Talk Telegram chatroom (https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
+
 SUMMARY
 These are some notes on being able to boot a Zgemma H7 box when there is an
 issue with the current slot image (either kernel or root file system), and
