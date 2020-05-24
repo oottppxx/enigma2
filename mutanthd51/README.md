@@ -43,3 +43,14 @@ To take into consideration:
 
 
 [Image Download GDrive](https://drive.google.com/file/d/1-j1j9eB8mA6mQuFQL5mC6y0MlclNZfa7/)
+
+![Multi Boot Image Slot 2](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot2.jpg)
+![Multi Boot Image Slot 3](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot3.jpg)
+![Multi Boot Image Slot 4](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot4.jpg)
+![Multi Boot Image Slot 5a](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot5a.jpg)
+![Multi Boot Image Slot 5b](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot5b.jpg)
+![Multi Boot Image Slot 6](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot6.jpg)
+![Multi Boot Image Slot 7a](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot7a.jpg)
+![Multi Boot Image Slot 7b](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot7b.jpg)
+![Multi Boot Image Slot 8](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot8.jpg)
+
