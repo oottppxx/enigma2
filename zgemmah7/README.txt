@@ -63,3 +63,8 @@ if you prep right you can even enable a console over TCP/IP, but it's also
 possible to brick the box messing around, so play safe!
 
 @oottppxx
+
+P.S. - You might also want to try my 8 slots OpenATV 6.4 recovery image, get it
+at https://drive.google.com/file/d/1CTYIXOPKuODJa22h9GAWuy-CwkKHrktg/. It should
+work pretty similar to the Mut@nt HD51 one, so make sure to go there and read
+the README!
