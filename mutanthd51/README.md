@@ -47,7 +47,7 @@ To take into consideration:
 [Image Download GDrive](https://drive.google.com/file/d/1-j1j9eB8mA6mQuFQL5mC6y0MlclNZfa7/)
 
 
-[New Image Download Gdrive - has issues!](https://drive.google.com/file/d/1-E8h1oclKX0-QpH1BEqvlnLGmU5kzhdd/)
+[New Image Download GDrive - has issues!](https://drive.google.com/file/d/1-E8h1oclKX0-QpH1BEqvlnLGmU5kzhdd/)
 
 
 ![Multi Boot Image Slot 2](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot2.jpg)
