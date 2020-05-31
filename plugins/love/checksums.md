@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-love-6.2.0b.ipk
-MD5 e8298d8625b064271b2c7ce0e1179d91
-SHA 33d439f44738aeaf9abc86d3ef8dd17a3585f1be
+enigma2-plugin-extensions-love-6.2.0c.ipk
+MD5 4a8553884f8ffc576696f34e13323a0b
+SHA 02f438bb2d3b37f5a162522aeb61d94f2539f215
 

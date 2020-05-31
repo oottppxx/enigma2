@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-colacao-6.2.0c.ipk
-MD5 75a567e0ad2abe46613840dcf49a99a0
-SHA b56464a539c60e4082848e874db0b8d816f3b719
+enigma2-plugin-extensions-colacao-6.2.0d.ipk
+MD5 2338eeb533368b41317034b94f9f711e
+SHA 16d8e293ed89bb9ce62c2654bfaf7cf658050e2a
 

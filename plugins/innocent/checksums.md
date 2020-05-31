@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-innocent-6.2.2d.ipk
-MD5 b64a86fc41671a1d5be69918dd99a521
-SHA 66aebeaa399a8203cf13ecc16bdb42c4ae950107
+enigma2-plugin-extensions-innocent-6.2.2e.ipk
+MD5 d6afe3eb86dd78cbc6cd7fe4aeffc6f4
+SHA e31c5d45242a6f0d647b1b9393dbcdc2f6b7fb2a
 
