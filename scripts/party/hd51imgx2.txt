@@ -1,0 +1,92 @@
+iroot@mutant51:~# rm -rf /mnt/hdd/party/*
+root@mutant51:~# time ./party.py /mnt/hdd/images/hd51/ b1k6k8u3711
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.020518 seconds, 48.7MB/s
+3+0 records in
+3+0 records out
+3145728 bytes (3.0MB) copied, 0.032158 seconds, 93.3MB/s
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.104854 seconds, 76.3MB/s
+48+0 records in
+48+0 records out
+603979776 bytes (576.0MB) copied, 12.491219 seconds, 46.1MB/s
+umount: can't unmount /mnt/hdd/party/mboot: Invalid argument
+Found boxmode:  hd51_4.boxmode=1
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.011405 seconds, 87.7MB/s
+mkfs.fat 4.1 (2017-01-24)
+boot(1)
+6+0 records in
+6+0 records out
+6291456 bytes (6.0MB) copied, 0.103024 seconds, 58.2MB/s
+linuxkernel(6)
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.069949 seconds, 114.4MB/s
+linuxkernel2(8)
+576+0 records in
+576+0 records out
+603979776 bytes (576.0MB) copied, 15.724928 seconds, 36.6MB/s
+userdata(3711)
+[('boot', 1), ('linuxkernel', 6), ('linuxkernel2', 8), ('userdata', 3711)]
+['/mnt/hdd/party/new_boot', '/mnt/hdd/party/new_kernel', '/mnt/hdd/party/new_kernel2', '/mnt/hdd/party/new_rootfs']
+Ok
+
+real	0m44.237s
+user	0m0.174s
+sys	0m18.191s
+root@mutant51:~# ls -lFd /mnt/hdd/party/new_disk.img 
+-rwxrwxrwx    1 root     root     620756992 Jun  6 22:27 /mnt/hdd/party/new_disk.img*
+root@mutant51:~# date
+Sat Jun  6 22:29:12 IST 2020
+root@mutant51:~# cp /mnt/hdd/party/new_disk.img /mnt/hdd/hd51/disk.img 
+root@mutant51:~# md5sum /hdd/party/new_disk.img 
+0c656e4736bb6079ae95ac664e07326e  /hdd/party/new_disk.img
+root@mutant51:~# md5sum /hdd/hd51/disk.img 
+0c656e4736bb6079ae95ac664e07326e  /hdd/hd51/disk.img
+root@mutant51:~# gdisk -l /hdd/hd51/disk.img 
+GPT fdisk (gdisk) version 1.0.4
+
+Warning! Disk size is smaller than the main header indicates! Loading
+secondary header from the last sector of the disk! You should use 'v' to
+verify disk integrity, and perhaps options on the experts' menu to repair
+the disk.
+Caution: invalid backup GPT header, but valid main header; regenerating
+backup header from main header.
+
+Warning! Error 25 reading partition table for CRC check!
+Warning! One or more CRCs don't match. You should repair the disk!
+Main header: OK
+Backup header: ERROR
+Main partition table: OK
+Backup partition table: ERROR
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: damaged
+
+****************************************************************************
+Caution: Found protective or hybrid MBR and corrupt GPT. Using GPT, but disk
+verification and recovery are STRONGLY recommended.
+****************************************************************************
+Disk /hdd/hd51/disk.img: 1212416 sectors, 592.0 MiB
+Sector size (logical): 512 bytes
+Disk identifier (GUID): BEBA346D-E0AD-4FD4-8F24-9C92744F12E2
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 7634910
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 4029 sectors (2.0 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048            4095   1024.0 KiB  0700  boot
+   2            4096           16383   6.0 MiB     8300  linuxkernel
+   3           16384           32767   8.0 MiB     8300  linuxkernel2
+   4           32768         7632895   3.6 GiB     8300  userdata
+root@mutant51:~# 
+
