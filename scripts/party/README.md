@@ -34,6 +34,18 @@ The following partition types are supported:
 * s - swap
 
 
+## RootFS
+
+If both a linuxrootfs and userdata partitions are defined, the linuxrootfs one
+will be used as the root file system by the kernel in the first kernel
+partition; all other kernels will have their root file systems in the userdata
+partition.
+
+If only one of linuxrootfs or userdata partitions are defined, all kernels
+will use it as the root file system. Typically it's preferable to create a
+userdata partition instead of a linuxrootfs one, for this scenario.
+
+
 ## Example
 
 To create an equivalent image to the original OpenATV 6.4 image, the partition
@@ -50,14 +62,8 @@ See the other adjacent text files for some other examples on how to create
 different types of layouts.
 
 
-## RootFS
+## See also
 
-If both a linuxrootfs and userdata partitions are defined, the linuxrootfs one
-will be used as the root file system by the kernel in the first kernel
-partition; all other kernels will have their root file systems in the userdata
-partition.
-
-If only one of linuxrootfs or userdata partitions are defined, all kernels
-will use it as the root file system. Typically it's preferable to create a
-userdata partition instead of a linuxrootfs one, for this scenario.
-
+* https://github.com/oottppxx/enigma2/tree/master/axhd51
+* https://github.com/oottppxx/enigma2/tree/master/mutanthd51
+* https://github.com/oottppxx/enigma2/tree/master/zgemmah7
