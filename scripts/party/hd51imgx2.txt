@@ -1,4 +1,4 @@
-iroot@mutant51:~# rm -rf /mnt/hdd/party/*
+root@mutant51:~# rm -rf /mnt/hdd/party/*
 root@mutant51:~# time ./party.py /mnt/hdd/images/hd51/ b1k6k8u3711
 1+0 records in
 1+0 records out
