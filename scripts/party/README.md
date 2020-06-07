@@ -5,7 +5,7 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 ## Summary
 
 The party.py script allows one to create disk images, with a specified partition
-layout, for boxes like Zgemma H7, Mut@nt HD51, Opticum/AX51, Vimastec VS1500,
+layout, for boxes like Zgemma H7, Mut@nt/Opticum/AX HD51, Vimastec VS1500,
 and maybe others.
 
 It's currently hard coded for OpenATV 6.4 recovery_emmc images, and it probably
