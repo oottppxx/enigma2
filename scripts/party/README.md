@@ -1,6 +1,7 @@
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
+
 ## Summary
 
 The party.py script allows one to create disk images, with a specified partition
@@ -15,6 +16,7 @@ It could also benefit from a few more smarts instead of blindly delegating a lot
 of the work to shell commands and hoping for the best; e.g., verifying that a
 valid GPT was extracted, and/or reading the extracted GPT to locate the kernel
 and root filesystem, instead of using hard coded values.
+
 
 ## Usage
 
@@ -31,6 +33,7 @@ The following partition types are supported:
 * u - userdata
 * s - swap
 
+
 ## Example
 
 To create an equivalent image to the original OpenATV 6.4 image, the partition
@@ -46,7 +49,8 @@ partition.
 See the other adjacent text files for some other examples on how to create
 different types of layouts.
 
-## Kernel to Root Filesystem Correspondence
+
+## RootFS
 
 If both a linuxrootfs and userdata partitions are defined, the linuxrootfs one
 will be used as the root file system by the kernel in the first kernel
