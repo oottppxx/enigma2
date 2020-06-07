@@ -1,7 +1,7 @@
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
-# Summary
+## Summary
 
 The party.py script allows one to create disk images, with a specified partition
 layout, for boxes like Zgemma H7, Mut@nt HD51, Opticum/AX51, Vimastec VS1500,
@@ -16,7 +16,7 @@ of the work to shell commands and hoping for the best; e.g., verifying that a
 valid GPT was extracted, and/or reading the extracted GPT to locate the kernel
 and root filesystem, instead of using hard coded values.
 
-# Usage
+## Usage
 
 The script expects 2 arguments on the command line, a path to the directory of
 the OpenATV 6.4 disk.img file, and a partition layout string.
@@ -31,7 +31,7 @@ The following partition types are supported:
 * u - userdata
 * s - swap
 
-# Example
+## Example
 
 To create an equivalent image to the original OpenATV 6.4 image, the partition
 layout string would be similar to:
@@ -46,7 +46,7 @@ partition.
 See the other adjacent text files for some other examples on how to create
 different types of layouts.
 
-# Kernel/Root filesystem correspondence
+## Kernel to Root Filesystem Correspondence
 
 If both a linuxrootfs and userdata partitions are defined, the linuxrootfs one
 will be used as the root file system by the kernel in the first kernel
