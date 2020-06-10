@@ -5,6 +5,9 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 
 BIG THANKS to BazB, this wouldn't have been possible without his generosity!!!
 
+Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/scripts/party.py) 
+script if you want to carve your own image partition layout.
+
 To take into consideration:
 
 * This is a developer oriented (multi-)image, with 8 slots sharing the total
