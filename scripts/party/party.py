@@ -6,6 +6,16 @@ import re
 import sys
 import zlib
 
+VERSION='202006122123'
+
+TFTPD='192.168.0.50'
+
+# 3726MiB max across partitions.
+# for alignment, 7632895 works better?!
+MAX_LBA=7634910
+
+RECO_KLABEL='kernel'
+
 IMG='disk.img'
 TMP_PARTY='/mnt/hdd/party'
 NEW_IMG=os.path.join(TMP_PARTY, 'new_disk.img')
@@ -18,15 +28,19 @@ TMP_ROOTFS=os.path.join(TMP_PARTY, 'rootfs')
 TMP_MBOOT=os.path.join(TMP_PARTY, 'mboot')
 TMP_STARTUP=os.path.join(TMP_PARTY, 'startup')
 
+TMP_MRECO=os.path.join(TMP_PARTY, 'mreco')
+TMP_MROOTFS=os.path.join(TMP_PARTY, 'mrootfs')
+
 NEW_GPT=os.path.join(TMP_PARTY, 'new_gpt')
 NEW_BOOT=os.path.join(TMP_PARTY, 'new_boot')
 NEW_KERNEL=os.path.join(TMP_PARTY, 'new_kernel')
 NEW_ROOTFS=os.path.join(TMP_PARTY, 'new_rootfs')
 NEW_SWAP=os.path.join(TMP_PARTY, 'new_swap')
+NEW_RECO=os.path.join(TMP_PARTY, 'new_reco')
 
 BOXMODE=''
 BOXMODE_RE='^.*(?P<boxmode> [^ ]*)\'$'
-BLINE=('ifconfig eth0 -auto && batch 192.168.0.50:TFTPBOOT\n'
+BLINE=('ifconfig eth0 -auto && batch %(TFTPD)s:TFTPBOOT\n'
        'testenv -n INT && '
        'boot emmcflash0.%(LABELINDEX)s \'brcm_cma=440M@328M brcm_cma=192M@768M'
        ' root=/dev/mmcblk0p%(ROOTINDEX)s'
@@ -37,10 +51,10 @@ BLINE=('ifconfig eth0 -auto && batch 192.168.0.50:TFTPBOOT\n'
 ###
 
 PBOOT=False
+PRECO=False
 PLINUXROOTFS=False
 PUSERDATA=False
 PSWAP=False
-PNUM=0
 KNUM=0
 FSNUM=0
 # Stores tuples of (label, size in MiB).
@@ -69,17 +83,19 @@ E_COPYSTARTUP=10
 E_UMOUNT=11
 E_READSTARTUP=12
 E_NEWBOOT=13
-E_NEWKERNEL=14
-E_NEWROOTFS=15
-E_NEWSWAP=16
-E_ARGSCHEME=17
-E_NOBOOT=18
-E_NOKERNEL=19
-E_NOFS=20
-E_TOOMANY=21
-E_CREATESTARTUP=22
-E_CREATEGPT=23
-E_CREATEIMAGE=24
+E_NEWRECO=14
+E_NEWKERNEL=15
+E_NEWROOTFS=16
+E_NEWSWAP=17
+E_ARGSCHEME=18
+E_NOBOOT=19
+E_NOKERNEL=20
+E_NOFS=21
+E_TOOMANY=22
+E_CREATESTARTUP=23
+E_EXCEEDLBA=24
+E_CREATEGPT=25
+E_CREATEIMAGE=26
 
 def number(s):
   acc = 0
@@ -94,11 +110,12 @@ def number(s):
 def boot(s):
   global GPT
   global FILES
-  global PNUM
   global PBOOT
   label='boot'
   if PBOOT:
     return True, 'only 1 boot partition allowed!'
+  if len(GPT):
+    return True, 'boot partition must be the 1st partition exactly!'
   size, s = number(s[1:])
   if not size:
     return True, 'boot partition requires a size > 0!'
@@ -116,13 +133,62 @@ def boot(s):
   FILES.append(NEW_BOOT)
   print '%s(%d)' % (label, size)
   PBOOT = True
-  PNUM += 1
+  return False, s
+
+def recovery(s):
+  global GPT
+  global FILES
+  global PRECO
+  label='recovery'
+  if PRECO:
+    return True, 'only 1 recovery partition allowed!'
+  if KNUM > 0:
+    return True, 'recovery partition must come before any kernel partition!'
+  if len(GPT) != 1:
+    return True, 'recovery partition must be the 2nd partition exactly!'
+  size, s = number(s[1:])
+  if not size:
+    return True, 'recovery partition requires a size > 0!'
+  bs = 2048*512
+  count = size
+  try:
+    error = os.system('umount -f %s ; dd if=/dev/zero of=%s bs=%d count=%d && mkfs.ext4 %s && mount %s %s' % (
+        TMP_MRECO, NEW_RECO, bs, count, NEW_RECO, NEW_RECO, TMP_MRECO))
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t create %s file!' % NEW_RECO
+    sys.exit(E_NEWRECO)
+  try:
+    error = os.system('umount -f %s ; mount %s %s' % (TMP_MROOTFS, TMP_ROOTFS, TMP_MROOTFS))
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t loop mount %s file in the %s directory!' % (TMP_ROOTFS, TMP_MROOTFS)
+    sys.exit(E_LOOPMOUNT)
+  try:
+    error = os.system('cd %s/linuxrootfs1 && cp -aR bin boot dev etc home lib proc run sbin sys tmp usr var %s' % (
+        TMP_MROOTFS, TMP_MRECO))
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t create recovery rootfs in %s!' % TMP_MRECO
+    sys.exit(E_NEWRECO)
+  try:
+    error = os.system('cd / ; umount %s ; umount %s' % (TMP_MROOTFS, TMP_MRECO))
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t unmount %s or %s!' % (TMP_MROOTFS, TMP_MRECO)
+    sys.exit(E_UMOUNT)
+  GPT.append((label, size))
+  FILES.append(NEW_RECO)
+  PRECO = True
   return False, s
 
 def kernel(s):
   global GPT
   global FILES
-  global PNUM
   global KNUM
   label = 'linuxkernel'
   kernel = NEW_KERNEL
@@ -147,16 +213,16 @@ def kernel(s):
     sys.exit(E_NEWKERNEL)
   print '%s(%d)' % (label, size)
   GPT.append((label, size))
+  if PRECO and not bool(KNUM):
+    GPT.append((RECO_KLABEL, size))
   if not (PBOOT and bool(KNUM) and bool(FSNUM)):
     FILES.append(kernel)
   KNUM += 1
-  PNUM += 1
   return False, s
 
 def data(s, l):
   global GPT
   global FILES
-  global PNUM
   global FSNUM
   label = l
   rootfs = NEW_ROOTFS
@@ -184,7 +250,6 @@ def data(s, l):
   if not (PBOOT and bool(KNUM) and bool(FSNUM)):
     FILES.append(rootfs)
   FSNUM += 1
-  PNUM += 1
   return False, s
 
 def linuxrootfs(s):
@@ -206,7 +271,6 @@ def userdata(s):
 def swap(s):
   global GPT
   global FILES
-  global PNUM
   global PSWAP
   if PSWAP:
     return True, 'only 1 swap partition allowed!'
@@ -231,7 +295,6 @@ def swap(s):
   if not (PBOOT and bool(KNUM) and bool(FSNUM)):
     FILES.append(swap)
   PSWAP = True
-  PNUM += 1
   return False, s
 
 def error(s):
@@ -252,6 +315,7 @@ NUMBER={
 
 FUN={
   'b': boot,
+  'r': recovery,
   'k': kernel,
   'l': linuxrootfs,
   'u': userdata,
@@ -268,7 +332,8 @@ def partition(s):
 
 def create_party():
   try:
-    error = os.system('mkdir -p %s && mkdir -p %s' % (TMP_PARTY, os.path.join(TMP_PARTY, TMP_MBOOT)))
+    error = os.system('mkdir -p %s && mkdir -p %s && mkdir -p %s && mkdir -p %s' % (
+        TMP_PARTY, TMP_MBOOT, TMP_MRECO, TMP_MROOTFS))
   except:
     error = -1
   if error:
@@ -379,8 +444,12 @@ def create_startup():
     startup_file = os.path.join(TMP_MBOOT, 'STARTUP_%d' % subdir_index)
     try:
       with open(startup_file, 'w') as f:
-        line = BLINE % {'LABELINDEX': label, 'ROOTINDEX': root_index, 'SUBDIRINDEX': subdir_index,
-                        'KERNELINDEX': kernel_index, 'BOXMODE': BOXMODE}
+        line = BLINE % {'TFTPD': TFTPD,
+                        'LABELINDEX': label,
+                        'ROOTINDEX': root_index,
+                        'SUBDIRINDEX': subdir_index,
+                        'KERNELINDEX': kernel_index,
+                        'BOXMODE': BOXMODE}
         f.writelines([line])
     except:
       print 'Error: couldn\'t create file %s!' % startup_file
@@ -449,16 +518,24 @@ def create_gpt():
     with open(TMP_GPT, 'rb') as f:
       gpt = f.read(0x400)
     with open(NEW_GPT, 'wb') as f:
+      previous_first_lba = 0
       first_lba = 2048
       index = 0
       for l, s in GPT:
-        if 'linuxrootfs' in l or 'userdata' in l or 'linuxkernel' in l:
+        if 'recovery' == l or 'linuxrootfs' in l or 'userdata' == l or 'linuxkernel' in l:
           guid = LINUX_GUID
-        if 'boot' in l:
+        if 'boot' == l:
           guid = BOOT_GUID
-        if 'swap' in l:
+        if 'swap' == l:
           guid = SWAP_GUID
-        lba, first_lba = lba_block(first_lba, s)
+        if not RECO_KLABEL == l:
+          previous_first_lba = first_lba
+        print '>>> %s %d %d %d' % (l, s, previous_first_lba, first_lba)
+        lba, first_lba = lba_block(previous_first_lba, s)
+        print '<<< %s %d %d %d' % (l, s, previous_first_lba, first_lba)
+        if first_lba > MAX_LBA:
+          print 'Error: your partition layout exceeds the available space!'
+          sys.exit(E_EXCEEDLBA)
         label = label_block(l)
         index += 1
         gpt += (guid+UNIQUE_GUID+chr(index)+lba+ZERO_8+label)
@@ -487,11 +564,15 @@ def create_image():
 
 if len(sys.argv) < 3:
   print 'I\'m going to a path to disk.img and a partition layout string!'
+  print 'Optionally, you can also indicate the TFTP server address'
   sys.exit(E_ARGTOOFEW)
 
-if len(sys.argv) > 3:
+if len(sys.argv) > 4:
   print 'Too many arguments!'
   sys.exit(E_ARGTOOMANY)
+
+if len(sys.argv) > 3:
+  TFTPD=sys.argv[3]
 
 IMG = os.path.join(sys.argv[1], IMG)
 

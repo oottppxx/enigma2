@@ -21,17 +21,35 @@ and root filesystem, instead of using hard coded values.
 ## Usage
 
 The script expects 2 arguments on the command line, a path to the directory of
-the OpenATV 6.4 disk.img file, and a partition layout string.
+the OpenATV 6.4 disk.img file, and a partition layout string. A 3rd argument can
+also be provided, which will replace the IP address of the TFTP server to use
+(note that no verification is done on the address).
 
 The partition layout string is a sequence of partition type/size (in MiB), where
 the type is indicated by a single lower case letter.
 
 The following partition types are supported:
 * b - boot
+* r - recovery
 * k - kernel
 * l - linuxrootfs
 * u - userdata
 * s - swap
+
+
+## Recovery
+
+Some receivers (e.g., Mut@nt HD51) have the capability of booting to 1 of 2
+partitions for recovery, if the front panel button is kept pressed during the
+power up boot process (and provided no ready to flash USB is inserted).
+Unfortunately, newer partition schemes don't support this method, unless the
+receiver bootloader is also updated. Even so, if we use an alternative partition
+layout, that functionality is also lost, unless we configure a recovery
+partition. This partition will take some space and it will only be used in case
+of the recovery procedure being actuated. For now, it is not optimized at all,
+so around 344MiB of space is the recommended value for it; to save a little bit,
+this partition boots with the same kernel of slot 1 (so be careful to not mess
+that one, either).
 
 
 ## RootFS

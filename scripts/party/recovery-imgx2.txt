@@ -1,0 +1,67 @@
+root@mutant51:/mnt/hdd/party# time ~/party.py /mnt/hdd b1r348k6k8u3363 192.168.0.51
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.019901 seconds, 50.2MB/s
+3+0 records in
+3+0 records out
+3145728 bytes (3.0MB) copied, 0.034453 seconds, 87.1MB/s
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.134454 seconds, 59.5MB/s
+48+0 records in
+48+0 records out
+603979776 bytes (576.0MB) copied, 15.135603 seconds, 38.1MB/s
+umount: can't unmount /mnt/hdd/party/mboot: Invalid argument
+Found boxmode:  hd51_4.boxmode=1
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.039911 seconds, 25.1MB/s
+mkfs.fat 4.1 (2017-01-24)
+boot(1)
+umount: can't unmount /mnt/hdd/party/mreco: Invalid argument
+348+0 records in
+348+0 records out
+364904448 bytes (348.0MB) copied, 7.129351 seconds, 48.8MB/s
+mke2fs 1.45.3 (14-Jul-2019)
+Creating filesystem with 356352 1k blocks and 89408 inodes
+Filesystem UUID: 362eb0a4-0c60-4a78-9b20-e711e9a5a264
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+umount: can't unmount /mnt/hdd/party/mrootfs: Invalid argument
+6+0 records in
+6+0 records out
+6291456 bytes (6.0MB) copied, 0.163282 seconds, 36.7MB/s
+linuxkernel(6)
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.893425 seconds, 9.0MB/s
+linuxkernel2(8)
+576+0 records in
+576+0 records out
+603979776 bytes (576.0MB) copied, 15.164256 seconds, 38.0MB/s
+userdata(3363)
+[('boot', 1), ('recovery', 348), ('linuxkernel', 6), ('kernel', 6), ('linuxkernel2', 8), ('userdata', 3363)]
+['/mnt/hdd/party/new_boot', '/mnt/hdd/party/new_reco', '/mnt/hdd/party/new_kernel', '/mnt/hdd/party/new_kernel2', '/mnt/hdd/party/new_rootfs']
+>>> boot 1 2048 2048
+<<< boot 1 2048 4096
+>>> recovery 348 4096 4096
+<<< recovery 348 4096 716800
+>>> linuxkernel 6 716800 716800
+<<< linuxkernel 6 716800 729088
+>>> kernel 6 716800 729088
+<<< kernel 6 716800 729088
+>>> linuxkernel2 8 729088 729088
+<<< linuxkernel2 8 729088 745472
+>>> userdata 3363 745472 745472
+<<< userdata 3363 745472 7632896
+Ok
+
+real	1m46.627s
+user	0m0.566s
+sys	0m26.944s
