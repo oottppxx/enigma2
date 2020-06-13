@@ -46,10 +46,10 @@ Unfortunately, newer partition schemes don't support this method, unless the
 receiver bootloader is also updated. Even so, if we use an alternative partition
 layout, that functionality is also lost, unless we configure a recovery
 partition. This partition will take some space and it will only be used in case
-of the recovery procedure being actuated. For now, it is not optimized at all,
-so around 344MiB of space is the recommended value for it; to save a little bit,
-this partition boots with the same kernel of slot 1 (so be careful not to mess
-that one, either).
+of the recovery procedure being actuated. For now, it is only somehow optimized
+(could be better) so around 128MiB of space is the recommended value for it; to
+save a little bit, this partition boots with the same kernel of slot 1 (so be
+careful not to mess that one, either!) - this might change in the future.
 
 
 ## RootFS

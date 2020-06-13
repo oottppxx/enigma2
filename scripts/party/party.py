@@ -6,7 +6,7 @@ import re
 import sys
 import zlib
 
-VERSION='202006122123'
+VERSION='202006131910'
 
 TFTPD='192.168.0.50'
 
@@ -167,8 +167,15 @@ def recovery(s):
     print 'Error: can\'t loop mount %s file in the %s directory!' % (TMP_ROOTFS, TMP_MROOTFS)
     sys.exit(E_LOOPMOUNT)
   try:
-    error = os.system('cd %s/linuxrootfs1 && cp -aR bin boot dev etc home lib proc run sbin sys tmp usr var %s' % (
+    error = os.system('cd %s/linuxrootfs1 && cp -aRf bin boot dev etc home lib proc run sbin sys tmp var %s' % (
         TMP_MROOTFS, TMP_MRECO))
+    error += os.system('mkdir -p %s/usr && cd %s/linuxrootfs1/usr && cp -aRf bin sbin libexec %s/usr' % (
+        TMP_MRECO, TMP_MROOTFS, TMP_MRECO))
+    error += os.system('mkdir -p %s/usr/share && cd %s/linuxrootfs1/usr/share && cp -aRf udhcpc %s/usr/share' % (
+        TMP_MRECO, TMP_MROOTFS, TMP_MRECO))
+    error += os.system('mkdir -p %s/usr/lib && cp -af %s/linuxrootfs1/usr/lib/lib* %s/usr/lib' % (
+        TMP_MRECO, TMP_MROOTFS, TMP_MRECO))
+    error += os.system('sed -i -e "s/id:3/id:5/" %s/etc/inittab' % TMP_MRECO)
   except:
     error = -1
   if error:

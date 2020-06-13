@@ -1,67 +1,89 @@
-root@mutant51:/mnt/hdd/party# time ~/party.py /mnt/hdd b1r348k6k8u3363 192.168.0.51
+root@mutant51:~# time ./party.py /mnt/hdd/ b1r128k6k8u3583 192.168.0.50
 1+0 records in
 1+0 records out
-1048576 bytes (1.0MB) copied, 0.019901 seconds, 50.2MB/s
+1048576 bytes (1.0MB) copied, 0.032099 seconds, 31.2MB/s
 3+0 records in
 3+0 records out
-3145728 bytes (3.0MB) copied, 0.034453 seconds, 87.1MB/s
+3145728 bytes (3.0MB) copied, 0.066207 seconds, 45.3MB/s
 8+0 records in
 8+0 records out
-8388608 bytes (8.0MB) copied, 0.134454 seconds, 59.5MB/s
+8388608 bytes (8.0MB) copied, 0.196241 seconds, 40.8MB/s
 48+0 records in
 48+0 records out
-603979776 bytes (576.0MB) copied, 15.135603 seconds, 38.1MB/s
-umount: can't unmount /mnt/hdd/party/mboot: Invalid argument
+603979776 bytes (576.0MB) copied, 18.255775 seconds, 31.6MB/s
 Found boxmode:  hd51_4.boxmode=1
 1+0 records in
 1+0 records out
-1048576 bytes (1.0MB) copied, 0.039911 seconds, 25.1MB/s
+1048576 bytes (1.0MB) copied, 0.017934 seconds, 55.8MB/s
 mkfs.fat 4.1 (2017-01-24)
 boot(1)
-umount: can't unmount /mnt/hdd/party/mreco: Invalid argument
-348+0 records in
-348+0 records out
-364904448 bytes (348.0MB) copied, 7.129351 seconds, 48.8MB/s
+128+0 records in
+128+0 records out
+134217728 bytes (128.0MB) copied, 2.962647 seconds, 43.2MB/s
 mke2fs 1.45.3 (14-Jul-2019)
-Creating filesystem with 356352 1k blocks and 89408 inodes
-Filesystem UUID: 362eb0a4-0c60-4a78-9b20-e711e9a5a264
+Creating filesystem with 131072 1k blocks and 32768 inodes
+Filesystem UUID: 7922d3fe-120a-4de9-a7fb-171710bc073c
 Superblock backups stored on blocks: 
-	8193, 24577, 40961, 57345, 73729, 204801, 221185
+	8193, 24577, 40961, 57345, 73729
 
 Allocating group tables: done                            
 Writing inode tables: done                            
-Creating journal (8192 blocks): done
+Creating journal (4096 blocks): done
 Writing superblocks and filesystem accounting information: done 
 
-umount: can't unmount /mnt/hdd/party/mrootfs: Invalid argument
 6+0 records in
 6+0 records out
-6291456 bytes (6.0MB) copied, 0.163282 seconds, 36.7MB/s
+6291456 bytes (6.0MB) copied, 0.172458 seconds, 34.8MB/s
 linuxkernel(6)
 8+0 records in
 8+0 records out
-8388608 bytes (8.0MB) copied, 0.893425 seconds, 9.0MB/s
+8388608 bytes (8.0MB) copied, 0.203646 seconds, 39.3MB/s
 linuxkernel2(8)
 576+0 records in
 576+0 records out
-603979776 bytes (576.0MB) copied, 15.164256 seconds, 38.0MB/s
-userdata(3363)
-[('boot', 1), ('recovery', 348), ('linuxkernel', 6), ('kernel', 6), ('linuxkernel2', 8), ('userdata', 3363)]
+603979776 bytes (576.0MB) copied, 21.751267 seconds, 26.5MB/s
+userdata(3583)
+[('boot', 1), ('recovery', 128), ('linuxkernel', 6), ('kernel', 6), ('linuxkernel2', 8), ('userdata', 3583)]
 ['/mnt/hdd/party/new_boot', '/mnt/hdd/party/new_reco', '/mnt/hdd/party/new_kernel', '/mnt/hdd/party/new_kernel2', '/mnt/hdd/party/new_rootfs']
 >>> boot 1 2048 2048
 <<< boot 1 2048 4096
->>> recovery 348 4096 4096
-<<< recovery 348 4096 716800
->>> linuxkernel 6 716800 716800
-<<< linuxkernel 6 716800 729088
->>> kernel 6 716800 729088
-<<< kernel 6 716800 729088
->>> linuxkernel2 8 729088 729088
-<<< linuxkernel2 8 729088 745472
->>> userdata 3363 745472 745472
-<<< userdata 3363 745472 7632896
+>>> recovery 128 4096 4096
+<<< recovery 128 4096 266240
+>>> linuxkernel 6 266240 266240
+<<< linuxkernel 6 266240 278528
+>>> kernel 6 266240 278528
+<<< kernel 6 266240 278528
+>>> linuxkernel2 8 278528 278528
+<<< linuxkernel2 8 278528 294912
+>>> userdata 3583 294912 294912
+<<< userdata 3583 294912 7632896
 Ok
 
-real	1m46.627s
-user	0m0.566s
-sys	0m26.944s
+real	1m16.301s
+user	0m0.312s
+sys	0m29.435s
+
+
+###
+
+SSH into recovery image by keeping the front panel button pressed:
+
+$ ssh mut
+Warning: Permanently added '192.168.0.223' (ECDSA) to the list of known hosts.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (C.UTF-8): No such file or directory
+-bash: warning: setlocale: LC_MESSAGES: cannot change locale (C.UTF-8): No such file or directory
+-bash: warning: setlocale: LC_NUMERIC: cannot change locale (C.UTF-8): No such file or directory
+-bash: warning: setlocale: LC_TIME: cannot change locale (C.UTF-8): No such file or directory
+root@mutant51:~# cat /proc/cmdline 
+root=/dev/mmcblk0p2 rw rootwait brcm_cma=440M@328M brcm_cma=192M@768M console=ttyS0,115200
+root@mutant51:~# cd /boot/
+root@mutant51:/boot# ls
+STARTUP    STARTUP_1  STARTUP_2
+root@mutant51:/boot# cp STARTUP_2 STARTUP
+root@mutant51:/boot# sync
+root@mutant51:/boot# reboot
+
+Broadcast message from root@mutant51 (pts/0) (Sat Jun 13 18:45:39 2020):
+
+The system is going down for reboot NOW!
+root@mutant51:/boot#
