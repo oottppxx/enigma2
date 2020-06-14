@@ -6,7 +6,7 @@ import re
 import sys
 import zlib
 
-VERSION='202006141108'
+VERSION='202006141136'
 
 TFTPD='192.168.0.50'
 
@@ -565,7 +565,7 @@ def create_gpt():
       first_lba = 2048
       index = 0
       for l, s in GPT:
-        if 'recovery' == l or 'linuxrootfs' in l or 'userdata' == l or 'linuxkernel' in l:
+        if 'recovery' == l or RECO_KLABEL == l or 'linuxrootfs' in l or 'userdata' == l or 'linuxkernel' in l:
           guid = LINUX_GUID
         if 'boot' == l:
           guid = BOOT_GUID
