@@ -59,6 +59,9 @@ creating said recovery partition explicitly.
 The recovery partition will take some space and it will only be used in case of
 the recovery procedure being actuated. For now, it is only somehow optimized
 (could be better) so around 128MiB of space is the recommended value for it.
+This value might need to grow if we target newer images with the script (and can
+possibly be reduced if we target older images, but didn't test this, OpenATV 6.4
+was used while developing).
 
 Creating a recovery kernel entry is optional but recommended, so one has the
 flexibility of updating slot 1 at will - if one isn't created, the recovery
