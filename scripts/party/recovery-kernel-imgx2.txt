@@ -1,0 +1,115 @@
+root@mutant51:~# time ./party.py /mnt/hdd/ b1r128K6k6k8u3577 192.168.0.50
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.022598 seconds, 44.3MB/s
+3+0 records in
+3+0 records out
+3145728 bytes (3.0MB) copied, 0.038627 seconds, 77.7MB/s
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.746216 seconds, 10.7MB/s
+48+0 records in
+48+0 records out
+603979776 bytes (576.0MB) copied, 15.293657 seconds, 37.7MB/s
+umount: can't unmount /mnt/hdd/party/mboot: Invalid argument
+Found boxmode:  hd51_4.boxmode=1
+1+0 records in
+1+0 records out
+1048576 bytes (1.0MB) copied, 0.030489 seconds, 32.8MB/s
+mkfs.fat 4.1 (2017-01-24)
+boot(1)
+umount: can't unmount /mnt/hdd/party/mreco: Invalid argument
+128+0 records in
+128+0 records out
+134217728 bytes (128.0MB) copied, 2.748970 seconds, 46.6MB/s
+mke2fs 1.45.3 (14-Jul-2019)
+Creating filesystem with 131072 1k blocks and 32768 inodes
+Filesystem UUID: ddf74699-e2fa-4ef6-b3ce-452bc50326d4
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+umount: can't unmount /mnt/hdd/party/mrootfs: Invalid argument
+6+0 records in
+6+0 records out
+6291456 bytes (6.0MB) copied, 0.134120 seconds, 44.7MB/s
+kernel(6)
+6+0 records in
+6+0 records out
+6291456 bytes (6.0MB) copied, 0.127514 seconds, 47.1MB/s
+linuxkernel(6)
+8+0 records in
+8+0 records out
+8388608 bytes (8.0MB) copied, 0.161888 seconds, 49.4MB/s
+linuxkernel2(8)
+576+0 records in
+576+0 records out
+603979776 bytes (576.0MB) copied, 16.185489 seconds, 35.6MB/s
+userdata(3577)
+[('boot', 1), ('recovery', 128), ('kernel', 6), ('linuxkernel', 6), ('linuxkernel2', 8), ('userdata', 3577)]
+['/mnt/hdd/party/new_boot', '/mnt/hdd/party/new_reco', '/mnt/hdd/party/new_kreco', '/mnt/hdd/party/new_kernel', '/mnt/hdd/party/new_kernel2', '/mnt/hdd/party/new_rootfs']
+>>> boot 1 2048 2048
+<<< boot 1 2048 4096
+>>> recovery 128 4096 4096
+<<< recovery 128 4096 266240
+>>> kernel 6 266240 266240
+<<< kernel 6 266240 278528
+>>> linuxkernel 6 278528 278528
+<<< linuxkernel 6 278528 290816
+>>> linuxkernel2 8 290816 290816
+<<< linuxkernel2 8 290816 307200
+>>> userdata 3577 307200 307200
+<<< userdata 3577 307200 7632896
+Ok
+
+real	1m9.966s
+user	0m0.297s
+sys	0m20.539s
+root@mutant51:~# gdisk -l /mnt/hdd/party/new_disk.img 
+GPT fdisk (gdisk) version 1.0.4
+
+Warning! Disk size is smaller than the main header indicates! Loading
+secondary header from the last sector of the disk! You should use 'v' to
+verify disk integrity, and perhaps options on the experts' menu to repair
+the disk.
+Caution: invalid backup GPT header, but valid main header; regenerating
+backup header from main header.
+
+Warning! Error 25 reading partition table for CRC check!
+Warning! One or more CRCs don't match. You should repair the disk!
+Main header: OK
+Backup header: ERROR
+Main partition table: OK
+Backup partition table: ERROR
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: damaged
+
+****************************************************************************
+Caution: Found protective or hybrid MBR and corrupt GPT. Using GPT, but disk
+verification and recovery are STRONGLY recommended.
+****************************************************************************
+Disk /mnt/hdd/party/new_disk.img: 1486848 sectors, 726.0 MiB
+Sector size (logical): 512 bytes
+Disk identifier (GUID): BEBA346D-E0AD-4FD4-8F24-9C92744F12E2
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 7634910
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 4029 sectors (2.0 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048            4095   1024.0 KiB  0700  boot
+   2            4096          266239   128.0 MiB   8300  recovery
+   3          266240          278527   6.0 MiB     8300  kernel
+   4          278528          290815   6.0 MiB     8300  linuxkernel
+   5          290816          307199   8.0 MiB     8300  linuxkernel2
+   6          307200         7632895   3.5 GiB     8300  userdata
+root@mutant51:~# 

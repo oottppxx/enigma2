@@ -62,11 +62,54 @@ Ok
 real	1m16.301s
 user	0m0.312s
 sys	0m29.435s
+root@mutant51:~# gdisk -l /mnt/hdd/party/new_disk.img 
+GPT fdisk (gdisk) version 1.0.4
 
+Warning! Disk size is smaller than the main header indicates! Loading
+secondary header from the last sector of the disk! You should use 'v' to
+verify disk integrity, and perhaps options on the experts' menu to repair
+the disk.
+Caution: invalid backup GPT header, but valid main header; regenerating
+backup header from main header.
+
+Warning! Error 25 reading partition table for CRC check!
+Warning! One or more CRCs don't match. You should repair the disk!
+Main header: OK
+Backup header: ERROR
+Main partition table: OK
+Backup partition table: ERROR
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: damaged
+
+****************************************************************************
+Caution: Found protective or hybrid MBR and corrupt GPT. Using GPT, but disk
+verification and recovery are STRONGLY recommended.
+****************************************************************************
+Disk /mnt/hdd/party/new_disk.img: 1474560 sectors, 720.0 MiB
+Sector size (logical): 512 bytes
+Disk identifier (GUID): BEBA346D-E0AD-4FD4-8F24-9C92744F12E2
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 7634910
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 4029 sectors (2.0 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048            4095   1024.0 KiB  0700  boot
+   2            4096          266239   128.0 MiB   8300  recovery
+   3          266240          278527   6.0 MiB     8300  linuxkernel
+   4          266240          278527   6.0 MiB     8300  kernel
+   5          278528          294911   8.0 MiB     8300  linuxkernel2
+   6          294912         7632895   3.5 GiB     8300  userdata
+root@mutant51:~# 
 
 ###
 
-SSH into recovery image by keeping the front panel button pressed:
+Boot recovery image by keeping the front panel button pressed, then SSH into it:
 
 $ ssh mut
 Warning: Permanently added '192.168.0.223' (ECDSA) to the list of known hosts.

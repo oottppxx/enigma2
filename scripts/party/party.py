@@ -6,7 +6,7 @@ import re
 import sys
 import zlib
 
-VERSION='202006131910'
+VERSION='202006141108'
 
 TFTPD='192.168.0.50'
 
@@ -37,6 +37,7 @@ NEW_KERNEL=os.path.join(TMP_PARTY, 'new_kernel')
 NEW_ROOTFS=os.path.join(TMP_PARTY, 'new_rootfs')
 NEW_SWAP=os.path.join(TMP_PARTY, 'new_swap')
 NEW_RECO=os.path.join(TMP_PARTY, 'new_reco')
+NEW_KRECO=os.path.join(TMP_PARTY, 'new_kreco')
 
 BOXMODE=''
 BOXMODE_RE='^.*(?P<boxmode> [^ ]*)\'$'
@@ -52,6 +53,7 @@ BLINE=('ifconfig eth0 -auto && batch %(TFTPD)s:TFTPBOOT\n'
 
 PBOOT=False
 PRECO=False
+PKRECO=False
 PLINUXROOTFS=False
 PUSERDATA=False
 PSWAP=False
@@ -114,8 +116,8 @@ def boot(s):
   label='boot'
   if PBOOT:
     return True, 'only 1 boot partition allowed!'
-  if len(GPT):
-    return True, 'boot partition must be the 1st partition exactly!'
+#  if len(GPT):
+#    return True, 'boot partition must be the 1st partition exactly!'
   size, s = number(s[1:])
   if not size:
     return True, 'boot partition requires a size > 0!'
@@ -193,6 +195,39 @@ def recovery(s):
   PRECO = True
   return False, s
 
+def rkernel(s):
+  global GPT
+  global FILES
+  global PKRECO
+  label = RECO_KLABEL
+  kernel = NEW_KRECO
+  if PKRECO:
+    return True, 'only 1 recovery kernel partition allowed!'
+  size, s = number(s[1:])
+  if not size:
+    return True, 'kernel partition requires a size > 0!'
+  bs = 2048*512
+  count = size
+  try:
+    error = 0
+    if not KNUM:
+      error = os.system('dd if=%s of=%s bs=%d count=%d' % (TMP_KERNEL, kernel, bs, count))
+    else:
+      label = '%s%d' % (label, KNUM+1)
+      kernel = '%s%d' % (kernel, KNUM+1)
+      if not (PBOOT and bool(FSNUM)):
+        error = os.system('dd if=/dev/zero of=%s bs=%d count=%d' % (kernel, bs, count))
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t create %s file!' % kernel
+    sys.exit(E_NEWKERNEL)
+  print '%s(%d)' % (label, size)
+  GPT.append((label, size))
+  FILES.append(NEW_KRECO)
+  PKRECO = True
+  return False, s
+
 def kernel(s):
   global GPT
   global FILES
@@ -220,7 +255,7 @@ def kernel(s):
     sys.exit(E_NEWKERNEL)
   print '%s(%d)' % (label, size)
   GPT.append((label, size))
-  if PRECO and not bool(KNUM):
+  if PRECO and not bool(KNUM) and not PKRECO:
     GPT.append((RECO_KLABEL, size))
   if not (PBOOT and bool(KNUM) and bool(FSNUM)):
     FILES.append(kernel)
@@ -323,6 +358,7 @@ NUMBER={
 FUN={
   'b': boot,
   'r': recovery,
+  'K': rkernel,
   'k': kernel,
   'l': linuxrootfs,
   'u': userdata,
@@ -535,7 +571,7 @@ def create_gpt():
           guid = BOOT_GUID
         if 'swap' == l:
           guid = SWAP_GUID
-        if not RECO_KLABEL == l:
+        if not RECO_KLABEL == l or PKRECO:
           previous_first_lba = first_lba
         print '>>> %s %d %d %d' % (l, s, previous_first_lba, first_lba)
         lba, first_lba = lba_block(previous_first_lba, s)

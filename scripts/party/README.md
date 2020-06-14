@@ -31,6 +31,7 @@ the type is indicated by a single lower case letter.
 The following partition types are supported:
 * b - boot
 * r - recovery
+* K - recovery kernel
 * k - kernel
 * l - linuxrootfs
 * u - userdata
@@ -39,17 +40,30 @@ The following partition types are supported:
 
 ## Recovery
 
-Some receivers (e.g., Mut@nt HD51) have the capability of booting to 1 of 2
+There are 2 safety measures for recovery from a bad install, in these images.
+
+The 1st is always trying to get boot commands via TFTP, from the server address
+specified either in the script or overriden via the command line. This is
+done via specific commands included in the STARTUP files in the boot partition.
+
+The 2nd is (optionally) creating a recovery partition and taking advantage of
+the capability of some receivers (e.g., Mut@nt HD51) to boot from selected
 partitions for recovery, if the front panel button is kept pressed during the
-power up boot process (and provided no ready to flash USB is inserted).
-Unfortunately, newer partition schemes don't support this method, unless the
-receiver bootloader is also updated. Even so, if we use an alternative partition
-layout, that functionality is also lost, unless we configure a recovery
-partition. This partition will take some space and it will only be used in case
-of the recovery procedure being actuated. For now, it is only somehow optimized
-(could be better) so around 128MiB of space is the recommended value for it; to
-save a little bit, this partition boots with the same kernel of slot 1 (so be
-careful not to mess that one, either!) - this might change in the future.
+power up boot process (and provided no ready to flash USB is inserted). This
+capability is, unfortunately, lost by default on newer partition schemes,
+unless the receiver boot loader supports it (not all do, and it generally
+requires a boot loader update anyway). This capability is also lost if we'd
+just create strange partition layouts, like the ones in this script, without
+creating said recovery partition explicitly.
+
+The recovery partition will take some space and it will only be used in case of
+the recovery procedure being actuated. For now, it is only somehow optimized
+(could be better) so around 128MiB of space is the recommended value for it.
+
+Creating a recovery kernel entry is optional but recommended, so one has the
+flexibility of updating slot 1 at will - if one isn't created, the recovery
+partition will boot with the slot 1 kernel, so be careful not to mess that one
+if that's the case!
 
 
 ## RootFS
