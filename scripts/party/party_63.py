@@ -376,8 +376,9 @@ def partition(s):
 
 def patch_63():
   try:
-    error = os.system('dd if=/dev/zero of=zeropadfs bs=29360128 count=8')
-    error += os.system('cat %s zeropadfs > zprootfs && mv zprootfs %s' % (TMP_ROOTFS, TMP_ROOTFS))
+    error = os.system('dd if=/dev/zero of=%s/zeropadfs bs=29360128 count=8' % TMP_PARTY)
+    error += os.system('cat %s %s/zeropadfs > %s/zprootfs && mv %s/zprootfs %s' % (
+        TMP_ROOTFS, TMP_PARTY, TMP_PARTY, TMP_PARTY, TMP_ROOTFS))
     error += os.system('umount -f %s ; mount %s %s' % (TMP_MROOTFS, TMP_ROOTFS, TMP_MROOTFS))
     error += os.system('cd %s && mkdir linuxrootfs1 && mv * linuxrootfs1 ; mv linuxrootfs1/lost+found .' % TMP_MROOTFS)
   except:
