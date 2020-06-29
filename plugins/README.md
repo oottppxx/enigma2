@@ -40,7 +40,7 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 
 * [SnackBar](https://github.com/oottppxx/enigma2/tree/master/plugins/snackbar) is a trivial plugin that invokes the seek bar; apparently it's required as some distros have invoking the seek bar broken via hotkey.
 
-* [Snif](https://github.com/oottppxx/enigma2/tree/master/plugins/snif) tries to detect (sniff) streaming connections to the box, extract the Basic authentication digest (namely the user), and track per user limits as configured.
+* [Snif](https://github.com/oottppxx/enigma2/tree/master/plugins/snif) tries to detect (sniff) streaming connections to the box, extract the Basic authentication digest (namely the user), and track per user limits as configured. Note: currently the plugin only handles streams over IPv4, and it was only tested on OpenATV 6.2.
 
 * [Subway](https://github.com/oottppxx/enigma2/tree/master/plugins/subway) is a plugin to display subscription info, if the service supports it; it should work for both XCAPI and VAPI.
 
