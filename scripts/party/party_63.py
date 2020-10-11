@@ -623,7 +623,7 @@ def create_image():
 
 
 if len(sys.argv) < 3:
-  print 'I\'m going to a path to disk.img and a partition layout string!'
+  print 'I need a path to disk.img and a partition layout string!'
   print 'Optionally, you can also indicate the TFTP server address'
   sys.exit(E_ARGTOOFEW)
 
