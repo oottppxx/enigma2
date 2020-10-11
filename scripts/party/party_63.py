@@ -138,6 +138,15 @@ def boot(s):
   PBOOT = True
   return False, s
 
+def unpatch_63():
+  try:
+    error = os.system('cd %s && mv linuxrootfs1/* . && rmdir linuxrootfs1 && ln -sf / linuxrootfs1' % TMP_MROOTFS)
+  except:
+    error = -1
+  if error:
+    print 'Error: can\'t unpatch 6.3 rootfs in %s!' % TMP_MROOTFS
+    sys.exit(E_PATCH)
+
 def recovery(s):
   global GPT
   global FILES
@@ -184,6 +193,9 @@ def recovery(s):
   if error:
     print 'Error: can\'t create recovery rootfs in %s!' % TMP_MRECO
     sys.exit(E_NEWRECO)
+
+  unpatch_63()
+
   try:
     error = os.system('cd / ; umount %s ; umount %s' % (TMP_MROOTFS, TMP_MRECO))
   except:
