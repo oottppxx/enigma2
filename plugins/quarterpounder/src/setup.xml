@@ -1,0 +1,12 @@
+<setupxml>
+  <setup key="quarterpounder" title="QuarterPounder Setup">
+    <item level="0" text="QuarterPounder" description="Version information.">config.plugins.quarterpounder.version</item>
+    <item level="0" text="Enable" description="Enable or disable.">config.plugins.quarterpounder.enable</item>
+    <item level="0" text="Ignore Strings (comma separated list)" description="Ignore services which contain any of the strings in their URL and/or description (empty resets to default).">config.plugins.quarterpounder.ignore_strings</item>
+    <item level="0" text="Restart Delay (seconds)" description="Minimum interval between restarts (either our own or due to zapping).">config.plugins.quarterpounder.restart_delay</item>
+    <item level="0" text="Restart Indicator" description="How to indicate a restart has occurred.">config.plugins.quarterpounder.restart_indicator</item>
+    <item level="0" text="Stuck Channels Hack" description="Hack around stuck DVB channels.">config.plugins.quarterpounder.stuck_hack</item>
+    <item level="0" text="Stuck Channels Hack Delay" description="Hack around stuck DVB channels.">config.plugins.quarterpounder.stuck_delay</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.quarterpounder.debug</item>
+  </setup>
+</setupxml>
