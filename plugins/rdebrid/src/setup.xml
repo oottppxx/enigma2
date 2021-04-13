@@ -1,0 +1,8 @@
+<setupxml>
+  <setup key="rdebrid" title="RDebrid Setup">
+    <item level="0" text="RDebrid" description="Version information.">config.plugins.rdebrid.version</item>
+    <item level="0" text="PAPI Token" description="Private API Token.">config.plugins.rdebrid.papi</item>
+    <item level="0" text="Port" description="EXTM3U URL port.">config.plugins.rdebrid.port</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.rdebrid.debug</item>
+  </setup>
+</setupxml>
