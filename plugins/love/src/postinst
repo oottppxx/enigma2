@@ -1,0 +1,20 @@
+#!/bin/sh
+cat <<_EOS-1
+
+********************************************
+Enigma2 Love plugin installed
+********************************************
+
+_EOS-1
+
+cat /usr/lib/enigma2/python/Plugins/Extensions/Love/README.txt
+
+cat <<_EOS-2
+
+********************************************
+Restart box to complete install
+********************************************
+
+_EOS-2
+
+exit 0

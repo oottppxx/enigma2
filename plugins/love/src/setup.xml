@@ -1,0 +1,8 @@
+<setupxml>
+  <setup key="love" title="Love Setup">
+    <item level="0" text="Love" description="Version information. Invoking from hotkey is required!">config.plugins.love.version</item>
+    <item level="0" text="Bouquet" description="Bouquet to add streams to (default is favourites).">config.plugins.love.bouquet</item>
+    <item level="0" text="Silent" description="Don't provide feedback when adding.">config.plugins.love.silent</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.love.debug</item>
+  </setup>
+</setupxml>
