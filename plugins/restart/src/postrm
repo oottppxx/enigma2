@@ -1,0 +1,24 @@
+#!/bin/sh
+cat <<_EOS-1
+
+********************************************
+Removing files
+********************************************
+
+_EOS-1
+
+rm -r /usr/lib/enigma2/python/Plugins/Extensions/ReStart > /dev/null 2>&1
+
+cat <<_EOS-2
+
+********************************************
+Enigma2 ReStart plugin uninstalled
+********************************************
+
+********************************************
+Restart box to complete uninstall
+********************************************
+
+_EOS-2
+
+exit 0
