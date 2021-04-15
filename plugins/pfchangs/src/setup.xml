@@ -1,0 +1,12 @@
+<setupxml>
+  <setup key="pfchangs" title="PFChangs Setup">
+    <item level="0" text="PFChangs" description="Version information.">config.plugins.pfchangs.version</item>
+    <item level="0" text="Enable" description="Enable or disable.">config.plugins.pfchangs.enable</item>
+    <item level="0" text="External IPv4 address (UPnP)" description="External IPv4 address as reported by UPnP.">config.plugins.pfchangs.ext</item>
+    <item level="0" text="Internal IPv4 address (detected)" description="Internal IPv4 address as detected.">config.plugins.pfchangs.int</item>
+    <item level="0" text="Gateway  IPv4 address (detected)" description="Gateway IPv4 address as detected.">config.plugins.pfchangs.gw</item>
+    <item level="0" text="Ports (comma separated list)" description="List of ports to forward, in the form of EXT_PORT:PROTO:INT_PORT. You can omit EXT_PORT if same as INT_PORT (default :TCP:8001,:TCP:8002).">config.plugins.pfchangs.ports</item>
+    <item level="0" text="Refresh interval (minutes)" description="Attempt to refresh the port mappings every N minutes (0 to disable). Useful in case the router reboots and the mappings are lost.">config.plugins.pfchangs.refresh</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.pfchangs.debug</item>
+  </setup>
+</setupxml>
