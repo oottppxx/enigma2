@@ -1,0 +1,18 @@
+<setupxml>
+  <setup key="colacao" title="ColaCao Setup">
+    <item level="0" text="ColaCao" description="Version information.">config.plugins.colacao.version</item>
+    <item level="0" text="CCcam.cfg path" description="Path to CCcam.cfg">config.plugins.colacao.ccpath</item>
+    <item level="0" text="oscam.server path" description="Path to oscam.server">config.plugins.colacao.ospath</item>
+    <item level="0" text="Line #1" description="">config.plugins.colacao.line1</item>
+    <item level="0" text="Hostname" description="">config.plugins.colacao.host1</item>
+    <item level="0" text="Port" description="">config.plugins.colacao.port1</item>
+    <item level="0" text="User" description="">config.plugins.colacao.user1</item>
+    <item level="0" text="Pass" description="">config.plugins.colacao.pass1</item>
+    <item level="0" text="Line #2" description="">config.plugins.colacao.line2</item>
+    <item level="0" text="Hostname" description="">config.plugins.colacao.host2</item>
+    <item level="0" text="Port" description="">config.plugins.colacao.port2</item>
+    <item level="0" text="User" description="">config.plugins.colacao.user2</item>
+    <item level="0" text="Pass" description="">config.plugins.colacao.pass2</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.colacao.debug</item>
+  </setup>
+</setupxml>
