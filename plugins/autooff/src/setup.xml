@@ -1,0 +1,12 @@
+<setupxml>
+  <setup key="autooff" title="AutoOff Setup">
+    <item level="0" text="AutoOff" description="Version information.">config.plugins.autooff.version</item>
+    <item level="0" text="Poll Interval (seconds)" description="Seconds between polls for power state (min. 5).">config.plugins.autooff.poll_interval</item>
+    <item level="0" text="Stop Delay (seconds)" description="Delay before stopping the service after detecting standby state (max. poll interval - 5).">config.plugins.autooff.stop_delay</item>
+    <item level="0" text="Resume Service" description="Resume service after standby exit detection.">config.plugins.autooff.resume</item>
+    <item level="0" text="Standby Command" description="Command to invoke after standby enter detection.">config.plugins.autooff.standby_cmd</item>
+    <item level="0" text="Resume Command" description="Command to invoke after standby exit detection.">config.plugins.autooff.resume_cmd</item>
+    <item level="0" text="Resume Command On GUI (Re)Start" description="Also invoke the resume command when the GUI (Re)Starts.">config.plugins.autooff.boot_cmd</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.autooff.debug</item>
+  </setup>
+</setupxml>
