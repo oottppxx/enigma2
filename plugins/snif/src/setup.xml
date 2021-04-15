@@ -1,0 +1,10 @@
+<setupxml>
+  <setup key="snif" title="Snif Setup">
+    <item level="0" text="Snif" description="Version information.">config.plugins.snif.version</item>
+    <item level="0" text="Enable" description="Enable or disable the plugin. Some tracking might be lost.">config.plugins.snif.enable</item>
+    <item level="0" text="Per User Limit" description="Number of streaming connections allowed per user; connections past the limit will be rejected.">config.plugins.snif.limit</item>
+    <item level="0" text="Users To Limit" description="Comma separated list of users to limit.">config.plugins.snif.users</item>
+    <item level="0" text="Ports To Monitor" description="Comma separated list of ports to monitor.">config.plugins.snif.ports</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.snif.debug</item>
+  </setup>
+</setupxml>
