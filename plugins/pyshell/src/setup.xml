@@ -1,0 +1,8 @@
+<setupxml>
+  <setup key="pyshell" title="PyShell Setup">
+    <item level="0" text="PyShell" description="Version information.">config.plugins.pyshell.version</item>
+    <item level="0" text="Loopback ONLY" description="DANGEROUS to make it false, you'll be ENABLING ACCESS FROM EVERYWHERE that can reach the box .">config.plugins.pyshell.loopback</item>
+    <item level="0" text="Port" description="Port to listen on.">config.plugins.pyshell.port</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.pyshell.debug</item>
+  </setup>
+</setupxml>
