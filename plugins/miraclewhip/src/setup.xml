@@ -1,0 +1,7 @@
+<setupxml>
+  <setup key="miraclewhip" title="MiracleWhip Setup">
+    <item level="0" text="MiracleWhip" description="Version information.">config.plugins.miraclewhip.version</item>
+    <item level="0" text="Config File" description="Path to Suls config file.">config.plugins.miraclewhip.config</item>
+    <item level="0" text="Port" description="URL port.">config.plugins.miraclewhip.port</item>
+  </setup>
+</setupxml>
