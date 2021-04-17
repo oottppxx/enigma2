@@ -1,0 +1,14 @@
+<setupxml>
+  <setup key="absolut" title="Absolut Setup">
+    <item level="0" text="Absolut" description="Version information.">config.plugins.absolut.version</item>
+    <item level="0" text="Ignore added time" description="Ignore added date/time and use alphabetical or season/episode order.">config.plugins.absolut.force_alpha</item>
+    <item level="0" text="Ignore beginnings" description="Ignore beginning 'The', 'An, 'A', etc...">config.plugins.absolut.ignore_the</item>
+    <item level="0" text="Cache interval (minutes)" description="Time interval for caching movies/series, in minutes (0 to disable).">config.plugins.absolut.cache_interval</item>
+    <item level="0" text="Service type" description="Enigma2 service player to use.">config.plugins.absolut.ptype</item>
+    <item level="0" text="Stream type" description="Stream type/proto to request.">config.plugins.absolut.ctype</item>
+    <item level="0" text="Clear cache" description="Explicitly clear movies/series cache.">config.plugins.absolut.cache_clear</item>
+    <item level="0" text="Rec. delay (seconds)" description="Minimum delay, in seconds, before recording starts (no smaller than 1), allowing for single connection providers and zap time.">config.plugins.absolut.rec_delay</item>
+    <item level="0" text="Rec. command" description="Recording command to use (URL and FILE will be replaced, leave empty for default).">config.plugins.absolut.rec_cmd</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.absolut.debug</item>
+  </setup>
+</setupxml>
