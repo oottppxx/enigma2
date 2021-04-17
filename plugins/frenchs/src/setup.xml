@@ -1,0 +1,8 @@
+<setupxml>
+  <setup key="frenchs" title="Frenchs Setup">
+    <item level="0" text="Frenchs" description="Version information.">config.plugins.frenchs.version</item>
+    <item level="0" text="Port" description="EXTM3U URL port.">config.plugins.frenchs.port</item>
+    <item level="0" text="Buffer Size" description="Buffer size in MiB.">config.plugins.frenchs.bsize</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.frenchs.debug</item>
+  </setup>
+</setupxml>
