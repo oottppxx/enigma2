@@ -1,0 +1,27 @@
+<setupxml>
+  <setup key="heinz" title="Heinz Setup">
+    <item level="0" text="Heinz" description="Version information.">config.plugins.heinz.version</item>
+    <item level="0" text="Extra duration (minutes)" description="Extra minutes to add to program duration, accounting for late endings.">config.plugins.heinz.tail_extra</item>
+    <item level="0" text="Early start (minutes)" description="Extra minutes able to rewind past the start of the program, accounting for early starts.">config.plugins.heinz.head_extra</item>
+    <item level="0" text="Reload offset (minutes)" description="Immediate reload offset, accounting for stuck streams, in minutes.">config.plugins.heinz.reload_offset</item>
+    <item level="0" text="Support cache interval (minutes)" description="Time interval for caching stream ketchup support information, in minutes (0 to disable).">config.plugins.heinz.support_cache_interval</item>
+    <item level="0" text="EPG cache interval (minutes)" description="Time interval for caching the latest stream ketchup EPG, in minutes (0 to disable).">config.plugins.heinz.epg_cache_interval</item>
+    <item level="0" text="Service type" description="Enigma2 service player to use.">config.plugins.heinz.ptype</item>
+    <item level="0" text="Stream type" description="Stream type/proto to request.">config.plugins.heinz.ctype</item>
+    <item level="0" text="Lookback (days)" description="Number of days to lookback for programs.">config.plugins.heinz.lookback</item>
+    <item level="0" text="Use new XCAPI" description="Use the new(?) XCAPI.">config.plugins.heinz.new_xcapi</item>
+    <item level="0" text="Generate current" description="Generate entry for currently playing event.">config.plugins.heinz.generate_current</item>
+    <item level="0" text="Stop at current" description="Stop adding events when the current playing one is found.">config.plugins.heinz.stopat_current</item>
+    <item level="0" text="Numeric skips OK" description="Skip OK when forwarding timeline 1-10 minutes using numeric keys (0 key equals 10 minutes).">config.plugins.heinz.numeric_skips</item>
+    <item level="0" text="Timeline smoothness" description="Adjusts timeline rewind/forward speed vs smoothness (10 to 20 is the recommended range).">config.plugins.heinz.timeline_smoothness</item>
+    <item level="0" text="Inactivity timer (seconds)" description="Timeline inactivity timer, in seconds (0 to disable).">config.plugins.heinz.inactive_timer</item>
+    <item level="0" text="Force lookup" description="Try and work around a broken catchup API.">config.plugins.heinz.force_lookup</item>
+    <item level="0" text="List offset (minutes)" description="Try and work around bad XC listing times.">config.plugins.heinz.list_offset</item>
+    <item level="0" text="Play offset (minutes)" description="Try and work around bad XC play times.">config.plugins.heinz.play_offset</item>
+    <item level="0" text="Rec. extra duration (minutes)" description="Extra minutes to record past the stated program end, accounting for late endings.">config.plugins.heinz.rec_tail_extra</item>
+    <item level="0" text="Rec. early start (minutes)" description="Extra minutes to record before the stated program start, accounting for early starts.">config.plugins.heinz.rec_head_extra</item>
+    <item level="0" text="Rec. delay (seconds)" description="Minimum delay, in seconds, before recording starts (no smaller than 1), allowing for single connection providers and zap time.">config.plugins.heinz.rec_delay</item>
+    <item level="0" text="Rec. command" description="Recording command to use (URL, DURATION, and FILE will be replaced, leave empty for default).">config.plugins.heinz.rec_cmd</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.heinz.debug</item>
+  </setup>
+</setupxml>

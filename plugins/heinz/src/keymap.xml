@@ -1,0 +1,45 @@
+<keymap>
+	<map context="HeinzTimelineActions">
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_REWIND" mapto="left" flags="mr" />
+		<key id="KEY_PREVIOUSSONG" mapto="left" flags="mr" />
+
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_FASTFORWARD" mapto="right" flags="mr" />
+		<key id="KEY_NEXTSONG" mapto="right" flags="mr" />
+
+		<key id="KEY_UP" mapto="info" flags="m" />
+		<key id="KEY_INFO" mapto="info" flags="m" />
+		<key id="KEY_EPG" mapto="info" flags="m" />
+
+		<key id="KEY_DOWN" mapto="pause" flags="m" />
+		<key id="KEY_PAUSE" mapto="pause" flags="m" />
+		<key id="KEY_PLAYPAUSE" mapto="pause" flags="m" />
+
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_PLAY" mapto="ok" flags="m" />
+
+		<key id="KEY_BACK" mapto="stop" flags="m" />
+		<key id="KEY_STOP" mapto="stop" flags="m" />
+
+		<key id="KEY_EXIT" mapto="exit" flags="m" />
+
+		<key id="KEY_0" mapto="zero" flags="m" />
+		<key id="KEY_1" mapto="one" flags="m" />
+		<key id="KEY_2" mapto="two" flags="m" />
+		<key id="KEY_3" mapto="three" flags="m" />
+		<key id="KEY_4" mapto="four" flags="m" />
+		<key id="KEY_5" mapto="five" flags="m" />
+		<key id="KEY_6" mapto="six" flags="m" />
+		<key id="KEY_7" mapto="seven" flags="m" />
+		<key id="KEY_8" mapto="eight" flags="m" />
+		<key id="KEY_9" mapto="nine" flags="m" />
+
+		<key id="KEY_RED" mapto="red" flags="m" />
+	</map>
+	<map context="HeinzListActions">
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+	</map>
+</keymap>
