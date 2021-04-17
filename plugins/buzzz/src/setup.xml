@@ -1,0 +1,12 @@
+<setupxml>
+  <setup key="buzzz" title="Buzzz Setup">
+    <item level="0" text="Buzzz" description="Version information.">config.plugins.buzzz.version</item>
+    <item level="0" text="Username" description="Username.">config.plugins.buzzz.user</item>
+    <item level="0" text="Password" description="Password.">config.plugins.buzzz.pwd</item>
+    <item level="0" text="Type" description="Stream type.">config.plugins.buzzz.type</item>
+    <item level="0" text="Port" description="EXTM3U URL port.">config.plugins.buzzz.port</item>
+    <item level="0" text="Refresh" description="Refresh time (hours).">config.plugins.buzzz.refresh</item>
+    <item level="0" text="Static" description="Static EXTM3U.">config.plugins.buzzz.static</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.buzzz.debug</item>
+  </setup>
+</setupxml>
