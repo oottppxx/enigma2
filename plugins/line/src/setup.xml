@@ -1,0 +1,9 @@
+<setupxml>
+  <setup key="line" title="Line Setup">
+    <item level="0" text="Line" description="Version information. Invoking from hotkey is required for toggling!">config.plugins.line.version</item>
+    <item level="0" text="Enable" description="Enable or disable.">config.plugins.line.enable</item>
+    <item level="0" text="Hide IPTV" description="Hide VBI line on services containing ://.">config.plugins.line.iptv</item>
+    <item level="0" text="Hide DVB-C/T/S" description="Hide VBI line on services not containing ://.">config.plugins.line.dvbcts</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.line.debug</item>
+  </setup>
+</setupxml>
