@@ -63,7 +63,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2q'
+PLUGIN_VERSION='6.2.2r'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -492,15 +492,15 @@ class OnlineEPG(object):
     else:
       epg = getJsonURL(XAPI_EPG_PROMPT % self.params, timestamp=timestamp, cache=str(self.uhost+'XSUP'), fondle_new=None)
     now = Now()
-    id = 'id'
+    sid = 'id'
     sdn = 'stream_display_name'
     if not S.vtype:
-      id = 'stream_id'
+      sid = 'stream_id'
       sdn = 'name'
     debug('Self stream: %s\n' % self.stream)
     for e in epg:
-      debug('Epg ID: %s\n' % e[id])
-      if str(e[id]) == str(self.stream):
+      debug('Epg ID: %s\n' % e[sid])
+      if str(e[sid]) == str(self.stream):
         self.cat = str(e['category_id'])
         self.sdn = str(e[sdn])
         self.days = int('0'+str(e.get('tv_archive_duration', '')))
@@ -798,11 +798,17 @@ class processRQueue(threading.Thread):
 #        self.instance.setText(self.message or '')
 
 
+def vixService(service):
+  if openvix and isinstance(service, eServiceReference):
+      return service.toString()
+  return service
+
+
 class mySingleEPG(SingleEPG):
   def __init__(self, session, service, EPGtype='single', epg=None):
     overjump_value = None
     if openatv_like:
-      SingleEPG.__init__(self, session, service=service, EPGtype=EPGtype)
+      SingleEPG.__init__(self, session, service=vixService(service), EPGtype=EPGtype)
       overjump_value = config.epgselection.overjump.value
     else:
       SingleEPG.__init__(self, session, service=service)

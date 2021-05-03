@@ -60,7 +60,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.2o'
+PLUGIN_VERSION='6.2.2p'
 PLUGIN_MONIKER='[Ab]'
 PLUGIN_NAME='Absolut'
 PLUGIN_DESC='VODka'
@@ -719,11 +719,17 @@ class processRQueue(threading.Thread):
     S.thread_lock.release()
 
 
+def vixService(service):
+  if openvix and isinstance(service, eServiceReference):
+    return service.toString()
+  return service
+    
+
 class mySingleEPG(SingleEPG):
   def __init__(self, session, service, EPGtype='single', epg=(), filter=EPG_FILTER_DEF):
     overjump_value = None   
     if openatv_like:
-      SingleEPG.__init__(self, session, service=service, EPGtype=EPGtype)
+      SingleEPG.__init__(self, session, service=vixService(service), EPGtype=EPGtype)
       overjump_value = config.epgselection.overjump.value                     
     else:
       SingleEPG.__init__(self, session, service=service)
