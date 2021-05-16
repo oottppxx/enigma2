@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 openatv_like = True
 try:
   # This works in OpenATV (and similar code bases) but fails on OpenPLi.
@@ -17,7 +19,10 @@ except:
 import contextlib
 import re
 import socket
-import StringIO
+try:
+  from StringIO import StringIO
+except ImportError:
+  from io import StringIO
 import sys
 import time
 import threading
@@ -34,7 +39,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.1e'
+PLUGIN_VERSION='6.2.1f'
 PLUGIN_NAME='PyShell'
 PLUGIN_DESC='E2 Python Shell'
 PLUGIN_ICON='pyshell.png'
@@ -114,7 +119,7 @@ def debug(s):
     f = open(DEBUG_FILE, 'a+')
     f.write(s+'\n')
     f.close()
-    print s
+    print(s)
 
 RECV_BUFFER=4096
 RECV_TIMEOUT=3600 # 1 hour
@@ -158,17 +163,25 @@ class PYSHELLd(threading.Thread):
         try:
           conn.send(BANNER)
         except:
-          debug('BANNER MSG ERROR!')
-          break
+          try:
+            conn.send(bytes(BANNER, 'utf8'))
+          except:
+            debug('BANNER MSG ERROR!')
+            break
         while True:
           try:
             conn.send(PROMPT)
           except:
-            debug('PROMPT MSG ERROR!')
-            break
+            try:
+              conn.send(bytes(PROMPT, 'utf8'))
+            except:
+              debug('PROMPT MSG ERROR!')
+              break
           data = ''
           try:
             cmd = conn.recv(RECV_BUFFER)
+            if type(cmd) != str:
+              cmd = cmd.decode()
           except:
             debug('RECV ERROR!')
             sys.last_traceback = None
@@ -181,10 +194,16 @@ class PYSHELLd(threading.Thread):
                 out = fun(cmd)
                 debug('FUN OUTPUT: %s\n' % out)
                 if out is not None:
-                  conn.send(out)
+                  try:
+                    conn.send(out)
+                  except:
+                    conn.send(bytes(out, 'utf8'))
               except:
                 debug(err)
-              sys.exc_clear()
+              try:
+                sys.exc_clear()
+              except:
+                pass
               #sys.last_traceback = None
               if brk:
                 break
@@ -193,6 +212,7 @@ class PYSHELLd(threading.Thread):
             SCRIPT.append(str(cmd))
           except:
             debug('Dispatch/Append Error!')
+            print(traceback.format_exc())
             conn.close()
             sys.last_traceback = None
             break
@@ -202,7 +222,10 @@ class PYSHELLd(threading.Thread):
         try:
           conn.send('Closing...\n')
         except:
-          debug('CLOSING MSG ERROR!')
+          try:
+            conn.send(bytes('Closing...\n', 'utf8'))
+          except:
+            debug('CLOSING MSG ERROR!')
         conn.close()
         sys.last_traceback = None
 
@@ -219,7 +242,8 @@ class PYSHELLd(threading.Thread):
         CMD_WRITE: (self.cmdWrite, 'CMD_WRITE MSG ERROR', False),
     }
     if cmd:
-      for c, t in all_cmds.iteritems():
+#      for c, t in all_cmds.iteritems():
+      for c, t in iter(all_cmds.items()):
         if re.match(c, cmd):
           return t
     return (None, None, None)
@@ -253,7 +277,7 @@ class PYSHELLd(threading.Thread):
     old_stdout = sys.stdout
     old_stderr = sys.stderr
     if not output:
-      output = StringIO.StringIO()
+      output = StringIO()
     sys.stdout = output
     sys.stderr = output
     try:
@@ -432,7 +456,11 @@ class PYSHELLd(threading.Thread):
         t = f
         f = s
         s = t
-      SCRIPT.__delslice__(f,s)
+#      SCRIPT.__delslice__(f,s)
+      n = s-f
+      while n:
+        SCRIPT.__delitem__(f)
+        n -= 1
       if not SCRIPT:
         MODULE = None
       return ''
@@ -494,7 +522,7 @@ def onSetupClose(test=None):
 
 
 def autoStart(reason, **kwargs):
-  print 'PyShell autostart!'
+  print('PyShell autostart!')
   onSetupClose()
 
 
