@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 openatv_like = True
 try:
   # This works in OpenATV (and similar code bases) but fails on OpenPLi.
@@ -13,7 +15,10 @@ try:
 except:
   pass
 
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+try:
+  from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+except ImportError:
+  from http.server import BaseHTTPRequestHandler, HTTPServer
 import re
 import json
 import socket
@@ -21,8 +26,18 @@ import threading
 import time
 import traceback
 import urllib
-import urllib2
-import urlparse
+try:
+  import urllib2
+except ImportError:
+  urllib2 = urllib
+  urllib.Request = urllib.request.Request
+  urllib.urlopen = urllib.request.urlopen
+try:
+  import urlparse
+except ImportError:
+  import urllib.parse
+  urlparse = urllib.parse
+  urllib.unquote = urllib.parse.unquote
 import zlib
 
 from Components.config import config, ConfigBoolean, ConfigNumber, ConfigSelection, ConfigSubsection
@@ -35,7 +50,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.1l'
+PLUGIN_VERSION='6.2.1m'
 PLUGIN_NAME='Frenchs'
 PLUGIN_DESC='Mustardy EXTM3U proxy'
 PLUGIN_ICON='frenchs.png'
@@ -84,7 +99,7 @@ def DEBUG(s):
     f = open(DEBUG_FILE, 'a+')
     f.write(s)
     f.close()
-    print s
+    print(s)
 
 SLEEP_TIME=2
 THREAD=None
@@ -176,7 +191,10 @@ class getHandler(BaseHTTPRequestHandler):
           self.send_header('Content-type', 'text/plain')
           self.end_headers()
           first = False
-        self.wfile.write(m3u)
+        try:
+          self.wfile.write(m3u)
+        except:
+          self.wfile.write(bytes(m3u, 'utf8'))
         self.wfile.flush()
     except:
       DEBUG('500!\n')
@@ -309,7 +327,10 @@ class getHandler(BaseHTTPRequestHandler):
         if gzipped:
           data += dec_obj.decompress(res_data)
         else:
-          data += res_data
+          try:
+            data += res_data
+          except:
+            data += res_data.decode()
       if clean:
         if isinstance(data, unicode):
           DEBUG('UNICODE->ASCII->UNICODE!\n')
@@ -354,7 +375,7 @@ def onSetupClose(test=None):
 
 
 def autostart(reason, **kwargs):
-  print 'French\'s autostart!'
+  print('French\'s autostart!')
   onSetupClose()
 
 
