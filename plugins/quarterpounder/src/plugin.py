@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 openatv_like = True
 try:
   # This works in OpenATV (and similar code bases) but fails on OpenPLi.
@@ -18,7 +20,7 @@ except:
 import re
 import time
 
-from enigma import eTimer, iPlayableService
+from enigma import eTimer, iPlayableService, iRecordableService
 
 from Components.config import config, ConfigBoolean, ConfigNumber, ConfigSelection, ConfigSubsection, ConfigText
 from Plugins.Plugin import PluginDescriptor
@@ -31,7 +33,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0k'
+PLUGIN_VERSION='6.2.0l'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -60,6 +62,7 @@ DEBUG_ACTIVE=DEBUG_ACTIVE_DEF
 
 SESSION=None
 REGISTERED=False
+REC_REGISTERED=False
 try:
   IGNORE_RE = re.compile(str('|'.join(IGNORE_STRINGS.split(','))), flags=re.IGNORECASE)
 except:
@@ -95,12 +98,30 @@ try:
     iPlayableService.evStopped: 'evStopped',
     iPlayableService.evHBBTVInfo: 'evHBBTVInfo',
     iPlayableService.evVideoGammaChanged: 'evVideoGammaChanged',
-    iPlayableService.evUser: 'evUser'
+    iPlayableService.evUser: 'evUser',
+  }
+  REC_EVENT_STRINGS = {
+    iRecordableService.evStart: 'recEvStart',
+    iRecordableService.evEnd: 'recEvEnd',
+    iRecordableService.evTunedIn: 'recEvTuneIn',
+    iRecordableService.evTuneFailed: 'recEvTuneFailed',
+    iRecordableService.evRecordRunning: 'recEvRecordRunning',
+    iRecordableService.evRecordStopped: 'recEvRecordStopped',
+    iRecordableService.evNewProgramInfo: 'recEvNewProgramInfo',
+    iRecordableService.evRecordFailed: 'recEvRecordFailed',
+    iRecordableService.evRecordWriteError: 'recEvRecordWriteError',
+    iRecordableService.evNewEventInfo: 'recEvNewEventInfo',
+    iRecordableService.evRecordAborted: 'recEvRecordAborted',
+    iRecordableService.evGstRecordEnded: 'recEvGstRecordEnded',
   }
 except:
   EVENT_STRINGS = {
     iPlayableService.evStart: 'evStart',
-    iPlayableService.evEOF: 'evEOF'
+    iPlayableService.evEOF: 'evEOF',
+  }
+  REC_EVENT_STRINGS = {
+    iRecordableService.evStart: 'recEvStart',
+    iRecordableService.evEnd: 'recEvEnd',
   }
 
 config.plugins.quarterpounder = ConfigSubsection()
@@ -123,7 +144,7 @@ def DEBUG(s):
     f = open(DEBUG_FILE, 'a+')
     f.write('%s %s' % (t, s))
     f.close()
-    print '%s %s' % (t,s)
+    print('%s %s' % (t,s))
 
 
 def restartService():
@@ -157,6 +178,15 @@ def restartService():
 
 STUCK_TIMER.callback.append(restartService)
 
+
+def serviceRecEvent(evt):
+  EVENT_TIME = int(time.time())
+  DEBUG('-> %s\n' % REC_EVENT_STRINGS.get(evt, 'UNKNOWN (REC) %d' % int(evt)))
+  if SESSION:
+#    if (evt == iPlayableService.evStart):
+#      DEBUG('  handling (rec)...\n')
+    return
+  DEBUG('No session!\n')
 
 def serviceEvent(evt):
   global RESTART_TIME
@@ -235,6 +265,7 @@ def autoStart(reason, **kwargs):
 
 def sessionStart(reason, **kwargs):
   global REGISTERED
+  global REC_REGISTERED
   global SESSION
   DEBUG('Session Start called...\n')
   SESSION=kwargs.get('session')
@@ -242,7 +273,10 @@ def sessionStart(reason, **kwargs):
     DEBUG('  Session valid...\n')
     SESSION.nav.event.append(serviceEvent)
     REGISTERED = True
-    DEBUG('  Registered eventwatcher...\n')
+    DEBUG('  Registered play event watcher...\n')
+    SESSION.nav.event.append(serviceRecEvent)
+    REC_REGISTERED = True
+    DEBUG('  Registered record event watcher...\n')
   DEBUG('Session Start exited...\n')
 
 
