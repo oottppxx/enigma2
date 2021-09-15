@@ -33,7 +33,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0l'
+PLUGIN_VERSION='6.2.0m'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
