@@ -39,7 +39,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.1f'
+PLUGIN_VERSION='6.2.1g'
 PLUGIN_NAME='PyShell'
 PLUGIN_DESC='E2 Python Shell'
 PLUGIN_ICON='pyshell.png'

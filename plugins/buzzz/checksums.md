@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-buzzz-6.2.0d.ipk
-MD5 1c3ff72e4440e9b7799f491e219a9a3a
-SHA 85c1d305a35772639953bc9e8289c31d3b78053d
+enigma2-plugin-extensions-buzzz-6.2.0e.ipk
+MD5 cbe2590b0a6e584157814474844bb92c
+SHA 349a274567bd5723d75221695917bd73682c67a8
 

@@ -63,7 +63,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2r'
+PLUGIN_VERSION='6.2.2s'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'

@@ -35,7 +35,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0d'
+PLUGIN_VERSION='6.2.0e'
 PLUGIN_NAME='ColaCao'
 PLUGIN_DESC='ColaCao en vez de ...'
 PLUGIN_ICON='colacao.png'

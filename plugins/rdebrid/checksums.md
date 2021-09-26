@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-rdebrid-6.2.0b.ipk
-MD5 a69e3ef05d35d3a3ac56c57cacaed0ee
-SHA 3b67aba521d05412695b92dbf6633c8a0cc2bf52
+enigma2-plugin-extensions-rdebrid-6.2.0c.ipk
+MD5 aa4f02172a1883e80d26efbf3765fe1e
+SHA ff6f3edad189ead4c43b66512f1d98fdbc4a6c4f
 

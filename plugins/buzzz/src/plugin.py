@@ -34,7 +34,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.0d'
+PLUGIN_VERSION='6.2.0e'
 PLUGIN_NAME='Buzzz'
 PLUGIN_DESC='The Hive EXTM3U generator'
 PLUGIN_ICON='buzzz.png'

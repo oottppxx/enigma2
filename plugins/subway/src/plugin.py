@@ -20,7 +20,7 @@ from Components.config import config
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 
-PLUGIN_VERSION='6.2.0g'
+PLUGIN_VERSION='6.2.0h'
 PLUGIN_NAME='Subway'
 PLUGIN_DESC='Subscription info'
 PLUGIN_ICON='subway.png'

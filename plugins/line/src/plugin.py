@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 openatv_like = True
 try:
   # This works in OpenATV (and similar code bases) but fails on OpenPLi.
@@ -24,7 +26,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.1c'
+PLUGIN_VERSION='6.2.1d'
 PLUGIN_NAME='Line'
 PLUGIN_DESC='Hides & Toggles VBI Line'
 PLUGIN_ICON='line.png'
@@ -105,7 +107,7 @@ def DEBUG(s):
     f = open(DEBUG_FILE, 'a+')
     f.write('%s %s' % (t, s))
     f.close()
-    print '%s %s' % (t,s)
+    print('%s %s' % (t,s))
 
 
 def toggleLine():

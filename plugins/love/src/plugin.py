@@ -37,7 +37,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.0c'
+PLUGIN_VERSION='6.2.0d'
 PLUGIN_MONIKER='[Lv]'
 PLUGIN_NAME='Love'
 PLUGIN_DESC='Current2Fav'

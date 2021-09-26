@@ -50,7 +50,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.1m'
+PLUGIN_VERSION='6.2.1n'
 PLUGIN_NAME='Frenchs'
 PLUGIN_DESC='Mustardy EXTM3U proxy'
 PLUGIN_ICON='frenchs.png'

@@ -1,4 +1,4 @@
-enigma2-plugin-extensions-restart-6.2.0b.ipk
-MD5 64259207b3a7748fc91c391e40d09f8f
-SHA 8e68d551b30edf35569d0da643790300e611dc07
+enigma2-plugin-extensions-restart-6.2.0c.ipk
+MD5 4b68c2642b249295195b743453ba330f
+SHA e31fac33a73b26880e8d2f20ab893f3d1d1f1e03
 

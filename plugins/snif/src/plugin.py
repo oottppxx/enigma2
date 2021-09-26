@@ -37,7 +37,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0a'
+PLUGIN_VERSION='6.2.0b'
 PLUGIN_NAME='Snif'
 PLUGIN_DESC='Per User Con Tracker'
 PLUGIN_ICON='snif.png'

@@ -37,7 +37,17 @@ import re
 import threading
 import time
 import traceback
-import urllib2
+try:
+  import urllib2
+except ImportError:
+  import urllib
+  import urllib.parse
+  urllib.quote = urllib.parse.quote
+  urllib.unquote = urllib.parse.unquote
+  urllib.Request = urllib.request.Request
+  urllib.urlopen = urllib.request.urlopen
+  urllib2 = urllib
+  
 import zlib
 
 from collections import OrderedDict
@@ -60,7 +70,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.2p'
+PLUGIN_VERSION='6.2.2q'
 PLUGIN_MONIKER='[Ab]'
 PLUGIN_NAME='Absolut'
 PLUGIN_DESC='VODka'
@@ -171,6 +181,7 @@ def debug(s):
     f = open(DEBUG_FILE, 'a+')
     f.write(s)
     f.close()
+    print(s)
 
 
 class State(object):
@@ -302,7 +313,10 @@ def getJsonURL(url, key=None, timestamp=None, cache=None, fondle_new=None):
     if gzipped:
       data += dec_obj.decompress(res_data)
     else:
-      data += res_data
+      try:
+        data += res_data
+      except:
+        data += res_data.decode()
   data = json.loads(data)
   if timestamp and cache:
     S.cache_key[cache] = key

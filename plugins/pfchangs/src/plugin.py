@@ -167,7 +167,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0h'
+PLUGIN_VERSION='6.2.0i'
 PLUGIN_NAME='PFChangs'
 PLUGIN_DESC='UPnP Port Forwarding'
 PLUGIN_ICON='pfchangs.png'

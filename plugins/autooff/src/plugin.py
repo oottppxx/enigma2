@@ -33,7 +33,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0f'
+PLUGIN_VERSION='6.2.0g'
 PLUGIN_NAME='AutoOff'
 PLUGIN_DESC='Stop On Standby'
 PLUGIN_ICON='autooff.png'

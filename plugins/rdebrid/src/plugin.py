@@ -35,7 +35,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.0b'
+PLUGIN_VERSION='6.2.0c'
 PLUGIN_NAME='RDebrid'
 PLUGIN_DESC='Real Debrid PoC'
 PLUGIN_ICON='rdebrid.png'

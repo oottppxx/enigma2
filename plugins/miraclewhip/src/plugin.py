@@ -33,7 +33,7 @@ else:
   import Screens.Setup
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.1c'
+PLUGIN_VERSION='6.2.1d'
 PLUGIN_NAME='MiracleWhip'
 PLUGIN_DESC='Suls Remote Config Editor'
 PLUGIN_ICON='miraclewhip.png'
