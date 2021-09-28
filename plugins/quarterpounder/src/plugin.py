@@ -33,7 +33,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0n'
+PLUGIN_VERSION='6.2.0o'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -158,9 +158,11 @@ def restartService():
     if IGNORE_RE.search(previous.toString()):
       DEBUG('Matched ignore strings, ignoring service...\n')
       return
-    if SESSION.dialog_stack:
-      DEBUG('GUI interaction detected, aborting restart...\n')
-      return
+    for dialog in SESSION.dialog_stack:
+      c, d = dialog
+      if isinstance(c, InfoBar) and not d:
+        DEBUG('Bouquet open, postponing restart...\n')
+        return STUCK_TIMER.start(5000, True)
     SESSION.nav.stopService()
     DEBUG('Stopped current service, will restart...\n')
     if previous:
