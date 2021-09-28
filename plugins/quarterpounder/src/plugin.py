@@ -25,6 +25,7 @@ from enigma import eTimer, iPlayableService, iRecordableService
 from Components.config import config, ConfigBoolean, ConfigNumber, ConfigSelection, ConfigSubsection, ConfigText
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
+from Screens.ChannelSelection import ChannelSelection
 if openatv_like:
   from Screens.Setup import Setup
 else:
@@ -33,7 +34,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0n'
+PLUGIN_VERSION='6.2.0o'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -46,13 +47,41 @@ VERSION_DEF=PLUGIN_VERSION
 VERSION_CHOICES=[(VERSION_DEF, VERSION_DEF)]
 ENABLE_DEF=True
 ENABLE=ENABLE_DEF
+GUI_CHECK_CHANNELS='Channels'
+GUI_CHECK_INFOBAR='InfoBar'
+GUI_CHECK_ANY='Any'
+GUI_CHECK_IGNORE=' (ignore)'
+GUI_CHECK_POSTPONE=' (postpone)'
+GUI_CHECK_1=GUI_CHECK_CHANNELS+GUI_CHECK_IGNORE
+GUI_CHECK_2=GUI_CHECK_CHANNELS+GUI_CHECK_POSTPONE
+GUI_CHECK_3=GUI_CHECK_INFOBAR+GUI_CHECK_IGNORE
+GUI_CHECK_4=GUI_CHECK_INFOBAR+GUI_CHECK_POSTPONE
+GUI_CHECK_5=GUI_CHECK_ANY+GUI_CHECK_IGNORE
+GUI_CHECK_6=GUI_CHECK_ANY+GUI_CHECK_POSTPONE
+GUI_CHECK_DISABLE='Disable'
+GUI_CHECK_DEF=GUI_CHECK_1
+GUI_CHECK=GUI_CHECK_DEF
+GUI_CHECK_CHOICES=[
+    (GUI_CHECK_1, GUI_CHECK_1),
+    (GUI_CHECK_2, GUI_CHECK_2),
+    (GUI_CHECK_3, GUI_CHECK_3),
+    (GUI_CHECK_4, GUI_CHECK_4),
+    (GUI_CHECK_5, GUI_CHECK_5),
+    (GUI_CHECK_6, GUI_CHECK_6),
+    (GUI_CHECK_DISABLE, GUI_CHECK_DISABLE)
+]
 IGNORE_STRINGS_DEF='mp4,mkv'
 IGNORE_STRINGS=IGNORE_STRINGS_DEF
 RESTART_DELAY_DEF=0
 RESTART_DELAY=RESTART_DELAY_DEF
-RESTART_INDICATOR_DEF='Default'
+RESTART_INDICATOR_1='Default'
+RESTART_INDICATOR_NONE='None'
+RESTART_INDICATOR_DEF=RESTART_INDICATOR_1
 RESTART_INDICATOR=RESTART_INDICATOR_DEF
-RESTART_INDICATOR_CHOICES=[(RESTART_INDICATOR_DEF, RESTART_INDICATOR_DEF), ('None', 'None')]
+RESTART_INDICATOR_CHOICES=[
+    (RESTART_INDICATOR_1, RESTART_INDICATOR_1),
+    (RESTART_INDICATOR_NONE, RESTART_INDICATOR_NONE)
+]
 STUCK_HACK_DEF=''
 STUCK_HACK=STUCK_HACK_DEF
 STUCK_DELAY_DEF=2500
@@ -126,6 +155,7 @@ except:
 
 config.plugins.quarterpounder = ConfigSubsection()
 config.plugins.quarterpounder.enable = ConfigBoolean(default=ENABLE_DEF)
+config.plugins.quarterpounder.gui_check = ConfigSelection(default=GUI_CHECK_DEF, choices=GUI_CHECK_CHOICES)
 config.plugins.quarterpounder.ignore_strings = ConfigText(default=IGNORE_STRINGS_DEF, fixed_size=False, visible_width=VISIBLE_WIDTH)
 config.plugins.quarterpounder.restart_delay = ConfigNumber(default=RESTART_DELAY_DEF)
 config.plugins.quarterpounder.restart_indicator = ConfigSelection(default=RESTART_INDICATOR_DEF, choices=RESTART_INDICATOR_CHOICES)
@@ -158,18 +188,36 @@ def restartService():
     if IGNORE_RE.search(previous.toString()):
       DEBUG('Matched ignore strings, ignoring service...\n')
       return
-    if SESSION.dialog_stack:
-      DEBUG('GUI interaction detected, aborting restart...\n')
-      return
+    if GUI_CHECK != GUI_CHECK_DISABLE:
+      DEBUG('Dialog Stack: %s\n' % SESSION.dialog_stack)
+      DEBUG('Current Dialog: %s, Shown: %s\n' % (SESSION.current_dialog, SESSION.current_dialog.shown))
+      bypass_restart = False
+      if GUI_CHECK_CHANNELS in GUI_CHECK:
+        if isinstance(SESSION.current_dialog, ChannelSelection):
+          DEBUG('Channels GUI check, bypassing restart...\n')
+          bypass_restart = True
+      else:
+        for dialog, shown in SESSION.dialog_stack:
+          if isinstance(dialog, InfoBar) or GUI_CHECK_ANY in GUI_CHECK:
+            DEBUG('InfoBar or Any GUI check, bypassing restart...\n')
+            bypass_restart = True
+      if bypass_restart:
+        if GUI_CHECK_IGNORE in GUI_CHECK:
+          DEBUG('GUI interaction detected, ignoring restart...\n')
+          return
+        else:
+          DEBUG('GUI interaction detected, postponing restart...\n')
+          STUCK_TIMER.start(1000, True)
+          return
     SESSION.nav.stopService()
     DEBUG('Stopped current service, will restart...\n')
     if previous:
-      if RESTART_INDICATOR in [PLUGIN_NAME, 'None']:
+      if RESTART_INDICATOR in [PLUGIN_NAME, RESTART_INDICATOR_NONE]:
         DEBUG('Disabling InfoBar on restart...\n')
         ods = InfoBar.instance.doShow
         InfoBar.instance.doShow = lambda:True
       SESSION.nav.playService(previous, **ADJUST)
-      if RESTART_INDICATOR in [PLUGIN_NAME, 'None']:
+      if RESTART_INDICATOR in [PLUGIN_NAME, RESTART_INDICATOR_NONE]:
         DEBUG('Enabling InfoBar after restart...\n')
         InfoBar.instance.doShow = ods
       DEBUG('Service %s restarted.\n' % previous.toString())
@@ -222,6 +270,7 @@ def serviceEvent(evt):
 
 def reConfig():
   global ENABLE
+  global GUI_CHECK
   global IGNORE_STRINGS
   global IGNORE_RE
   global RESTART_DELAY
@@ -231,6 +280,7 @@ def reConfig():
   global STUCK_DELAY
   global DEBUG_ACTIVE
   ENABLE = config.plugins.quarterpounder.enable.value
+  GUI_CHECK = config.plugins.quarterpounder.gui_check.value
   IGNORE_STRINGS = config.plugins.quarterpounder.ignore_strings.value
   if not IGNORE_STRINGS:
     IGNORE_STRINGS = IGNORE_STRINGS_DEF
