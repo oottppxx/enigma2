@@ -25,6 +25,7 @@ from enigma import eTimer, iPlayableService, iRecordableService
 from Components.config import config, ConfigBoolean, ConfigNumber, ConfigSelection, ConfigSubsection, ConfigText
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
+from Screens.ChannelSelection import ChannelSelection
 if openatv_like:
   from Screens.Setup import Setup
 else:
@@ -161,12 +162,9 @@ def restartService():
     if IGNORE_RE.search(previous.toString()):
       DEBUG('Matched ignore strings, ignoring service...\n')
       return
-    if BOUQUET_CHECK:
-      for dialog in SESSION.dialog_stack:
-        c, d = dialog
-        if isinstance(c, InfoBar) and not d:
-          DEBUG('Bouquet open, postponing restart...\n')
-          return STUCK_TIMER.start(5000, True)
+    if BOUQUET_CHECK and isinstance(SESSION.current_dialog, ChannelSelection):
+      DEBUG('Bouquet open, postponing restart...\n')
+      return STUCK_TIMER.start(5000, True)
     SESSION.nav.stopService()
     DEBUG('Stopped current service, will restart...\n')
     if previous:
