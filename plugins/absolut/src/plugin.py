@@ -1,3 +1,6 @@
+import sys
+PY3K = sys.version_info >= (3, 0)
+
 openatv_like = True
 openvix = False
 try:
@@ -70,7 +73,7 @@ else:
   import xml.etree.cElementTree
   from Components.config import configfile
 
-PLUGIN_VERSION='6.2.2q'
+PLUGIN_VERSION='6.2.2r'
 PLUGIN_MONIKER='[Ab]'
 PLUGIN_NAME='Absolut'
 PLUGIN_DESC='VODka'
@@ -311,7 +314,10 @@ def getJsonURL(url, key=None, timestamp=None, cache=None, fondle_new=None):
     if not res_data:
       break
     if gzipped:
-      data += dec_obj.decompress(res_data)
+      decomp_data = dec_obj.decompress(res_data)
+      if PY3K:
+        decomp_data = decomp_data.decode('cp437')
+      data += decomp_data
     else:
       try:
         data += res_data
