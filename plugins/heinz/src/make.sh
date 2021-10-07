@@ -2,7 +2,7 @@
 PKG_NAME=$(grep OE control.tmpl | cut -d" " -f2)
 CONTROL_FILES="postrm postinst preinst"
 DATA_PATH=/usr/lib/enigma2/python/Plugins/Extensions/Heinz
-DATA_FILES="README.txt heinz.png plugin.pyo __init__.pyo setup.xml keymap.xml"
+DATA_FILES="README.txt heinz.png plugin.py __init__.py setup.xml keymap.xml"
 VERSION_FILE=plugin.py
 VERSION=$(grep VERSION= ${VERSION_FILE} | cut -d= -f2 | tr -d \')
 

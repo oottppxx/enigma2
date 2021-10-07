@@ -1,3 +1,6 @@
+import sys
+PY3K = sys.version_info >= (3, 0)
+
 openatv_like = True
 openvix = False
 try:
@@ -36,7 +39,17 @@ import re
 import threading
 import time
 import traceback
-import urllib2
+try:
+  import urllib2
+except ImportError:
+  import urllib
+  import urllib.parse
+  urllib.quote = urllib.parse.quote
+  urllib.unquote = urllib.parse.unquote
+  urllib.Request = urllib.request.Request
+  urllib.urlopen = urllib.request.urlopen
+  urllib2 = urllib
+
 import zlib
 
 from collections import OrderedDict
@@ -63,7 +76,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2s'
+PLUGIN_VERSION='6.2.2t'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -297,8 +310,8 @@ def epochTimeToXEPG(epoch_time):
   return time.strftime(XEPG_TIME_FMT, time.gmtime(epoch_time))
 
 def hmDuration(seconds):
-  minutes = seconds/60
-  hours = seconds/3600
+  minutes = int(seconds/60)
+  hours = int(seconds/3600)
   if hours:
     minutes %= 60
     if minutes:
@@ -433,9 +446,15 @@ def getJsonURL(url, key=None, timestamp=None, cache=None, fondle_new=None,
     if not res_data:
       break
     if gzipped:
-      data += dec_obj.decompress(res_data)
+      decomp_data = dec_obj.decompress(res_data)
+      if PY3K:
+        decomp_data = decomp_data.decode('cp437')
+      data += decomp_data
     else:
-      data += res_data
+      try:
+        data += res_data
+      except:
+        data += res_data.decode()
   data = json.loads(data)
   if timestamp and cache:
     S.cache_key[cache] = key
@@ -477,7 +496,7 @@ class OnlineEPG(object):
 
   def checkSupport(self):
     if SUPPORT_CACHE_INTERVAL_MINUTES:
-      timestamp = Now()/(SUPPORT_CACHE_INTERVAL_MINUTES*60)
+      timestamp = int(Now()/(SUPPORT_CACHE_INTERVAL_MINUTES*60))
     else:
       timestamp = None
     epg = []
@@ -528,7 +547,7 @@ class OnlineEPG(object):
 
   def getEpg(self):
     if EPG_CACHE_INTERVAL_MINUTES:
-      timestamp = Now()/(EPG_CACHE_INTERVAL_MINUTES*60)
+      timestamp = int(Now()/(EPG_CACHE_INTERVAL_MINUTES*60))
     else:
       timestamp = None
     if S.vtype:
@@ -558,7 +577,7 @@ class OnlineEPG(object):
 
   def fakeEPG(self):
     hour_3_seconds = 60*60*3 # 3 hour period in seconds
-    now = Now()/(60*60)*(60*60) # round to hour
+    now = int(Now()/(60*60)*(60*60)) # round to hour
     hour_3 = LOOKBACK*12 # 3 hour periods
     while hour_3:
       fake_time = now - hour_3 * hour_3_seconds
@@ -569,8 +588,12 @@ class OnlineEPG(object):
         program['start'] = epochTimeToEvent(fake_time)
         program['stop'] = epochTimeToEvent(fake_time + hour_3_seconds)
       else:
-        program['title'] = base64.b64encode(program['title'])
-        program['description'] = base64.b64encode(program['desc'])
+        if PY3K and isinstance(program['title'], str):
+          program['title'] = base64.b64encode(program['title'].encode('cp437'))
+          program['description'] = base64.b64encode(program['desc'].encode('cp437'))
+        else:
+          program['title'] = base64.b64encode(program['title'])
+          program['description'] = base64.b64encode(program['desc'])
         program['start_timestamp'] = fake_time
         program['stop_timestamp'] = fake_time + hour_3_seconds
         program['start'] = epochTimeToXEPG(fake_time)
@@ -586,8 +609,12 @@ class OnlineEPG(object):
         stop = eventTimeToEpoch(str(program['stop']))
         self.params['TOKEN'] = S.token
       else:
-        title = str(base64.b64decode(program['title']))
-        desc = str(base64.b64decode(program['description']))
+        title = base64.b64decode(program['title'])
+        desc = base64.b64decode(program['description'])
+        if isinstance(title, bytes):
+          title = title.decode('cp437')
+        if isinstance(desc, bytes):
+          desc = desc.decode('cp437')
         start = int(program['start_timestamp'])
         stop = int(program['stop_timestamp'])
         tstart = xEPGToEpoch(str(program['start']))
@@ -608,7 +635,7 @@ class OnlineEPG(object):
         stream = VCU_FMT % self.params
       else:
         if NEW_XCAPI:
-          self.params['DURATION'] = duration/60
+          self.params['DURATION'] = int(duration/60)
         stream = XCU_FMT % self.params
       self.events.append((stream,
           {'DESC': desc, 'RS': real_start, 'RD': real_duration, 'OD': original_duration, 'PT': title},
@@ -896,7 +923,7 @@ class mySingleEPG(SingleEPG):
     rsi = epochTimeToInfo(rs)
     rs = str(epochTimeToCU(rs - REC_HEAD_EXTRA_MINUTES*60))
     url = re.sub(rscu, rs, url)
-    duration = str((od/60+REC_HEAD_EXTRA_MINUTES+REC_TAIL_EXTRA_MINUTES)*60)
+    duration = str(int((od/60+REC_HEAD_EXTRA_MINUTES+REC_TAIL_EXTRA_MINUTES)*60))
     url = re.sub(rd, 'duration=%s' % duration, url)
     k = '%s (%s)' % (pt, rsi)
     fname = re.sub('__', '_', re.sub('[^a-zA-Z0-9-]', '_', re.sub('/', '-', '%s %s' % (pt, rsi)))) + '.mp4'
@@ -1073,10 +1100,11 @@ class CUSelectionScreen(Screen):
       Screen.setTitle(self, title=urllib2.unquote(title))
     self.params = params
     self.min = -HEAD_EXTRA_MINUTES
-    self.max = S.real_duration/60
-    elapsed = (Now() - S.watch_start)/60
+    self.max = int(S.real_duration/60)
+    elapsed = int((Now() - S.watch_start)/60)
     elapsed = min(self.max, elapsed)
     self.cur = max(self.min, elapsed)
+    debug('SLIDER INIT: %s\n' % str(self.max))
     self.slider = Slider(0, self.max)
     self.step = 1
     self.changed = False
@@ -1114,7 +1142,7 @@ class CUSelectionScreen(Screen):
     
   def update(self):
     if not self.changed:
-      elapsed = (Now() - S.watch_start)/60
+      elapsed = int((Now() - S.watch_start)/60)
       elapsed = min(self.max, elapsed)
       self.cur = max(self.min, elapsed)
     self['myText'].setText('%d .. %d (~)' % (self.cur, self.max))
@@ -1124,7 +1152,7 @@ class CUSelectionScreen(Screen):
     if self.stepTimer.isActive():
       self.step += self.step
       if TIMELINE_SMOOTHNESS:
-        self.step = min(self.max/TIMELINE_SMOOTHNESS, self.step)
+        self.step = int(min(self.max/TIMELINE_SMOOTHNESS, self.step))
       else:
         self.step = min(self.max, self.step)
       self.step = max(1, self.step)
@@ -1136,7 +1164,7 @@ class CUSelectionScreen(Screen):
   def cancel(self):
 #    self.close()
     self.hide()
-    elapsed = (Now() - S.watch_start)/60
+    elapsed = int((Now() - S.watch_start)/60)
     elapsed = min(self.max, elapsed)
     self.cur = max(self.min, elapsed)
     self.changed = False
@@ -1233,7 +1261,7 @@ class CUSelectionScreen(Screen):
         self.session.nav.playService(eServiceReference(str(VCU_FMT % self.params)), **ADJUST)
       else:
         if NEW_XCAPI:
-          self.params['DURATION'] = new_duration/60
+          self.params['DURATION'] = int(new_duration/60)
         self.session.nav.playService(eServiceReference(str(XCU_FMT % self.params)), **ADJUST)
     else:
       self.session.nav.pause(p=0)
@@ -1257,7 +1285,7 @@ class CUSelectionScreen(Screen):
         srr = eServiceReference(str(VCU_FMT % self.params))
       else:
         if NEW_XCAPI:
-          self.params['DURATION'] = new_duration/60
+          self.params['DURATION'] = int(new_duration/60)
         srr = eServiceReference(str(XCU_FMT % self.params))
       InfoBar.instance.servicelist.addToHistory(srr)
     except:
@@ -1302,7 +1330,7 @@ class CUSelectionScreen(Screen):
       debug('Play V: %s\n' % str(VCU_FMT % self.params))
     else:
       if NEW_XCAPI:
-        self.params['DURATION'] = new_duration/60
+        self.params['DURATION'] = int(new_duration/60)
       self.session.nav.playService(eServiceReference(str(XCU_FMT % self.params)), **ADJUST)
       debug('Play X: %s\n' % str(XCU_FMT % self.params))
     uncoverVBILine()
