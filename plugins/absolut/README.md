@@ -6,6 +6,9 @@ Dev/Testing on OpenATV 6.2, OpenPLi 6.2.
 
 Caveat Emptor.
 
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
+
 ## Description
 
 This plugin allows access to your provider's VOD content, if they implement
