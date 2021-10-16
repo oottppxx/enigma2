@@ -61,12 +61,9 @@ Caveat Emptor.
 **"Rec. command"**
 * "Recording command to use (URL and FILE will be replaced, leave empty for default)."
 "Debug" "Activate debug log."
-* Default: `"/usr/bin/ffmpeg -y -i \'URL\' -vcodec copy -acodec copy -f mp4 /media/hdd/movie/downloading.mp4
-  </dev/null >/dev/null 2>&1
-  && mv /media/hdd/movie/downloading.mp4 /media/hdd/movie/\'FILE\'
-  >/dev/null 2>&1'`
-  && wget -O- -q \'http://localhost/web/message?text=FILE%0aDownload+Completed!&type=2&timeout=5\'"
-* This command is spawned in the background for each recording. The default
+* Default:
+`"/usr/bin/ffmpeg -y -i \'URL\' -vcodec copy -acodec copy -f mp4 /media/hdd/movie/downloading.mp4 </dev/null >/dev/null 2>&1 && mv /media/hdd/movie/downloading.mp4 /media/hdd/movie/\'FILE\' >/dev/null 2>&1' && wget -O- -q \'http://localhost/web/message?text=FILE%0aDownload+Completed!&type=2&timeout=5\'"`
+ * This command is spawned in the background for each recording. The default
   command invokes ffmpeg to download the program to the /media/hdd/movie/downloading.mp4
   file; if the download is successful, the file is then renamed according to the
   program title, and if the latter is also successful, a notification is
