@@ -6,6 +6,15 @@ Dev/Testing on OpenATV 6.2, OpenPLi 6.2.
 
 Caveat Emptor.
 
+## Description:
+
+This plugin allows access to your provider's VOD content, if they implement
+either the XCAPI (Xtream Codes) or the VAPI (Vaders API).
+
+It should be invoked when watching a live stream (binding to a hot key is
+recommended), the VOD content will then be navigated to via the short EPG
+screens.
+
 ## Settings:
 
 **"Ignore added time"**
