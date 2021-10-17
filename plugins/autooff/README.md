@@ -57,4 +57,5 @@ service, optionally also running a provided shell command when this happens.
 **"Debug"**
 * "Activate debug log."
 * Default: False
-* If set to True, debug information is recorded under /tmp/autoff-debug.log file.
+* If set to True, debug information is recorded under the
+  /tmp/autoff-debug.log file.

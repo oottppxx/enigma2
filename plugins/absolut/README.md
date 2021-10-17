@@ -85,5 +85,6 @@ screens.
 **"Debug"**
 * "Activate debug log."
 * Default: False
-* If set to True, debug information is recorded under /tmp/absolut-debug.log file.
+* If set to True, debug information is recorded under the
+  /tmp/absolut-debug.log file.
 
