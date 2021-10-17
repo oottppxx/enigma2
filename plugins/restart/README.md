@@ -15,4 +15,4 @@ zapping up/down...
 
 ## Settings
 
-None! Why it would need any?
+None! Why would it need any?
