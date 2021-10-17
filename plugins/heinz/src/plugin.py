@@ -76,7 +76,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2t'
+PLUGIN_VERSION='6.2.2u'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -467,7 +467,7 @@ def getJsonURL(url, key=None, timestamp=None, cache=None, fondle_new=None,
 def uncoverVBILine():
   #
   # Note: this is a workaround, a proper fix would set the
-  # would be much better done by making surethe sHideVBI
+  # would be much better done by making sur ethe sHideVBI
   # flag of the service isn't set.
   # See:
   # enigma2/lib/service/iservice.h
