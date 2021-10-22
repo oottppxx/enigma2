@@ -76,7 +76,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2u'
+PLUGIN_VERSION='6.2.2v'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -602,6 +602,7 @@ class OnlineEPG(object):
 
   def buildEvent(self, program=None):
     if program:
+      debug('PROGRAM: %s\n' % str(program))
       if S.vtype:
         title = str(program['title'])
         desc = str(program['desc'])
@@ -615,6 +616,8 @@ class OnlineEPG(object):
           title = title.decode('cp437')
         if isinstance(desc, bytes):
           desc = desc.decode('cp437')
+        title = str(title)
+        desc = str(desc)
         start = int(program['start_timestamp'])
         stop = int(program['stop_timestamp'])
         tstart = xEPGToEpoch(str(program['start']))
@@ -664,6 +667,7 @@ class OnlineEPG(object):
       debug('Empty EPG! %(STREAM)s@%(UHOST)s' % self.params)
 #      return error, self.events
       self.fakeEPG()
+    debug('DATA: %s, %s\n' % (str(error), str(self.events)))
     return error, self.events
 
 
@@ -1007,6 +1011,7 @@ def playTS(session, ts=None, service=None):
     S.stream = int(m.group('stream'))
     S.token = m.group('token')
     error, epg = OnlineEPG(host=S.host, user=S.user, pwd=S.pwd, stream=S.stream).data()
+    debug('ONLINE_EPG_RET: %s, %s\n' % (str(error), str(epg)))
     if not error and not epg:
       info(session, text='No Ketchup For You!\n(This Stream Doesn\'t Support It.)')
       debug('No Ketchup for %s@%s!' % (S.stream, urllib2.unquote(S.host)))
@@ -1025,6 +1030,7 @@ def playTS(session, ts=None, service=None):
     S.pwd = m.group('pwd')
     S.stream = int(m.group('stream'))
     error, epg = OnlineEPG(host=S.host, user=S.user, pwd=S.pwd, stream=S.stream).data()
+    debug('ONLINE_EPG_RET: %s, %s\n' % (str(error), str(epg)))
     if not error and not epg:
       info(session, text='No Ketchup For You!\n(This Stream Doesn\'t Support It.)')
       debug('No Ketchup for %s@%s!' % (S.stream, urllib2.unquote(S.host)))
