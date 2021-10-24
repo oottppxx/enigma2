@@ -19,6 +19,7 @@ except:
 
 import re
 import time
+import traceback
 
 from enigma import eTimer, iPlayableService, iRecordableService
 
@@ -34,7 +35,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0o'
+PLUGIN_VERSION='6.2.0p'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -230,9 +231,14 @@ def restartService():
 STUCK_TIMER.callback.append(restartService)
 
 
-def serviceRecEvent(evt):
+def serviceRecEvent(rec_svc, evt):
+  # Logging only, for now... ePtr()s are hard.
   EVENT_TIME = int(time.time())
-  DEBUG('-> %s\n' % REC_EVENT_STRINGS.get(evt, 'UNKNOWN (REC) %d' % int(evt)))
+  try:
+    DEBUG('-> (REC) %s %s\n' % (str(rec_svc),
+                                REC_EVENT_STRINGS.get(evt, 'UNKNOWN (REC) %d' % int(evt))))
+  except:
+    DEBUG(traceback.format_exc())
   if SESSION:
 #    if (evt == iPlayableService.evStart):
 #      DEBUG('  handling (rec)...\n')
@@ -327,7 +333,7 @@ def sessionStart(reason, **kwargs):
     SESSION.nav.event.append(serviceEvent)
     REGISTERED = True
     DEBUG('  Registered play event watcher...\n')
-    SESSION.nav.event.append(serviceRecEvent)
+    SESSION.nav.record_event.append(serviceRecEvent)
     REC_REGISTERED = True
     DEBUG('  Registered record event watcher...\n')
   DEBUG('Session Start exited...\n')

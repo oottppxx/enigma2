@@ -2,3 +2,7 @@ enigma2-plugin-extensions-quarterpounder-6.2.0o.ipk
 MD5 6265c9a1922c8e5b5824787cfbb64800
 SHA a903208de7824273fd1c1c6b44b250b76a9097b0
 
+enigma2-plugin-extensions-quarterpounder-6.2.0p.ipk
+MD5 33f538d3be991950ec34ce6211e81b77
+SHA 15b7dad94b91b1fb7a979aa12000d35600eac6a1
+
