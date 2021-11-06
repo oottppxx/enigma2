@@ -95,7 +95,7 @@ short/single EPG screen.
 * "Stream type/proto to request."
 * Default: m3u8.
 * When requesting VOD stream URLs from your provider, what type of stream to
-  request. Only relevant for VAPI, not used on XCAPI providers
+  request. Only relevant for VAPI and new XCAPI, not used with the old XCAPI.
 
 **"Lookback (days)"**
 * "Number of days to lookback for programs."

@@ -76,7 +76,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2v'
+PLUGIN_VERSION='6.2.2x'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -119,10 +119,10 @@ XCU_FMT_OLD=(r'%(PTYPE)s:0:1:0:0:0:0:0:0:0:%(QHOST)s/streaming/timeshift.php?'
 XCU_RE_NEW=(r'(?P<ptype>1|4097|5001|5002):0:1:0:0:0:0:0:0:0:(?P<host>http[^/]*//[%a-zA-Z0-9:.-]+)/timeshift'
              '/(?P<user>[^/]+)/(?P<pwd>[^/]+)'
              '/(?P<duration>[0-9]+)/(?P<start>[%a-zA-Z0-9:.-]+)'
-             '/(?P<stream>[0-9]+):(?P<sdn>.*)')
+             '/(?P<stream>[0-9]+).(?P<ctype>ts|m3u8):(?P<sdn>.*)')
 XCU_FMT_NEW=(r'%(PTYPE)s:0:1:0:0:0:0:0:0:0:%(QHOST)s/timeshift'
               '/%(USER)s/%(PWD)s/%(DURATION)s'
-              '/%(START)s/%(STREAM)s:%(SDN)s')
+              '/%(START)s/%(STREAM)s.%(CTYPE)s:%(SDN)s')
 XCU_RE=XCU_RE_OLD
 XCU_FMT=XCU_FMT_OLD
 DAY_SECONDS=24*60*60
@@ -639,6 +639,7 @@ class OnlineEPG(object):
       else:
         if NEW_XCAPI:
           self.params['DURATION'] = int(duration/60)
+          self.params['CTYPE'] = CTYPE
         stream = XCU_FMT % self.params
       self.events.append((stream,
           {'DESC': desc, 'RS': real_start, 'RD': real_duration, 'OD': original_duration, 'PT': title},
@@ -1084,6 +1085,7 @@ def adjustCU(session, ts=None):
     params['DURATION'] = m.group('duration')
     if NEW_XCAPI:
       params['DURATION'] = str(int(m.group('duration'))*60)
+      params['CTYPE'] = CTYPE
     S.real_duration = int(params['DURATION'])
     S.original_duration = S.real_duration
     S.program_title = m.group('sdn')
@@ -1268,6 +1270,7 @@ class CUSelectionScreen(Screen):
       else:
         if NEW_XCAPI:
           self.params['DURATION'] = int(new_duration/60)
+          self.params['CTYPE'] = CTYPE
         self.session.nav.playService(eServiceReference(str(XCU_FMT % self.params)), **ADJUST)
     else:
       self.session.nav.pause(p=0)
@@ -1292,6 +1295,7 @@ class CUSelectionScreen(Screen):
       else:
         if NEW_XCAPI:
           self.params['DURATION'] = int(new_duration/60)
+          self.params['CTYPE'] = CTYPE
         srr = eServiceReference(str(XCU_FMT % self.params))
       InfoBar.instance.servicelist.addToHistory(srr)
     except:
@@ -1337,6 +1341,7 @@ class CUSelectionScreen(Screen):
     else:
       if NEW_XCAPI:
         self.params['DURATION'] = int(new_duration/60)
+        self.params['CTYPE'] = CTYPE
       self.session.nav.playService(eServiceReference(str(XCU_FMT % self.params)), **ADJUST)
       debug('Play X: %s\n' % str(XCU_FMT % self.params))
     uncoverVBILine()
