@@ -16,6 +16,13 @@ try:
     openatv_like = True
 except:
   pass
+# Quick fix for OpenVision 11.2(?)
+try:
+  from Components import SystemInfo
+  if "openvision" in SystemInfo.BoxInfo.getItem("distro").lower():
+    openatv_like = True
+except:
+  pass
 
 import re
 import time
@@ -35,7 +42,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0p'
+PLUGIN_VERSION='6.2.0q'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
