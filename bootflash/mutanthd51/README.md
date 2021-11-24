@@ -1,11 +1,11 @@
-![Multi Boot Image](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/hd51x8mi.jpg)
+![Multi Boot Image](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/hd51x8mi.jpg)
 
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
 BIG THANKS to BazB, this wouldn't have been possible without his generosity!!!
 
-Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/scripts/party/party.py)
+Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/bootflash/party/party.py)
 script if you want to carve your own image partition layout.
 
 To take into consideration:
@@ -46,11 +46,11 @@ To take into consideration:
 
 [Image Download GDrive](https://drive.google.com/file/d/1Hbao9h3dSWhBHsRh11XYyDY9_4BfiEB_/)
 
-![Multi Boot Image Slot 1](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot1.jpg)
-![Multi Boot Image Slot 2](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot2.jpg)
-![Multi Boot Image Slot 3](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot3.jpg)
-![Multi Boot Image Slot 4](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot4.jpg)
-![Multi Boot Image Slot 5](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot5.jpg)
-![Multi Boot Image Slot 6](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot6.jpg)
-![Multi Boot Image Slot 7](https://github.com/oottppxx/enigma2/blob/master/mutanthd51/slot7.jpg)
+![Multi Boot Image Slot 1](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot1.jpg)
+![Multi Boot Image Slot 2](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot2.jpg)
+![Multi Boot Image Slot 3](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot3.jpg)
+![Multi Boot Image Slot 4](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot4.jpg)
+![Multi Boot Image Slot 5](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot5.jpg)
+![Multi Boot Image Slot 6](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot6.jpg)
+![Multi Boot Image Slot 7](https://github.com/oottppxx/enigma2/blob/master/bootflash/mutanthd51/slot7.jpg)
 
