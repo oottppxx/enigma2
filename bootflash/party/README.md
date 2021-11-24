@@ -99,6 +99,6 @@ different types of layouts.
 
 ## See also
 
-* https://github.com/oottppxx/enigma2/tree/master/axhd51
-* https://github.com/oottppxx/enigma2/tree/master/mutanthd51
-* https://github.com/oottppxx/enigma2/tree/master/zgemmah7
+* https://github.com/oottppxx/enigma2/tree/master/bootflash/axhd51
+* https://github.com/oottppxx/enigma2/tree/master/bootflash/mutanthd51
+* https://github.com/oottppxx/enigma2/tree/master/bootflash/zgemmah7
