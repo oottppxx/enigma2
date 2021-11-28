@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 
 
-PLUGIN_VERSION='6.2.0c'
+PLUGIN_VERSION='6.2.0d'
 PLUGIN_NAME='ReStart'
 PLUGIN_DESC='Stops/Starts the current service'
 PLUGIN_ICON='restart.png'
