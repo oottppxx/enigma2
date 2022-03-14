@@ -7,20 +7,20 @@ This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
 
-Replace the current service audio with a pre-defined alternative audio source.
+Replace the current service audio with an alternative audio source.
 
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
 ## Description
 
-Invoking the plugin should display the list of the pre-defined alternative
-audio sources, selecting one of those should:
+Invoking the plugin should display the list of alternative audio sources,
+selecting one of those should:
 * mute the current service audio (not possible if the current service is using
   Exteplayer3).
 * play the selected audio source (via the system audio device).
 
-Alternative audio sources are currently pre-defined in the sources.json file
+Alternative audio sources are defined in the sources.json file
 (no need to reload the plugin on edits to this file).
 
 The schema for the sources.json file should be self explanatory.
@@ -45,11 +45,4 @@ plugin to the top of the list:
 
 ## Settings
 
-None - the debug setting is currently hardcoded to True in some of the IPK
-versions.
-
-**"Debug"**
-* "Activate debug log."
-* Default: False
-* If set to True, debug information is recorded under the
-  /tmp/budweiser-debug.log file.
+None; to enable debugging, create the /tmp/budweiser-debug.log file.
