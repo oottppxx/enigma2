@@ -3,7 +3,7 @@
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5
 * Octagon SF8008 - OpenSpa 7.5
-* VU Zero - OpenBlackHole 4.4
+* VU Zero - OpenBlackHole 4.4, OpenATV 6.4 (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
 
 Replace the current service audio with a pre-defined alternative audio source.
