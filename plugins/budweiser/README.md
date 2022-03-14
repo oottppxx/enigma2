@@ -20,25 +20,26 @@ audio sources, selecting one of those should:
   Exteplayer3).
 * play the selected audio source (via the system audio device).
 
-Alternative audio sources are currently (this might change at any time in the
-future) pre-defined in the sources.json file (no need to reload the plugin on
-edits to this file).
+Alternative audio sources are currently pre-defined in the sources.json file
+(no need to reload the plugin on edits to this file).
 
-Currently (this might change at any time in the future) the sources.json file
-contains a hash in which:
-* the keys are the source name that will show up in the selection list.
-* the values are commands to be run when selecting the corresponding key from
-  the list.
+The schema for the sources.json file should be self explanatory.
 
-The commands specified are run as enigma2 sub processes. Currently (this might
-change at any time in the future) all underscores in the command are replaced by
-spaces before invocation - as such, if an underscore shows up in a URL, it
-should itself be replaced by %5f or other adequate encoding.
+The only cautionary note on the various entries is regarding the 'SHELL' type:
+the command is split on spaces into different execv() arguments, and afterwards
+any underscores on the various arguments are replaced by spaces. If underscores
+show up in a URL they should be replaced by %5f or other adequate encoding.
+Underscores in commands or other non-URL arguments are to be avoided if they
+can't be encoded.
 
-There are 2 special pre-defined audio sources that are always added by the
+Commands for the various entries are run as enigma2 sub processes.
+
+There are 3 special pre-defined audio sources that are always added by the
 plugin to the top of the list:
 * CTRL^Z - selecting this source will (try to) stop any previously selected
   alternative audio source and resume the current service audio.
+* E2UNMUTE - selecting this source will only (try to) unmute the current service
+  audio.
 * E2MUTE - selecting this source will only (try to) mute the current service
   audio.
 
