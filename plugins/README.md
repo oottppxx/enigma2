@@ -7,6 +7,8 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 
 * [AutoOff](https://github.com/oottppxx/enigma2/tree/master/plugins/autooff) attempts to stop any service after the box goes to standby, and optionally tries to resume the service afterwards - apparently some images don't do it by default, so if you want to confirm, just activate debug and check the debug log. It also supports running commands when entering and exiting standby.
 
+* [Budweiser](https://github.com/oottppxx/enigma2/tree/master/plugins/budweiser) is a simple (and still experimental) audio dubber/PiP.
+
 * [Buzzz](https://github.com/oottppxx/enigma2/tree/master/plugins/buzzz) is a local M3U proxy for TheHive.
 
 * [ColaCao](https://github.com/oottppxx/enigma2/tree/master/plugins/colacao) is a very simple line editor.
