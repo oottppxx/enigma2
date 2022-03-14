@@ -18,7 +18,7 @@ audio sources, selecting one of those should:
 * play the selected audio source (via the system audio device).
 
 Alternative audio sources are currently (this might change at any time in the
-future) pre-defined on the sources.json file (no need to reload the plugin on
+future) pre-defined in the sources.json file (no need to reload the plugin on
 edits to this file).
 
 Currently (this might change at any time in the future) the sources.json file
