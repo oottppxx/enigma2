@@ -1,6 +1,8 @@
 # Budweiser.
 
-(this plugin is experimental as of now)
+This plugin is currently EXPERIMENTAL, and has been successfully tested on:
+* zGgemma H7C - OpenATV 6.2, OpenATV 6.4.
+* Mut@nt HD51 - Pure2 6.5.
 
 Replace the current service audio with a pre-defined alternative audio source.
 
@@ -15,8 +17,9 @@ audio sources, selecting one of those should:
   Exteplayer3).
 * play the selected audio source (via the system audio device).
 
-Alternative audio sources are pre-defined on the sources.json file (no need to
-reload the plugin on edits of this file).
+Alternative audio sources are currently (this might change at any time in the
+future) pre-defined on the sources.json file (no need to reload the plugin on
+edits to this file).
 
 Currently (this might change at any time in the future) the sources.json file
 contains a hash in which:
