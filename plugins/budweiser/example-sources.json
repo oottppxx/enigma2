@@ -2,7 +2,7 @@
 "comment": "Audio sources or other commands for Extensions/Plugins/Budweiser, by @oottppxx",
 "title": "Sauces",
 "schema": ["Name", "Type", "URL|File|Command", "Comment"],
-"types": ["AACURL", "MARKER", "MP3URL", "MP3FILE", "SHELL"],
+"types": ["AACURL", "MARKER", "MP3FILE", "MP3URL", "SHELL"],
 "data": [
     [">Portugal<", "MARKER", "", "@oottppxx 2022-03-14"],
     ["Antena1", "MP3URL", "http://radiocast.rtp.pt/antena180a.mp3", "@oottppxx"],
