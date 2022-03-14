@@ -4,7 +4,7 @@
 
 Replace the current service audio with a pre-defined alternative audio source.
 
-Invoking the plugin should display the list of the pre-defined alternattive
+Invoking the plugin should display the list of the pre-defined alternative
 audio sources, selecting one of those should:
 * mute the current service audio (not possible if the current service is using
   Exteplayer3).
