@@ -4,6 +4,11 @@
 
 Replace the current service audio with a pre-defined alternative audio source.
 
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
+
+## Description
+
 Invoking the plugin should display the list of the pre-defined alternative
 audio sources, selecting one of those should:
 * mute the current service audio (not possible if the current service is using
@@ -30,17 +35,6 @@ plugin to the top of the list:
   alternative audio source and resume the current service audio.
 * E2MUTE - selecting this source will only (try to) mute the current service
   audio.
-
-Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
-to help with testing, provide ideas and all kind of suggestions or comments!
-
-## Description
-
-Apparently some Enigma2 systems don't stop IPTV services once the box enters
-standby. This plugin polls for when the box is in standby and stops the current
-service, optionally also running a provided shell command. Similarly, the plugin
-polls for when the box is no longer in standby and tries to resume the previous
-service, optionally also running a provided shell command when this happens.
 
 ## Settings
 
