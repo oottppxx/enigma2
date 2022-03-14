@@ -10,7 +10,7 @@
     ["Antena3", "MP3URL", "http://radiocast.rtp.pt/antena380a.mp3", "@oottppxx"],
     ["-Spain-", "MARKER", "", "@oottppxx"],
     ["Once", "AACURL", "https://19983.live.streamtheworld.com/LOS40AAC_SC", "@oottppxx"],
-    ["Marca", "MP3URL", "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA_NACIONAL.mp3", "@oottppxx shell example"],
+    ["Marca", "MP3URL", "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA_NACIONAL.mp3", "@oottppxx"],
     ["MarcaEx", "SHELL", "/bin/sh -c /usr/bin/wget_-O-_https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA%5fNACIONAL.mp3_|_/usr/bin/mpg123_-o_wav_-_|_/usr/bin/gst-launch-1.0_fdsrc_fd=0_!_decodebin_!_alsasink_device=hw:0", "@oottppxx shell example"],
     ["=BBC UK=", "MARKER", "", "@oottppxx"],
     ["Radio4", "MP3URL", "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_fourfm", "@oottppxx"],
