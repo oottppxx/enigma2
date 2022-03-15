@@ -1,5 +1,18 @@
 # Budweiser.
 
+NOTE: this plugin idea came to me while reading a @Miguel_Patito discussion in
+the "Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting
+technical problem to try and figure out how to solve. Of course, once I finished
+with version 6.2.1a, I found out about ziko's IPAudio plugin (which you can read
+about here:
+https://www.linuxsat-support.com/thread/148485-ipaudio-by-ziko/?postID=618093#post618093)
+- it seems I'm about ~1 year late - which apparently also uses gstreamer
+utilities in the background; I'm really curious to go check the code for the
+plugin, to see how it was done (the UI is miles away from mine, but that doesn't
+really matter to me, I'm more interested in the gstreamer pipelines - my plugins
+never had a polished UI and I'm not going to start now :-), just had to give
+[ziko](https://www.linuxsat-support.com/cms/user/344808-ziko/) credit first!
+
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5
 * Octagon SF8008 - OpenSpa 7.5
