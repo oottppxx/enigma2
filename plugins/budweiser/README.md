@@ -1,19 +1,9 @@
 # Budweiser.
 
-NOTE: this plugin idea came to me while reading a @Miguel_Patito discussion in
-the "Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting
-technical problem to try and figure out how to solve. Of course, once I finished
-with version 6.2.1a, I found out about
-[ziko](https://www.linuxsat-support.com/cms/user/344808-ziko/)'s
-[IPAudio plugin](https://www.linuxsat-support.com/thread/148485-ipaudio-by-ziko/?postID=618093#post618093),
-which apparently also uses gstreamer utilities in the background; I'm really
-curious to go check their code, just had to give 
-[ziko](https://www.linuxsat-support.com/cms/user/344808-ziko/) credit first, as
-it seems I'm about ~1 year late with the idea. Again, I'm really curious to go
-check their code to see how it was done (the UI is miles away from mine, but
-that doesn't really matter to me, I'm more interested in what gstreamer
-pipelines were used - my plugins never had a polished UI and I'm not going to
-start now :-)
+Replace the current service audio with an alternative audio source.
+
+Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
+to help with testing, provide ideas and all kind of suggestions or comments!
 
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5
@@ -22,10 +12,15 @@ This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
 
-Replace the current service audio with an alternative audio source.
-
-Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
-to help with testing, provide ideas and all kind of suggestions or comments!
+NOTE: this plugin idea came while reading a @Miguel_Patito discussion in the
+"Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting technical
+problem to try and figure out how to solve. Of course, once I finished with
+version 6.2.1a, I found out about
+[ziko](https://www.linuxsat-support.com/cms/user/344808-ziko/)'s
+[IPAudio plugin](https://www.linuxsat-support.com/thread/148485-ipaudio-by-ziko/?postID=618093#post618093),
+which apparently also uses a specific gstreamer utility in the background. I
+guess my idea is ~1 year too late, but my implementation and approach is
+slightly different and has its own merits, so I'll keep it around.
 
 ## Description
 
