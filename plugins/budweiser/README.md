@@ -54,7 +54,7 @@ longer needed.
 
 * The more astute readers might have noticed that the way it all works is generic
 enough so the plugin can be used as a very simple way to create a predefined
-list of commands to be run it, not necessarily related to any audio operations.
+list of commands to be run, not necessarily related to any audio operations.
 
 * Depending on the (frequency) of usage, it might be handier to assign a hotkey to
 the plugin, so the list of sources can be brought up with a single key press on
