@@ -12,7 +12,55 @@ This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
 
-NOTE: this plugin idea came while reading a @Miguel_Patito discussion in the
+## Description
+
+Invoking the plugin should display a list of alternative audio sources,
+selecting one of those (via the OK key) should:
+* perform an audio operation, per the source definition: either do nothing, mute
+  the service audio, or unmute the service audio. Note that if the current
+  service is using Exteplayer3 or another external player, audio ops will most
+  likely fail to take any effect.
+* perform an operation of a certain type, as defined by operation type wich
+  should also be defined in the file. An operation type defines a list of
+  commands (technically, execv() arguments) to be executed in the system, so the
+  audio source plays via the system audio device.  The commands are then run as
+  enigma2 sub processes, and any instances of '%(URL)s' or '%(DEVICE)s' are
+  replaced apropriately if required.
+* depending on the source definition, once an alternative source is selected,
+  the sources list can auto-close or remain open; if the latter, the list can be
+  closed via the EXIT key.
+
+The list of alternative audio sources is a simple text JSON file, placed in the
+/usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the
+file can be edited and new sources added, and existing sources can be removed or
+reordered. There's no need to reload the plugin after each edit, the file is
+read on each invocation. To troubleshoot any errors/parsing errors on the file,
+please turn on debug and examine the output (see Settings).
+
+The plugin always inserts a pre-defined audio source at the top of the list:
+* CTRL^Z - selecting this source will (try to) stop any previously selected
+  alternative audio source, resume/unmute the current service audio, and closes
+  the alternative audio sources list.
+
+## Settings
+
+None; to enable debugging, create the /tmp/budweiser-debug.log file for further
+inspection of the plugin inner workings; don't forget to remove it when no
+longer needed.
+
+## Notes
+
+* The example sources were retrieved from the http://fmstream.org/ site.
+
+* The more astute readers might have noticed that the way it all works is generic
+enough so the plugin can be used as a very simple way to create a predefined
+list of commands to be run it, not necessarily related to any audio operations.
+
+* Depending on the (frequency) of usage, it might be handier to assign a hotkey to
+the plugin, so the list of sources can be brought up with a single key press on
+the remote.
+
+* This plugin idea came while reading a @Miguel_Patito discussion in the
 "Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting technical
 problem to try and figure out how to solve. Of course, once I finished with
 version 6.2.1a, I found out about
@@ -20,39 +68,5 @@ version 6.2.1a, I found out about
 [IPAudio plugin](https://www.linuxsat-support.com/thread/148485-ipaudio-by-ziko/?postID=618093#post618093),
 which apparently also uses a specific gstreamer utility in the background. I
 guess my idea is ~1 year too late, but my implementation and approach is
-slightly different and has its own merits, so I'll keep it around.
+slightly different and has its own merits and novelties, so I'll keep it around.
 
-## Description
-
-Invoking the plugin should display the list of alternative audio sources,
-selecting one of those should:
-* mute the current service audio (not possible if the current service is using
-  Exteplayer3).
-* play the selected audio source (via the system audio device).
-
-Alternative audio sources are defined in the sources.json file
-(no need to reload the plugin on edits to this file).
-
-The schema for the sources.json file should be self explanatory.
-
-The only cautionary note on the various entries is regarding the 'SHELL' type:
-the command is split on spaces into different execv() arguments, and afterwards
-any underscores on the various arguments are replaced by spaces. If underscores
-show up in a URL they should be replaced by %5f or other adequate encoding.
-Underscores in commands or other non-URL arguments are to be avoided if they
-can't be encoded.
-
-Commands for the various entries are run as enigma2 sub processes.
-
-There are 3 special pre-defined audio sources that are always added by the
-plugin to the top of the list:
-* CTRL^Z - selecting this source will (try to) stop any previously selected
-  alternative audio source and resume the current service audio.
-* E2UNMUTE - selecting this source will only (try to) unmute the current service
-  audio.
-* E2MUTE - selecting this source will only (try to) mute the current service
-  audio.
-
-## Settings
-
-None; to enable debugging, create the /tmp/budweiser-debug.log file.
