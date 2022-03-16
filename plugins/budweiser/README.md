@@ -22,10 +22,10 @@ selecting one of those (via the OK key) should:
   service is using Exteplayer3 or another external player, audio ops will most
   likely fail to take any effect.
 * perform an operation of a certain type. The type should also be defined in the
-  file and defines a list of commands (technically, execv() arguments) to be
-  executed, so the audio source plays via the system audio device. The commands
-  are then run as enigma2 sub processes, and any instances of '%(URL)s' or
-  '%(DEVICE)s' are replaced apropriately if required.
+  file as a list of commands (technically, execv() arguments) to be executed, so
+  the audio source plays via the system audio device. The commands are then run
+  as enigma2 sub processes, and any instances of '%(URL)s' or '%(DEVICE)s' are
+  replaced apropriately if required.
 * depending on the source definition, once an alternative source is selected,
   the sources list can auto-close or remain open; if the latter, the list can be
   closed via the EXIT key.
