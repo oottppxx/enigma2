@@ -8,7 +8,8 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5
 * Octagon SF8008 - OpenSpa 7.5
-* VU Zero - OpenBlackHole 4.4, OpenATV 6.4 (note: example Once AAC radio doesn't work)
+* VU Zero - OpenBlackHole 4.4, OpenATV 6.4 (note: example Once AAC radio doesn't
+   work)
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
 
@@ -20,17 +21,16 @@ selecting one of those (via the OK key) should:
   the service audio, or unmute the service audio. Note that if the current
   service is using Exteplayer3 or another external player, audio ops will most
   likely fail to take any effect.
-* perform an operation of a certain type, as defined by operation type wich
-  should also be defined in the file. An operation type defines a list of
-  commands (technically, execv() arguments) to be executed in the system, so the
-  audio source plays via the system audio device.  The commands are then run as
-  enigma2 sub processes, and any instances of '%(URL)s' or '%(DEVICE)s' are
-  replaced apropriately if required.
+* perform an operation of a certain type. The type should also be defined in the
+  file and defines a list of commands (technically, execv() arguments) to be
+  executed, so the audio source plays via the system audio device. The commands
+  are then run as enigma2 sub processes, and any instances of '%(URL)s' or
+  '%(DEVICE)s' are replaced apropriately if required.
 * depending on the source definition, once an alternative source is selected,
   the sources list can auto-close or remain open; if the latter, the list can be
   closed via the EXIT key.
 
-The list of alternative audio sources is a simple text JSON file, placed in the
+The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the
 file can be edited and new sources added, and existing sources can be removed or
 reordered. There's no need to reload the plugin after each edit, the file is
