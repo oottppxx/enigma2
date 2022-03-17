@@ -6,7 +6,7 @@ Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
-* Mut@nt HD51 - PurE2 6.5
+* Mut@nt HD51 - PurE2 6.5, OpenATV 7.0
 * Octagon SF8008 - OpenSpa 7.5
 * VU Zero - OpenBlackHole 4.4, OpenATV 6.4 (note: example Once AAC radio doesn't
    work)
