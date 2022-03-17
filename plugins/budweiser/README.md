@@ -31,8 +31,9 @@ current buffering value. Selecting one of the sources (via the OK key) should:
   closed via the EXIT key.
 
 The current buffering value can be increased/decreased by using the CHANNEL
-UP/DOWN keys, respectively (range is currently 0 to 2000 - values smaller than
-20 might cause the alternative audio stream not to play).
+UP/DOWN keys and the PREV/NEXT keys, respectively (the range is currently 0 to
+2000 - beware that a very small value might cause the alternative audio stream
+not to play).
 
 The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the

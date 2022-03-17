@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3b'
+PLUGIN_VERSION='6.2.3c'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -30,7 +30,8 @@ TITLE_DEF="Sources"
 DEVICE_DEF="alsasink device=hw:0"
 MIN_BUFFERS=0
 MAX_BUFFERS=2000
-BUFFERS_STEP=10
+BUFFERS_BIG_STEP=100
+BUFFERS_SMALL_STEP=10
 BUFFERS_DEF=100
 BUFFERS=BUFFERS_DEF
 EXTRA_OPS=["CTRL^Z"]
@@ -106,6 +107,7 @@ def audioStart():
 
 
 def audioKill():
+  global AUDIO_PROCESS
   debug('Kill audioProcess: %s\n' % str(AUDIO_PROCESS))
   if AUDIO_PROCESS:
     try:
@@ -113,6 +115,7 @@ def audioKill():
       os.killpg(AUDIO_PROCESS, signal.SIGKILL)
       os.waitpid(AUDIO_PROCESS, 0)
       os.system("sync && echo 3 > /proc/sys/vm/drop_caches")
+      AUDIO_PROCESS = None
     except:
       debug('audioKill() os.kill|killpg|waitpid() exception!\n')
       debug(traceback.format_exc())
@@ -121,8 +124,8 @@ def audioKill():
 def audioProcess(argv):
   global AUDIO_PROCESS
   debug('Run audioProcess: %s\n' % str(argv))
-  audioKill()
   try:
+    audioKill()
     os.system("sync && echo 3 > /proc/sys/vm/drop_caches")
     AUDIO_PROCESS = os.fork()
     if not AUDIO_PROCESS:
@@ -208,12 +211,14 @@ class SourceSelectionScreen(Screen):
     self.myList =  MenuList(self.sources_names)
     self['myList'] = self.myList
     self['myText'] = StaticText('Buf.: %s' % str(BUFFERS))
-    self['myActionMap'] = ActionMap(['WizardActions', 'ShortcutActions'],
+    self['myActionMap'] = ActionMap(['WizardActions', 'ShortcutActions', 'TextEntryActions'],
         {
           'back': self.exit,
           'ok': self.ok,
-          'nextBouquet': self.increaseBuffers,
-          'prevBouquet': self.decreaseBuffers,
+          'nextBouquet': self.bigIncreaseBuffers,
+          'prevBouquet': self.bigDecreaseBuffers,
+          'deleteForward': self.smallIncreaseBuffers,
+          'deleteBackward': self.smallDecreaseBuffers,
        }, -1)
 
   def exit(self):
@@ -230,25 +235,47 @@ class SourceSelectionScreen(Screen):
       debug(traceback.format_exc())
       self.exit()
       
-  def increaseBuffers(self):
+  def increaseBuffers(self, step=BUFFERS_BIG_STEP):
     global BUFFERS
+    debug('increaseBuffers() step: %s!\n' % str(step))
     try:
       if BUFFERS < MAX_BUFFERS:
-        BUFFERS+=BUFFERS_STEP
+        BUFFERS+=step
+        if BUFFERS > MAX_BUFFERS:
+          BUFFERS=MAX_BUFFERS
         self['myText'].setText('Buf.: %s' % str(BUFFERS))
     except:
-      debug('up() exception!\n')
+      debug('increaseBuffers() exception!\n')
       debug(traceback.format_exc())
       
-  def decreaseBuffers(self):
+  def decreaseBuffers(self, step=BUFFERS_BIG_STEP):
     global BUFFERS
+    debug('decreaseBuffers() step: %s!\n' % str(step))
     try:
       if BUFFERS > MIN_BUFFERS:
-        BUFFERS-=BUFFERS_STEP
+        BUFFERS-=step
+        if BUFFERS<MIN_BUFFERS:
+          BUFFERS=MIN_BUFFERS
         self['myText'].setText('Buf.: %s' % str(BUFFERS))
     except:
-      debug('down() exception!\n')
+      debug('decreaseBuffers() exception!\n')
       debug(traceback.format_exc())
+
+
+  def bigIncreaseBuffers(self):
+    self.increaseBuffers(step=BUFFERS_BIG_STEP)
+
+
+  def bigDecreaseBuffers(self):
+    self.decreaseBuffers(step=BUFFERS_BIG_STEP)
+
+
+  def smallIncreaseBuffers(self):
+    self.increaseBuffers(step=BUFFERS_SMALL_STEP)
+
+
+  def smallDecreaseBuffers(self):
+    self.decreaseBuffers(step=BUFFERS_SMALL_STEP)
 
 
 def _byteify(data, ignore_dicts=False):
