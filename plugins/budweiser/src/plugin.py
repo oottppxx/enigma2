@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3a'
+PLUGIN_VERSION='6.2.3b'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -31,7 +31,7 @@ DEVICE_DEF="alsasink device=hw:0"
 MIN_BUFFERS=0
 MAX_BUFFERS=2000
 BUFFERS_STEP=10
-BUFFERS_DEF=MIN_BUFFERS
+BUFFERS_DEF=100
 BUFFERS=BUFFERS_DEF
 EXTRA_OPS=["CTRL^Z"]
 
