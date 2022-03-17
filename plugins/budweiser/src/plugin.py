@@ -9,12 +9,13 @@ from fcntl import ioctl
 
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.2c'
+PLUGIN_VERSION='6.2.3a'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -27,6 +28,11 @@ AUDIO_FD=0
 AUDIO_PROCESS=None
 TITLE_DEF="Sources"
 DEVICE_DEF="alsasink device=hw:0"
+MIN_BUFFERS=0
+MAX_BUFFERS=2000
+BUFFERS_STEP=10
+BUFFERS_DEF=MIN_BUFFERS
+BUFFERS=BUFFERS_DEF
 EXTRA_OPS=["CTRL^Z"]
 
 def debug(s):
@@ -128,11 +134,12 @@ def audioProcess(argv):
     debug(traceback.format_exc())
 
 
-def runCommand(op=None, data=None, opTypes=None, device=None):
+def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DEF):
   debug('runCommand(): %s\n' % op)
   debug('data: %s\n' % str(data))
   debug('opTypes: %s\n' % str(opTypes))
   debug('device: %s\n' % str(device))
+  debug('buffers: %s\n' % str(buffers))
   if op in 'CTRL^Z':
     try:
       audioKill()
@@ -155,9 +162,9 @@ def runCommand(op=None, data=None, opTypes=None, device=None):
       audioStart()
     argv = opTypes.get(opType, None)
     if argv:
-      # Keep the order, so we can include %(DEVICE)s in %(URL)s.
-      argv = [str(x) % {"URL": url, "DEVICE": device} for x in argv]
-      argv = [str(x) % {"DEVICE": device} for x in argv]
+      # Keep the order, so we can include %(DEVICE)s and %(BUFFERS)s in %(URL)s.
+      argv = [str(x) % {"URL": url, "DEVICE": device, "BUFFERS": buffers} for x in argv]
+      argv = [str(x) % {"DEVICE": device, "BUFFERS": buffers} for x in argv]
       audioProcess(argv)
     if selectExits:
       return True
@@ -172,7 +179,8 @@ def runCommand(op=None, data=None, opTypes=None, device=None):
 
 class SourceSelectionScreen(Screen):
   skin = """<screen position="center,center" size="200,400">
-            <widget name="myList" position="25,25" size="150,350"/>
+              <widget source="myText" render="Label" position="25,25" size="150,50" font="Regular;25"/>
+              <widget name="myList" position="25,75" size="150,300"/>
             </screen>"""
   def __init__(self, session, title=None, sources=None):
     self.session = session
@@ -199,10 +207,13 @@ class SourceSelectionScreen(Screen):
     debug('sources_hash: %s\n' % self.sources_hash)
     self.myList =  MenuList(self.sources_names)
     self['myList'] = self.myList
-    self['myActionMap'] = ActionMap(['WizardActions'],
+    self['myText'] = StaticText('Buf.: %s' % str(BUFFERS))
+    self['myActionMap'] = ActionMap(['WizardActions', 'ShortcutActions'],
         {
           'back': self.exit,
           'ok': self.ok,
+          'nextBouquet': self.increaseBuffers,
+          'prevBouquet': self.decreaseBuffers,
        }, -1)
 
   def exit(self):
@@ -212,12 +223,32 @@ class SourceSelectionScreen(Screen):
     try:
       cur = self.myList.getCurrent()
       debug('ok pressed, cur: %s\n' % cur)
-      if runCommand(op=cur, data=self.sources_hash, opTypes=self.opTypes, device=self.device):
+      if runCommand(op=cur, data=self.sources_hash, opTypes=self.opTypes, device=self.device, buffers=BUFFERS):
         self.exit()
     except:
       debug('ok() runCommand() exception!\n')
       debug(traceback.format_exc())
       self.exit()
+      
+  def increaseBuffers(self):
+    global BUFFERS
+    try:
+      if BUFFERS < MAX_BUFFERS:
+        BUFFERS+=BUFFERS_STEP
+        self['myText'].setText('Buf.: %s' % str(BUFFERS))
+    except:
+      debug('up() exception!\n')
+      debug(traceback.format_exc())
+      
+  def decreaseBuffers(self):
+    global BUFFERS
+    try:
+      if BUFFERS > MIN_BUFFERS:
+        BUFFERS-=BUFFERS_STEP
+        self['myText'].setText('Buf.: %s' % str(BUFFERS))
+    except:
+      debug('down() exception!\n')
+      debug(traceback.format_exc())
 
 
 def _byteify(data, ignore_dicts=False):

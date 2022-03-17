@@ -15,8 +15,8 @@ This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 
 ## Description
 
-Invoking the plugin should display a list of alternative audio sources,
-selecting one of those (via the OK key) should:
+Invoking the plugin should display a list of alternative audio sources, and the
+current buffering value. Selecting one of the sources (via the OK key) should:
 * perform an audio operation, per the source definition: either do nothing, mute
   the service audio, or unmute the service audio. Note that if the current
   service is using Exteplayer3 or another external player, audio ops will most
@@ -24,11 +24,14 @@ selecting one of those (via the OK key) should:
 * perform an operation of a certain type. The type should also be defined in the
   file as a list of commands (technically, execv() arguments) to be executed, so
   the audio source plays via the system audio device. The commands are then run
-  as enigma2 sub processes, and any instances of '%(URL)s' or '%(DEVICE)s' are
-  replaced apropriately if required.
+  as enigma2 sub processes, and any instances of '%(URL)s', %(BUFFERS)s, or
+  '%(DEVICE)s' are replaced apropriately if required.
 * depending on the source definition, once an alternative source is selected,
   the sources list can auto-close or remain open; if the latter, the list can be
   closed via the EXIT key.
+
+The current buffering value can be increased/decreased by using the CHANNEL
+UP/DOWN keys, respectively.
 
 The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the
