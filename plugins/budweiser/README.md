@@ -24,21 +24,23 @@ current buffering value. Selecting one of the sources (via the OK key) should:
 * perform an operation of a certain type. The type should also be defined in the
   file as a list of commands (technically, execv() arguments) to be executed, so
   the audio source plays via the system audio device. The commands are then run
-  as enigma2 sub processes, and any instances of '%(URL)s', %(BUFFERS)s, or
-  '%(DEVICE)s' are replaced apropriately if required.
+  as enigma2 sub processes, and any instances of '%(URL)s', '%(BUFFERS)s', or
+  '%(DEVICE)s' are replaced appropriately if required.
 * depending on the source definition, once an alternative source is selected,
   the sources list can auto-close or remain open; if the latter, the list can be
   closed via the EXIT key.
 
 The current buffering value can be increased/decreased by using the CHANNEL
-UP/DOWN keys, respectively.
+UP/DOWN keys, respectively (range is currently 0 to 2000 - values smaller than
+20 might cause the alternative audio stream not to play).
 
 The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the
 file can be edited and new sources added, and existing sources can be removed or
-reordered. There's no need to reload the plugin after each edit, the file is
-read on each invocation. To troubleshoot any errors/parsing errors on the file,
-please turn on debug and examine the output (see Settings).
+reordered. The opreation types/commands can also be tweaked, if necessary.
+There's no need to reload the plugin after each edit, the file is read on each
+invocation. To troubleshoot any errors/parsing errors on the file, please turn
+on debug and examine the output (see Settings).
 
 The plugin always inserts a pre-defined audio source at the top of the list:
 CTRL^Z. Selecting this source will (try to) stop any previously selected
@@ -55,13 +57,14 @@ longer needed.
 
 * The example sources were retrieved from the http://fmstream.org/ site.
 
-* The more astute readers might have noticed that the way it all works is generic
-enough so the plugin can be used as a very simple way to create a predefined
-list of commands to be run, not necessarily related to any audio operations.
+* The more astute readers might have noticed that the way it all works is
+generic enough so the plugin can be used as a very simple way to create a
+predefined list of commands to be run, not necessarily related to any audio
+operations.
 
-* Depending on the (frequency) of usage, it might be handier to assign a hotkey to
-the plugin, so the list of sources can be brought up with a single key press on
-the remote.
+* Depending on the (frequency) of usage, it might be handier to assign a hotkey
+to the plugin, so the list of sources can be brought up with a single key press
+on the remote.
 
 * This plugin idea came while reading a @Miguel_Patito discussion in the
 "Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting technical
