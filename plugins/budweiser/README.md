@@ -7,10 +7,10 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 
 This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Mut@nt HD51 - OpenATV 7.0, PurE2 6.5
-* Octagon SF8008 - OpenSpa 7.5
-* uClan Ustym 4K - Openatv 6.4
+* Octagon SF8008 - OpenSPA 7.5
+* uClan Ustym 4K - OpenATV 6.4
 * VU Solo 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
-* VU Uno|Duo 4k SE - OpenATV 6.4, OpenSpa ?.?
+* VU Uno|Duo 4k SE - OpenATV 6.4, OpenSPA ?.?
 * VU Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
 
