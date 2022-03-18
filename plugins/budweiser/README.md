@@ -11,10 +11,13 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * uClan Ustym 4K - OpenATV 6.4
 * VU Solo 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
 * VU Uno|Duo 4k SE - OpenATV 6.4, OpenSPA 7.5
-* VU Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
+* VU Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1(1)
 * Zgemma H7C - OpenATV 6.2|6.4
 
 In some of the above, the example AAC stream does not, or might not, play.
+
+(1) The service audio can't be muted, so it overlaps with the alternative source
+audio; not very nice, but it is what it is.
 
 ## Description
 
