@@ -37,12 +37,15 @@ current buffering value. Selecting one of the sources (via the OK key) should:
 The current buffering value can be increased/decreased by using the CHANNEL
 UP/DOWN keys and the PREV/NEXT keys, respectively (the range is currently 0 to
 2000 - beware that a very small value might cause the alternative audio stream
-not to play).
+not to play). Once the buffer value is adjusted, you need to (re)select the
+source for it to take effect - beware that the audio won't start playing until
+the buffer is full, which means that for a high value it might take a while
+(experimentally, a value of a 1000 is about 30 seconds of delay).
 
 The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the
 file can be edited and new sources added, and existing sources can be removed or
-reordered. The opreation types/commands can also be tweaked, if necessary.
+reordered. The operation types/commands can also be tweaked, if necessary.
 There's no need to reload the plugin after each edit, the file is read on each
 invocation. To troubleshoot any errors/parsing errors on the file, please turn
 on debug and examine the output (see Settings).
