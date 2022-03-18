@@ -5,7 +5,7 @@
 "data": [
     ["E2MUTE", "MARKER", "", "Mute and exit", 1, true],
     ["E2UNMUTE", "MARKER", "", "Unmute and exit", 2, true],
-    ["=Portugal=", "MARKER", "", "@oottppxx, 2022-03-14", 0, false],
+    ["=Portugal=", "MARKER", "", "Another example marker", 0, false],
     ["Antena1", "MP3URL", "http://radiocast.rtp.pt/antena180a.mp3", "Example MP3 stream", 1, true],
     ["Antena2", "MP3URL", "http://radiocast.rtp.pt/antena280a.mp3", "", 1, true],
     ["Antena3", "MP3URL", "http://radiocast.rtp.pt/antena380a.mp3", "", 1, true],
@@ -23,7 +23,7 @@
     ["=Files=", "MARKER", "", "", 0, false],
     ["Example Mp3", "MP3FILE", "/home/root/mp3-file.mp3", "Example MP3 file", 1, true]
   ],
-"optypes_schema": ["string:Name", "array:Execv()Arguments"],
+"optypes_schema": ["key:string:Name", "value:array:Execv()Arguments"],
 "optypes": {
     "AACURL": [
         "/bin/sh", "-c",
@@ -42,7 +42,8 @@
   },
 "audioop_schema": "0=NoAction, 1=Mute, 2=Unmute",
 "device": "alsasink device=hw:0",
-"-":"",
-"what_is_this": "Audio sources or other commands for Extensions/Plugins/Budweiser, by @oottppxx",
-"join_us": "Telegram: https://t.me/talkenigma2, and/or Sat en espanol enigma2 vu"
+"blank": "",
+"what_is_this": "Example audio sources and operation types for the Extensions/Plugins/Budweiser plugin.",
+"author": "@oottppxx",
+"join_us_on_telegram": ["https://t.me/talkenigma2", "Sat en espan~ol enigma2 vu+"]
 }
