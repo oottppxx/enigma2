@@ -8,11 +8,11 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 This plugin is currently EXPERIMENTAL, and has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5, OpenATV 7.0
 * Octagon SF8008 - OpenSpa 7.5
+* uClan Ustym 4K - Openatv 6.4
 * VU Zero - OpenBlackHole 4.4, OpenATV 6.4 (note: example Once AAC radio doesn't
    work)
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
-* uClan Ustym 4K - Openatv 6.4
 
 ## Description
 
