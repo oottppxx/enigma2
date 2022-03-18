@@ -12,6 +12,7 @@ This plugin is currently EXPERIMENTAL, and has been successfully tested on:
    work)
 * VU 4k SE - OpenATV 6.4, OpenSpa x.y (note: example Once AAC radio doesn't work)
 * zGgemma H7C - OpenATV 6.2, OpenATV 6.4
+* uClan Ustym 4K - Openatv 6.4
 
 ## Description
 
