@@ -5,15 +5,17 @@ Replace the current service audio with an alternative audio source.
 Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
-This plugin is currently EXPERIMENTAL, and has been successfully tested on:
+This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Mut@nt HD51 - PurE2 6.5, OpenATV 7.0
 * Octagon SF8008 - OpenSpa 7.5
 * uClan Ustym 4K - Openatv 6.4
+* VU Solo 4k - OpenATV 7.0/7.1, Egami10, OpenBH 5.0, OpenViX 6.0.
+* VU Uno|Duo 4k SE - OpenATV 6.4, OpenSpa x.y
 * VU Zero - OpenBlackHole 4.4, OpenATV 6.4, OpenPLi 8.1
-  (note: example Once AAC radio doesn't/might not work)
-* VU 4k SE - OpenATV 6.4, OpenSpa x.y
-  (note: example Once AAC radio doesn't work)
-* zGgemma H7C - OpenATV 6.2, OpenATV 6.4
+* Zgemma H7C - OpenATV 6.2, OpenATV 6.4
+
+In some of the above, the example Once radio AAC stream does not, or might not,i
+play.
 
 ## Description
 
