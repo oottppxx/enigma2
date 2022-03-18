@@ -23,7 +23,7 @@
     ["=Files=", "MARKER", "", "", 0, false],
     ["Example Mp3", "MP3FILE", "/home/root/mp3-file.mp3", "Example MP3 file", 1, true]
   ],
-"optypes_schema": ["string:Name", "array:ListOfCommandsForExecv()"],
+"optypes_schema": ["string:Name", "array:Execv()Arguments"],
 "optypes": {
     "AACURL": [
         "/bin/sh", "-c",
