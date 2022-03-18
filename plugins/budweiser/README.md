@@ -11,10 +11,14 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * uClan Ustym 4K - OpenATV 6.4
 * VU Solo 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
 * VU Uno|Duo 4k SE - OpenATV 6.4, OpenSPA 7.5
-* VU Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
+* VU Zero - BlachHole 3.1.0(1), OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
 
 In some of the above, the example AAC stream does not, or might not, play.
+
+(1) To make it work under BlackHole 3.1.0, you need to force install the IPK due
+to lack of mpg123 dependencies, and replace sources.json with a modified one
+(check the sources.json-bh examples).
 
 ## Description
 
