@@ -14,7 +14,7 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * VU Zero - OpenBlackHole 4.4, OpenATV 6.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2, OpenATV 6.4
 
-In some of the above, the example Once radio AAC stream does not, or might not,i
+In some of the above, the example Once radio AAC stream does not, or might not,
 play.
 
 ## Description
