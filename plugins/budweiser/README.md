@@ -69,7 +69,8 @@ longer needed.
 
 ## Notes
 
-* The example sources were retrieved from the http://fmstream.org/ site.
+* The internet radio example sources were retrieved from the
+http://fmstream.org/ site.
 
 * The more astute readers might have noticed that the way it all works is
 generic enough so the plugin can be used as a very simple way to create a
