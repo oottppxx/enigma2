@@ -5,6 +5,8 @@
 "data": [
     ["E2MUTE", "MARKER", "", "Mute and exit", 1, true],
     ["E2UNMUTE", "MARKER", "", "Unmute and exit", 2, true],
+    ["=Saorview=", "MARKER", "", "Another example marker", 0, false],
+    ["TG4", "E2RADIOURL", "http://192.168.0.221:8001/1:0:16:450:3E9:2174:EEEE0000:0:0:0:", "", 1, true],
     ["=Portugal=", "MARKER", "", "Another example marker", 0, false],
     ["Antena1", "MP3URL", "http://radiocast.rtp.pt/antena180a.mp3", "Example MP3 stream", 1, true],
     ["Antena2", "MP3URL", "http://radiocast.rtp.pt/antena280a.mp3", "", 1, true],
@@ -17,9 +19,11 @@
     ["Marca", "MP3URL", "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA_NACIONAL.mp3", "Radio Marca Espana", 1, true],
     ["RAC1", "MP3URL", "https://25633.live.streamtheworld.com/RAC_1.mp3", "RAC1", 1, true],
     ["Los 40 Urban", "AACURL", "https://20073.live.streamtheworld.com/LOS40_URBANAAC.aac", "AAC example", 1, true],
+    ["???", "MP3URL", "http://pr1cen101.emisionlocal.com/proxy/rememberfm?mp=/LIVE", "!!!", 1, true],
     ["=UK=", "MARKER", "", "", 0, false],
     ["Radio4", "MP3URL", "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_fourfm", "", 1, true],
     ["Radio5", "MP3URL", "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk", "", 1, true],
+    ["Radio5 (E2)", "E2URL", "http://127.0.0.1:8001/1:0:2:1901:7FF:2:11A0000:0:0:0:", "E2 Radio Streaming", 1, true],
     ["=Files=", "MARKER", "", "", 0, false],
     ["Example Mp3", "MP3FILE", "/home/root/mp3-file.mp3", "Example MP3 file", 1, true]
   ],
@@ -29,6 +33,10 @@
         "/bin/sh", "-c",
         "/usr/bin/gst-launch-1.0 souphttpsrc location=%(URL)s ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s >/dev/null 2>&1"
       ],
+    "E2URL": [
+        "/bin/sh", "-c",
+        "/usr/bin/gst-launch-1.0 souphttpsrc location=%(URL)s ! tsdemux ! audio/mpeg ! fdsink fd=1 |/usr/bin/mpg123 -o wav -|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s"
+    ],
     "MARKER": [],
     "MP3FILE": [
         "/bin/sh", "-c",

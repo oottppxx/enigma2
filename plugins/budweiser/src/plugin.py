@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3d'
+PLUGIN_VERSION='6.2.3e'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
