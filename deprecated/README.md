@@ -1,4 +1,5 @@
-* Files in these directory had their usage deprecated.
+Files in these directory had their usage deprecated, or are no longer actively
+supported (but I might fix a bug or two if necessary).
 
 Just here for fun and historical purposes, or if you happen
 to be running a really old system/box.
