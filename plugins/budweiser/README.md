@@ -81,10 +81,9 @@ operations.
 to the plugin, so the list of sources can be brought up with a single key press
 on the remote.
 
-* This plugin idea came while reading a @Miguel_Patito discussion in the
-"Sat en espanol enigma2 vu+" Telegram chatroom; it was an interesting technical
-problem to try and figure out how to solve. Of course, once I finished with
-version 6.2.1a, I found out about
+* This plugin idea came while reading a @Miguel_Patito discussion in a Telegram
+chatroom; it was an interesting technical problem to try and figure out how to
+solve. Of course, once I finished with version 6.2.1a, I found out about
 [ziko](https://www.linuxsat-support.com/cms/user/344808-ziko/)'s
 [IPAudio plugin](https://www.linuxsat-support.com/thread/148485-ipaudio-by-ziko/?postID=618093#post618093),
 which apparently also uses a specific gstreamer utility in the background. I
