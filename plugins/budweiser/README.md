@@ -19,6 +19,10 @@ In some of the above, the example AAC stream does not, or might not, play.
 (1) The service audio can't be muted, so it overlaps with the alternative source
 audio; not very nice, but it is what it is.
 
+VU BlackHole doesn't seem to have any usable audio devices/sinks other than the
+dvbaudiosink, which is of course busy once services are in use? As such, unless
+a proper device/sink is found, this plugin won't work there.
+
 ## Description
 
 Invoking the plugin should display a list of alternative audio sources, and the
