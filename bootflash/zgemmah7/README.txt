@@ -64,10 +64,5 @@ possible to brick the box messing around, so play safe!
 
 @oottppxx
 
-P.S. - You might also want to try my 8 slots OpenATV 6.4 recovery image, get it
-at https://drive.google.com/file/d/1CTYIXOPKuODJa22h9GAWuy-CwkKHrktg/. It should
-work pretty similar to the Mut@nt HD51 one, so make sure to go there and read
-the README!
-
-P.S.S. - Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/bootflash/party/party.py)
+P.S. - Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/bootflash/party/party.py)
 script if you want to carve your own image partition layout.

@@ -12,6 +12,3 @@ Also, checkout the [party.py](https://github.com/oottppxx/enigma2/blob/master/bo
 script if you want to carve your own image partition layout.
 
 @oottppxx
-
-[Image Download GDrive](https://drive.google.com/file/d/1KceL9asN3sv8fX-1cZ6_Bpn-s2A38rCE/)
-
