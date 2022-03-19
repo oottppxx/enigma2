@@ -14,7 +14,7 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 * [Heinz](https://github.com/oottppxx/enigma2/tree/master/plugins/heinz) is a "ketchup" plugin, supporting (a couple of variants of) XCAPI and VAPI.
 
 * [Innocent](https://github.com/oottppxx/enigma2/tree/master/plugins/innocent) is a local M3U proxy for SmoothStreams.
-  See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up (using Suls).
+  See [this guide](https://github.com/oottppxx/enigma2/tree/master/plugins/innocent/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up (using Suls).
 
 * [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
   See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up.
