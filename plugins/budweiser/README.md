@@ -6,6 +6,7 @@ Join us in the [Enigma2Talk Telegram chatroom](https://t.me/talkenigma2)
 to help with testing, provide ideas and all kind of suggestions or comments!
 
 This plugin is EXPERIMENTAL; it has been successfully tested on:
+* Gigablue UE 4k - TeamBlue 6.4
 * Mut@nt HD51 - OpenATV 7.0, PurE2 6.5
 * Octagon SF8008 - OpenSPA 7.5
 * uClan Ustym 4K - OpenATV 6.4
