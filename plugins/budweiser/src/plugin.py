@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3i'
+PLUGIN_VERSION='6.2.3j'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -114,7 +114,7 @@ def audioKill():
       os.kill(AUDIO_PROCESS, signal.SIGKILL)
       os.killpg(AUDIO_PROCESS, signal.SIGKILL)
       os.waitpid(AUDIO_PROCESS, 0)
-      os.system("sync && echo 3 > /proc/sys/vm/drop_caches")
+      os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 0 > /proc/sys/vm/overcommit_memory")
       AUDIO_PROCESS = None
     except:
       debug('audioKill() os.kill|killpg|waitpid() exception!\n')
@@ -126,7 +126,7 @@ def audioProcess(argv):
   debug('Run audioProcess: %s\n' % str(argv))
   try:
     audioKill()
-    os.system("sync && echo 3 > /proc/sys/vm/drop_caches")
+    os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 1 > /proc/sys/vm/overcommit_memory")
     AUDIO_PROCESS = os.fork()
     if not AUDIO_PROCESS:
       debug('Child audioProcess() execv(): %s\n' % str(argv))
