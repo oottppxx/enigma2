@@ -11,6 +11,7 @@
      "Example SHELL opType (no buffering)", 1, true],
     ["=Spain=", "MARKER", "", "", 0, false],
     ["COPE", "MP3URL", "https://flucast06-o-cloud.flumotion.com/cope/net1.mp3", "Radio Cope Espana", 1, true],
+    ["Onda Cero", "MP3URL", "https://liveradio.com.es:8042/stream", "Onda Cero", 1, true],
     ["Cadena SER", "MP3URL", "https://21633.live.streamtheworld.com/SER_PUERTOLLANO.mp3", "Cadena Ser Espana", 1, true],
     ["Marca", "MP3URL", "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA_NACIONAL.mp3", "Radio Marca Espana", 1, true],
     ["RAC1", "MP3URL", "https://25633.live.streamtheworld.com/RAC_1.mp3", "RAC1", 1, true],
@@ -40,7 +41,7 @@
       ],
     "MP3URL": [
         "/bin/sh", "-c",
-        "(/usr/bin/wget -O- %(URL)s|/usr/bin/mpg123 -o wav -|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
+        "(/usr/bin/wget -qO- %(URL)s|/usr/bin/mpg123 -o wav -|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
       ],
     "MP3URLhttp-only": [
         "/bin/sh", "-c",

@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3j'
+PLUGIN_VERSION='6.2.3k'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -114,7 +114,7 @@ def audioKill():
       os.kill(AUDIO_PROCESS, signal.SIGKILL)
       os.killpg(AUDIO_PROCESS, signal.SIGKILL)
       os.waitpid(AUDIO_PROCESS, 0)
-      os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 0 > /proc/sys/vm/overcommit_memory")
+      os.system("sync && echo 3 > /proc/sys/vm/drop_caches")
       AUDIO_PROCESS = None
     except:
       debug('audioKill() os.kill|killpg|waitpid() exception!\n')
@@ -129,12 +129,16 @@ def audioProcess(argv):
     os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 1 > /proc/sys/vm/overcommit_memory")
     AUDIO_PROCESS = os.fork()
     if not AUDIO_PROCESS:
-      debug('Child audioProcess() execv(): %s\n' % str(argv))
+      debug('Child audioProcess() argv: %s\n' % str(argv))
+      os.closerange(3,1024)
       os.setsid()
+      debug('Child audioProcess() execv(): %s\n' % str(argv))
       os.execv(argv[0], argv)
+    debug('Parent audioProcess() fork(): %s\n' % str(AUDIO_PROCESS))
   except:
     debug('Parent audioProcess() forking exception: %s\n' % str(argv))
     debug(traceback.format_exc())
+  os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 0 > /proc/sys/vm/overcommit_memory")
 
 
 def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DEF):
