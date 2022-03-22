@@ -38,6 +38,7 @@ on the problematic devices, but no smoking gun yet.
 
 (1) The service audio can't be muted, so it overlaps with the alternative source
 audio; not very nice, but it is what it is.
+
 (2) Ditto, and some investigation makes me believe it won't be very easy to
 change this behavior on the Zero (no idea about the Solo).
 
