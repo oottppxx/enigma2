@@ -11,11 +11,19 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Octagon SF8008 - OpenSPA 7.5
 * uClan Ustym 4K - OpenATV 6.4
 * VU+ Solo(1) 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
+* VU+ Ultimo 4k - OpenBlackHole 5.1
 * VU+ Uno|Duo 4k SE - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
 * VU+ Zero(2) - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
 
 In some of the above, the example AAC stream does not, or might not, play.
+
+Per [Ev0](https://www.linuxsat-support.com/thread/152127-budweiser-plugin/?postID=661724#post661724)'s
+comment, you might want to tweak your current audio settings:
+* make sure you have downmix selected.
+* make sure 3D Surround is set to off.
+* make sure Auto Volume Level (AVL) is also set to off.
+
 
 VU+ BlackHole was also tested, but it doesn't seem to have any alternative and
 usable audio devices/sinks other than the dvbaudiosink, which is of course busy
