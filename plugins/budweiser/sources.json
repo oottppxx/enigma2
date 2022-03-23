@@ -37,7 +37,7 @@
     ],
     "M3U8URLonda": [
         "/bin/sh", "-c",
-        "(/usr/bin/hlsdl -o- %(URL)s |/usr/bin/gst-launch-1.0 fdsrc fd=0 ! tsdemux ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
+        "(/usr/bin/hlsdl -o- %(URL)s|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! tsdemux ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
     ],
     "MARKER": [],
     "MP3FILE": [
