@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3l'
+PLUGIN_VERSION='6.2.3m'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -28,7 +28,8 @@ WIDTH_DEF=200
 THEIGHT_DEF=50
 LHEIGHT_DEF=300
 MARGIN_DEF=25
-FSIZE_DEF=25
+TFSIZE_DEF=25
+LFSIZE_DEF=20
 FONT_DEF='Regular'
 
 AUDIO_FD=0
@@ -197,17 +198,18 @@ class SourceSelectionScreen(Screen):
     THEIGHT=sources.get("skin_text_height", THEIGHT_DEF)
     LHEIGHT=sources.get("skin_list_height", LHEIGHT_DEF)
     MARGIN=sources.get("skin_margins", MARGIN_DEF)
-    FSIZE=sources.get("skin_font_size", FSIZE_DEF)
+    TFSIZE=sources.get("skin_text_font_size", TFSIZE_DEF)
+    LFSIZE=sources.get("skin_list_font_size", LFSIZE_DEF)
     FONT=sources.get("skin_font_name", FONT_DEF)
     skin_geometry={
       'SWIDTH': WIDTH, 'SHEIGHT': THEIGHT+LHEIGHT+2*MARGIN,
       'TLEFT': MARGIN, 'TTOP': MARGIN, 'TWIDTH': WIDTH-2*MARGIN, 'THEIGHT': THEIGHT,
-      'FONT': FONT, 'FSIZE': FSIZE,
+      'FONT': FONT, 'TFSIZE': TFSIZE, 'LFSIZE': LFSIZE,
       'LLEFT': MARGIN, 'LTOP': MARGIN+THEIGHT, 'LWIDTH': WIDTH-2*MARGIN, 'LHEIGHT': LHEIGHT,
     }
     self.skin = """<screen position="center,center" size="%(SWIDTH)d,%(SHEIGHT)d">
-        <widget source="myText" render="Label" position="%(TLEFT)d,%(TTOP)d" size="%(TWIDTH)d,%(THEIGHT)d" font="%(FONT)s;%(FSIZE)d"/>
-        <widget name="myList" position="%(LLEFT)d, %(LTOP)d" size="%(LWIDTH)d,%(LHEIGHT)d"/>
+        <widget source="myText" render="Label" position="%(TLEFT)d,%(TTOP)d" size="%(TWIDTH)d,%(THEIGHT)d" font="%(FONT)s;%(TFSIZE)d"/>
+        <widget name="myList" position="%(LLEFT)d, %(LTOP)d" size="%(LWIDTH)d,%(LHEIGHT)d" font="%(FONT)s;%(LFSIZE)d"/>
         </screen>""" % skin_geometry
     self.session = session
     Screen.__init__(self, session)
