@@ -37,7 +37,7 @@
     ],
     "M3U8URLonda": [
         "/bin/sh", "-c",
-        "(/usr/bin/hlsdl -o- %(URL)s|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! tsdemux ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
+        "(/usr/bin/hlsdl -o- %(URL)s |/usr/bin/gst-launch-1.0 fdsrc fd=0 ! tsdemux ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
     ],
     "MARKER": [],
     "MP3FILE": [
@@ -55,6 +55,12 @@
     "SHELL": ["/bin/sh", "-c", "%(URL)s"]
   },
 "device": "alsasink device=hw:0",
+"skin_width": 200,
+"skin_text_height": 50,
+"skin_list_height": 300,
+"skin_margins": 25,
+"skin_font_size": 25,
+"skin_font_name": "Regular",
 "#": "",
 "data_schema": ["string:Name", "string:OpType", "string:URL|File|Command",
     "string:Comment", "int:AudioOp", "bool:SelectExits"],

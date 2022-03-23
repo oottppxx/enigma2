@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3k'
+PLUGIN_VERSION='6.2.3l'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -23,6 +23,13 @@ PLUGIN_PATH='Extensions/Budweiser'
 PLUGINS_PATH='/usr/lib/enigma2/python/Plugins'
 DEBUG_FILE='/tmp/budweiser-debug.log'
 SOURCES_FILE=PLUGINS_PATH+'/'+PLUGIN_PATH+'/sources.json'
+
+WIDTH_DEF=200
+THEIGHT_DEF=50
+LHEIGHT_DEF=300
+MARGIN_DEF=25
+FSIZE_DEF=25
+FONT_DEF='Regular'
 
 AUDIO_FD=0
 AUDIO_PROCESS=None
@@ -185,11 +192,23 @@ def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DE
 
 
 class SourceSelectionScreen(Screen):
-  skin = """<screen position="center,center" size="200,400">
-              <widget source="myText" render="Label" position="25,25" size="150,50" font="Regular;25"/>
-              <widget name="myList" position="25,75" size="150,300"/>
-            </screen>"""
   def __init__(self, session, title=None, sources=None):
+    WIDTH=sources.get("skin_width", WIDTH_DEF)
+    THEIGHT=sources.get("skin_text_height", THEIGHT_DEF)
+    LHEIGHT=sources.get("skin_list_height", LHEIGHT_DEF)
+    MARGIN=sources.get("skin_margins", MARGIN_DEF)
+    FSIZE=sources.get("skin_font_size", FSIZE_DEF)
+    FONT=sources.get("skin_font_name", FONT_DEF)
+    skin_geometry={
+      'SWIDTH': WIDTH, 'SHEIGHT': THEIGHT+LHEIGHT+2*MARGIN,
+      'TLEFT': MARGIN, 'TTOP': MARGIN, 'TWIDTH': WIDTH-2*MARGIN, 'THEIGHT': THEIGHT,
+      'FONT': FONT, 'FSIZE': FSIZE,
+      'LLEFT': MARGIN, 'LTOP': MARGIN+THEIGHT, 'LWIDTH': WIDTH-2*MARGIN, 'LHEIGHT': LHEIGHT,
+    }
+    self.skin = """<screen position="center,center" size="%(SWIDTH)d,%(SHEIGHT)d">
+        <widget source="myText" render="Label" position="%(TLEFT)d,%(TTOP)d" size="%(TWIDTH)d,%(THEIGHT)d" font="%(FONT)s;%(FSIZE)d"/>
+        <widget name="myList" position="%(LLEFT)d, %(LTOP)d" size="%(LWIDTH)d,%(LHEIGHT)d"/>
+        </screen>""" % skin_geometry
     self.session = session
     Screen.__init__(self, session)
     if sources.get("title", False):
