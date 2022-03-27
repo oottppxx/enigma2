@@ -31,7 +31,7 @@ import traceback
 
 from enigma import iPlayableService
 
-from Components.config import config, configfile, ConfigBoolean, ConfigSelection, ConfigSubsection, ConfigText
+from Components.config import config, configfile, ConfigBoolean, ConfigSelection, ConfigSubsection
 from Plugins.Plugin import PluginDescriptor
 if openatv_like:
   from Screens.Setup import Setup
@@ -41,7 +41,7 @@ else:
 #  from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0a'
+PLUGIN_VERSION='6.2.0b'
 PLUGIN_NAME='Ritalin'
 PLUGIN_DESC='Service Spotting'
 PLUGIN_ICON='ritalin.png'
@@ -112,31 +112,28 @@ def DEBUG(s):
     print('%s %s' % (t,s))
 
 
-def saveService():
-  DEBUG('Service saving...\n')
-  if SESSION:
-    current = SESSION.nav.getCurrentlyPlayingServiceReference()
-    if current:
-      config.tv.lastservice.value = current.toString()
-      config.tv.lastservice.save()
-      DEBUG('WARNING: This can stress your flash, as it does one write per zap!!!')
-      configfile.save()
-      DEBUG('Service %s saved.\n' % current.toString())
-    else:
-      DEBUG('No service to save!\n')
-    return
-  DEBUG('Can\'t save service, no session!\n')
+def saveService(serviceStr=''):
+  DEBUG('  saving service: %s\n' % serviceStr)
+  if serviceStr:
+    config.tv.lastservice.value = serviceStr
+    config.tv.lastservice.save()
+    DEBUG('  WARNING: This can stress your flash, as it does one write per zap!!!')
+    configfile.save()
+    DEBUG('  service %s saved.\n' % serviceStr)
+  else:
+    DEBUG('  no service to save!\n')
 
 
 def serviceEvent(evt):
   DEBUG('-> %s\n' % EVENT_STRINGS.get(evt, 'UNKNOWN %d' % int(evt)))
   if SESSION:
     if (evt == iPlayableService.evStart):
-      DEBUG('  handling...\n')
+      current = SESSION.nav.getCurrentlyPlayingServiceReference()
+      DEBUG('  handling %s\n' % current.toString())
       if ENABLE:
-        saveService()
+        saveService(current.toString())
       else:
-        DEBUG('  ignoring: not enabled...\n')
+        DEBUG('  ignoring: not enabled\n')
     return
   DEBUG('No session!\n')
 
