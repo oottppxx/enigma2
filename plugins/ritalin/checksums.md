@@ -1,4 +1,4 @@
 enigma2-plugin-extensions-ritalin-6.2.0a.ipk
-MD5 f617cea3a3dee88b9cce2fccf3166ddc
-SHA fc0d4375968c3a79db1758901977616bf9a223d0
+MD5 b8a30e9488d54417f4bc30a5b325ad46
+SHA 127794fc7d380980d84a605bb334d0c1c2ae66ce
 

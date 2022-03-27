@@ -23,8 +23,8 @@ write to flash.
 
 **"Enable"**
 * "Enable or disable."
-* Default: True.
-* If disabled, the plugin won't try to save the servicce. Useful when checking
+* Default: False.
+* If disabled, the plugin won't try to save the service. Useful when checking
   the plugin behavior in association with the debug setting, or if you want to
   prevent premature flash aging (might as well uninstall the plugin, though).
 
