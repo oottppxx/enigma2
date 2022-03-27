@@ -1,0 +1,7 @@
+<setupxml>
+  <setup key="ritalin" title="Ritalin Setup">
+    <item level="0" text="Ritalin" description="Version information.">config.plugins.ritalin.version</item>
+    <item level="0" text="Enable" description="Enable or disable.">config.plugins.ritalin.enable</item>
+    <item level="0" text="Debug" description="Activate debug log.">config.plugins.ritalin.debug</item>
+  </setup>
+</setupxml>
