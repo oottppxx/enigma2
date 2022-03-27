@@ -27,8 +27,6 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 
 * [ReStart](https://github.com/oottppxx/enigma2/tree/master/plugins/restart) is a trivial plugin that stops/starts the current service. No more need to zap out/in.
 
-* [Ritalin](https://github.com/oottppxx/enigma2/tree/master/plugins/ritalin) is an experimental plugin, use at your own risk!
-
 * [Subway](https://github.com/oottppxx/enigma2/tree/master/plugins/subway) is a plugin to display subscription info, if the service supports it; it should work for both XCAPI and VAPI.
 
 Typically, the README files for each plugin/script will provide the necessary information
