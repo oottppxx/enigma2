@@ -15,6 +15,7 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * VU+ Uno|Duo 4k SE - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
 * VU+ Zero(2) - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
+* Zgemma Star H2(1) - OpenPLi 8.1
 
 In some of the above, the example AAC stream does not, or might not, play.
 
