@@ -19,8 +19,6 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 * [McDonnells](https://github.com/oottppxx/enigma2/tree/master/plugins/mcdonnells) is an events lister/zapper for SmoothStreams and VAPI MatchCenter.
   See [this guide](https://github.com/oottppxx/enigma2/tree/master/docs/SSSetupGuideOnE2.pdf) by @asondj (thanks!) on how to set it up.
 
-* [MiracleWhip](https://github.com/oottppxx/enigma2/tree/master/plugins/miraclewhip) is a plugin to edit Suls/IPTVBouquetMaker/E2m3u2bouquet provider configs via the webbrowser.
-
 * [PyShell](https://github.com/oottppxx/enigma2/tree/master/plugins/pyshell) is a plugin for developers/coders - it provides a very simple Python shell with access to the Enigma2 runtime environment, so small (or not so small) snippets of code can be tested and experimented with while avoiding crashes.
 
 * [QuarterPounder](https://github.com/oottppxx/enigma2/tree/master/plugins/quarterpounder) attempts to monitor IPTV streams and restart them if they get stuck.
