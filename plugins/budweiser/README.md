@@ -13,10 +13,14 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * uClan Ustym 4K - OpenATV 6.4
 * VU+ Solo(1) 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
 * VU+ Ultimo 4k - OpenBlackHole 5.1
-* VU+ Uno|Duo 4k SE - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
-* VU+ Zero(2) - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
+* VU+ Uno(1) - OpenPLi 8.1
+* VU+ Uno|Duo 4k [SE] - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
+* VU+ Zero(1) - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
 * Zgemma Star H2(1) - OpenPLi 8.1
+
+(1) The service audio can't be muted separately, so it overlaps with the
+alternative source audio; not very nice, but it is what it is.
 
 In some of the above, the example AAC stream does not, or might not, play.
 
@@ -26,7 +30,6 @@ comment, you might want to tweak your current audio settings:
 * make sure 3D Surround is set to off.
 * make sure Auto Volume Level (AVL) is also set to off.
 
-
 VU+ BlackHole was also tested, but it doesn't seem to have any alternative and
 usable audio devices/sinks other than the dvbaudiosink, which is of course busy
 once services are in use? As such, unless a proper system audio device/sink is
@@ -34,15 +37,9 @@ found, this plugin won't work there.
 
 More on VU+ decoders: sometimes the alternative audio doesn't play for some
 box/distro combos which were tested as successful by others. Investigation is
-ongoing to check for interactions with other software that might be installed
-on the problematic devices, but no smoking gun yet.
+ongoing to check for interactions with other software/plugins that might be
+installed on the problematic devices, but no smoking gun yet, so no known fix.
 
-
-(1) The service audio can't be muted, so it overlaps with the alternative source
-audio; not very nice, but it is what it is.
-
-(2) Ditto, and some investigation makes me believe it won't be very easy to
-change this behavior on the Zero (no idea about the Solo).
 
 ## Description
 
