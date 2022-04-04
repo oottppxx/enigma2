@@ -43,8 +43,9 @@ installed on the problematic devices, but no smoking gun yet, so no known fix.
 
 ## Description
 
-Invoking the plugin should display a list of alternative audio sources, and the
-current buffering value. Selecting one of the sources (via the OK key) should:
+Invoking the plugin should display a list of alternative audio sources (see
+below), and the current buffering value. Selecting one of the sources (via the
+OK key) should:
 * perform an audio operation, per the source definition: either do nothing, mute
   the service audio, or unmute the service audio. Note that if the current
   service is using Exteplayer3 or another external player, audio ops will most
@@ -54,6 +55,8 @@ current buffering value. Selecting one of the sources (via the OK key) should:
   the audio source plays via the system audio device. The commands are then run
   as enigma2 sub processes, and any instances of '%(URL)s', '%(BUFFERS)s', or
   '%(DEVICE)s' are replaced appropriately if required.
+* if a different source than the last is selected, the buffer value will update
+  to the value defined for the stream in the source definition, per the file.
 * depending on the source definition, once an alternative source is selected,
   the sources list can auto-close or remain open; if the latter, the list can be
   closed via the EXIT key.
