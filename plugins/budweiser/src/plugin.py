@@ -15,7 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
-PLUGIN_VERSION='6.2.3m'
+PLUGIN_VERSION='6.2.3n'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -42,6 +42,7 @@ BUFFERS_BIG_STEP=100
 BUFFERS_SMALL_STEP=10
 BUFFERS_DEF=100
 BUFFERS=BUFFERS_DEF
+CUR=None
 EXTRA_OPS=["CTRL^Z"]
 
 def debug(s):
@@ -149,12 +150,13 @@ def audioProcess(argv):
   os.system("sync && echo 3 > /proc/sys/vm/drop_caches && echo 0 > /proc/sys/vm/overcommit_memory")
 
 
-def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DEF):
+def runCommand(op=None, data=None, opTypes=None, device=None):
+  global BUFFERS
+  global CUR
   debug('runCommand(): %s\n' % op)
   debug('data: %s\n' % str(data))
   debug('opTypes: %s\n' % str(opTypes))
   debug('device: %s\n' % str(device))
-  debug('buffers: %s\n' % str(buffers))
   if op in 'CTRL^Z':
     try:
       audioKill()
@@ -165,8 +167,9 @@ def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DE
     return True
   try:
     data = data.get(op, None)
-    opType, url, comment, audioOp, selectExits = data
+    opType, buffers, url, comment, audioOp, selectExits = data
     debug('runCommand() opType: %s\n' % str(opType))
+    debug('runCommand() buffers: %s\n' % str(buffer))
     debug('runCommand() url: %s\n' % str(url))
     debug('runCommand() comment: %s\n' % str(comment))
     debug('runCommand() audioOp: %s\n' % str(audioOp))
@@ -177,6 +180,14 @@ def runCommand(op=None, data=None, opTypes=None, device=None, buffers=BUFFERS_DE
       audioStart()
     argv = opTypes.get(opType, None)
     if argv:
+      if CUR != op and (CUR or BUFFERS == BUFFERS_DEF):
+        if buffers < MIN_BUFFERS:
+          BUFFERS = MIN_BUFFERS
+        elif buffers > MAX_BUFFERS:
+          BUFFERS = MAX_BUFFERS
+        else:
+          BUFFERS = buffers
+      CUR = op
       # Keep the order, so we can include %(DEVICE)s and %(BUFFERS)s in %(URL)s.
       argv = [str(x) % {"URL": url, "DEVICE": device, "BUFFERS": buffers} for x in argv]
       argv = [str(x) % {"DEVICE": device, "BUFFERS": buffers} for x in argv]
@@ -253,7 +264,7 @@ class SourceSelectionScreen(Screen):
     try:
       cur = self.myList.getCurrent()
       debug('ok pressed, cur: %s\n' % cur)
-      if runCommand(op=cur, data=self.sources_hash, opTypes=self.opTypes, device=self.device, buffers=BUFFERS):
+      if runCommand(op=cur, data=self.sources_hash, opTypes=self.opTypes, device=self.device):
         self.exit()
     except:
       debug('ok() runCommand() exception!\n')
@@ -286,18 +297,14 @@ class SourceSelectionScreen(Screen):
       debug('decreaseBuffers() exception!\n')
       debug(traceback.format_exc())
 
-
   def bigIncreaseBuffers(self):
     self.increaseBuffers(step=BUFFERS_BIG_STEP)
-
 
   def bigDecreaseBuffers(self):
     self.decreaseBuffers(step=BUFFERS_BIG_STEP)
 
-
   def smallIncreaseBuffers(self):
     self.increaseBuffers(step=BUFFERS_SMALL_STEP)
-
 
   def smallDecreaseBuffers(self):
     self.decreaseBuffers(step=BUFFERS_SMALL_STEP)
