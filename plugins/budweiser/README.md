@@ -11,16 +11,18 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Octagon SF4008 - OpenLD 3.4
 * Octagon SF8008 - OpenSPA 7.5
 * uClan Ustym 4K - OpenATV 6.4
-* VU+ Solo(1) 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
+* VU+ Solo 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
+* VU+ Solo2 - OpenATV 6.x.
 * VU+ Ultimo 4k - OpenBlackHole 5.1
-* VU+ Uno(1) - OpenPLi 8.1
+* VU+ Uno - OpenPLi 8.1
 * VU+ Uno|Duo 4k [SE] - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
-* VU+ Zero(1) - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
+* VU+ Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
-* Zgemma Star H2(1) - OpenPLi 8.1
+* Zgemma Star H2 - OpenPLi 8.1
 
-(1) The service audio can't be muted separately, so it overlaps with the
-alternative source audio; not very nice, but it is what it is.
+On the MIPS receivers tested, the service audio can't be muted separately via
+IOCTL, so an (ugly but smart) hack was "borrowed" from Ziko IPAUDIO plugin.
+This requires stop/starting the entire service, so a video glitch is seen.
 
 In some of the above, the example AAC stream does not, or might not, play.
 

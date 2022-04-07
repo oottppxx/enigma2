@@ -14,8 +14,32 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
+# Attempt to workaround some MIPS boxes muting issues (ugly hack).
+# Shamelessly stolen from:
+# https://github.com/ziko-ZR1/IPAudio
+AUDIO_FILE=None
+ALT_FILE=None
+SESSION=None
+try:
+  import platform
+  if platform.machine() == 'mips':
+    AUDIO_FILE='/dev/dvb/adapter0/audio0'
+    ALT_FILE=AUDIO_FILE+'_BUD'
+except:
+ pass
+# Attempt to workaround some boxes playing issues?
+# No idea if this will work, though, doubtful.
+# Shamelessly stolen from:
+# https://github.com/ziko-ZR1/IPAudio
+ALSA=None
+try:
+  from enigma import eAlsaOutput
+  ALSA=eAlsaOutput.getInstance()
+except:
+  pass
 
-PLUGIN_VERSION='6.2.3n'
+
+PLUGIN_VERSION='6.2.3o'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -103,6 +127,28 @@ def audioStop():
   except:
     debug('audioStop() exception!\n')
     debug(traceback.format_exc())
+  if ALSA:
+    debug('E2 alsa detected, stop/close just in case?\n')
+    try:
+      ALSA.stop()
+      ALSA.close()
+    except:
+      debug('audioStop() exception!\n')
+      debug(traceback.format_exc())
+  else:
+    debug('No E2 alsa detected, skipping.\n')
+  if AUDIO_FILE and SESSION:
+    debug('E2 MIPS workaround.\n')
+    try:
+      service = SESSION.nav.getCurrentlyPlayingServiceReference()
+      os.rename(AUDIO_FILE, ALT_FILE)
+      SESSION.nav.stopService()
+      SESSION.nav.playService(service)
+    except:
+      debug('audioStop() exception!\n')
+      debug(traceback.format_exc())
+  else:
+    debug('No E2 MIPS workaround.\n')
 
 
 def audioStart():
@@ -113,6 +159,18 @@ def audioStart():
   except:
     debug('audioStart() exception!\n')
     debug(traceback.format_exc())
+  if AUDIO_FILE and SESSION:
+    debug('E2 MIPS workaround.\n')
+    try:
+      service = SESSION.nav.getCurrentlyPlayingServiceReference()
+      os.rename(ALT_FILE, AUDIO_FILE)
+      SESSION.nav.stopService()
+      SESSION.nav.playService(service)
+    except:
+      debug('audioStart() exception!\n')
+      debug(traceback.format_exc())
+  else:
+    debug('No E2 MIPS workaround.\n')
 
 
 def audioKill():
@@ -333,6 +391,8 @@ def getJsonData(filename):
     
 
 def main(session, **kwargs):
+  global SESSION
+  SESSION=session
   try:
     sources = getJsonData(SOURCES_FILE)
   except:
