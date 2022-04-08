@@ -62,6 +62,8 @@
     "SHELL": ["/bin/sh", "-c", "%(URL)s"]
   },
 "device": "alsasink device=hw:0",
+"mute_tweak": true,
+"alsa_tweak": false,
 "skin_width": 200,
 "skin_text_height": 50,
 "skin_list_height": 300,

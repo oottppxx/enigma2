@@ -14,23 +14,27 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
+UNAME=('', '', '', '', '')
+UNAME_STR=str(UNAME)
+try:
+  UNAME=os.uname()
+  UNAME_STR=str(UNAME)
+except:
+  pass
+
 # Attempt to workaround some MIPS boxes muting issues (ugly hack).
 # Shamelessly stolen from:
 # https://github.com/ziko-ZR1/IPAudio
-AUDIO_FILE=None
-ALT_FILE=None
+MUTE_TWEAK=False
+AUDIO_FILE=''
+ALT_SUFFIX='_BUD'
 SESSION=None
-try:
-  import platform
-  if platform.machine() == 'mips':
-    AUDIO_FILE='/dev/dvb/adapter0/audio0'
-    ALT_FILE=AUDIO_FILE+'_BUD'
-except:
- pass
+
 # Attempt to workaround some boxes playing issues?
 # No idea if this will work, though, doubtful.
 # Shamelessly stolen from:
 # https://github.com/ziko-ZR1/IPAudio
+ALSA_TWEAK=False
 ALSA=None
 try:
   from enigma import eAlsaOutput
@@ -39,7 +43,7 @@ except:
   pass
 
 
-PLUGIN_VERSION='6.2.3o'
+PLUGIN_VERSION='6.2.3p'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -90,6 +94,7 @@ def info(session, text=None, callback=None):
 
 def audioFind():
   global AUDIO_FD
+  global AUDIO_FILE
   try:
     if AUDIO_FD:
       try:
@@ -99,23 +104,28 @@ def audioFind():
           return AUDIO_FD
       except:
         debug('audioFind() fd %s is invalid, searching...\n' % AUDIO_FD)
+        AUDIO_FILE=''
     pid = os.getpid()
     ldir = os.listdir('/proc/%s/fd' % pid)
     ldir.append('0')
     debug('LDIR: %s\n' % ldir)
     for fd in ldir:
+      ls = ''
       try:
         ls = os.readlink('/proc/%s/fd/%s' % (pid, fd))
       except:
         pass
-      debug('LS: %s\n' % ls)
+      debug('%s: %s\n' % (fd, ls))
       if '/dev/dvb/adapter' in ls and 'audio' in ls:
         debug('audioFind() found fd %s...\n' % fd)
         AUDIO_FD=int(fd)
+        AUDIO_FILE=ls
         break
   except:
     debug('audioFind() exception!\n')
     debug(traceback.format_exc())
+    AUDIO_FD=None
+    AUDIO_FILE=''
   return int(fd)
 
 
@@ -127,8 +137,21 @@ def audioStop():
   except:
     debug('audioStop() exception!\n')
     debug(traceback.format_exc())
-  if ALSA:
-    debug('E2 alsa detected, stop/close just in case?\n')
+    if AUDIO_FILE and SESSION and MUTE_TWEAK:
+      debug('E2 mute tweak: %s\n' % UNAME_STR)
+      ALT_FILE=AUDIO_FILE+ALT_SUFFIX
+      try:
+        service = SESSION.nav.getCurrentlyPlayingServiceReference()
+        os.rename(AUDIO_FILE, ALT_FILE)
+        SESSION.nav.stopService()
+        SESSION.nav.playService(service)
+      except:
+        debug('audioStop() exception!\n')
+        debug(traceback.format_exc())
+    else:
+      debug('No E2 mute tweak: %s\n' % UNAME_STR)
+  if ALSA and ALSA_TWEAK:
+    debug('E2 alsa tweak: %s\n' % UNAME_STR)
     try:
       ALSA.stop()
       ALSA.close()
@@ -136,19 +159,7 @@ def audioStop():
       debug('audioStop() exception!\n')
       debug(traceback.format_exc())
   else:
-    debug('No E2 alsa detected, skipping.\n')
-  if AUDIO_FILE and SESSION:
-    debug('E2 MIPS workaround.\n')
-    try:
-      service = SESSION.nav.getCurrentlyPlayingServiceReference()
-      os.rename(AUDIO_FILE, ALT_FILE)
-      SESSION.nav.stopService()
-      SESSION.nav.playService(service)
-    except:
-      debug('audioStop() exception!\n')
-      debug(traceback.format_exc())
-  else:
-    debug('No E2 MIPS workaround.\n')
+    debug('No E2 alsa tweak: %s\n' % UNAME_STR)
 
 
 def audioStart():
@@ -159,18 +170,18 @@ def audioStart():
   except:
     debug('audioStart() exception!\n')
     debug(traceback.format_exc())
-  if AUDIO_FILE and SESSION:
-    debug('E2 MIPS workaround.\n')
-    try:
-      service = SESSION.nav.getCurrentlyPlayingServiceReference()
-      os.rename(ALT_FILE, AUDIO_FILE)
-      SESSION.nav.stopService()
-      SESSION.nav.playService(service)
-    except:
-      debug('audioStart() exception!\n')
-      debug(traceback.format_exc())
-  else:
-    debug('No E2 MIPS workaround.\n')
+    if AUDIO_FILE and SESSION and MUTE_TWEAK:
+      debug('E2 mute tweak.\n')
+      try:
+        service = SESSION.nav.getCurrentlyPlayingServiceReference()
+        os.rename(ALT_FILE, AUDIO_FILE)
+        SESSION.nav.stopService()
+        SESSION.nav.playService(service)
+      except:
+        debug('audioStart() exception!\n')
+        debug(traceback.format_exc())
+    else:
+      debug('No E2 mute tweak.\n')
 
 
 def audioKill():
@@ -227,7 +238,7 @@ def runCommand(op=None, data=None, opTypes=None, device=None):
     data = data.get(op, None)
     opType, buffers, url, comment, audioOp, selectExits = data
     debug('runCommand() opType: %s\n' % str(opType))
-    debug('runCommand() buffers: %s\n' % str(buffer))
+    debug('runCommand() buffers: %s\n' % str(buffers))
     debug('runCommand() url: %s\n' % str(url))
     debug('runCommand() comment: %s\n' % str(comment))
     debug('runCommand() audioOp: %s\n' % str(audioOp))
@@ -263,13 +274,17 @@ def runCommand(op=None, data=None, opTypes=None, device=None):
 
 class SourceSelectionScreen(Screen):
   def __init__(self, session, title=None, sources=None):
-    WIDTH=sources.get("skin_width", WIDTH_DEF)
-    THEIGHT=sources.get("skin_text_height", THEIGHT_DEF)
-    LHEIGHT=sources.get("skin_list_height", LHEIGHT_DEF)
-    MARGIN=sources.get("skin_margins", MARGIN_DEF)
-    TFSIZE=sources.get("skin_text_font_size", TFSIZE_DEF)
-    LFSIZE=sources.get("skin_list_font_size", LFSIZE_DEF)
-    FONT=sources.get("skin_font_name", FONT_DEF)
+    global MUTE_TWEAK
+    global ALSA_TWEAK
+    MUTE_TWEAK=sources.get('mute_tweak', MUTE_TWEAK)
+    ALSA_TWEAK=sources.get('mute_tweak', ALSA_TWEAK)
+    WIDTH=sources.get('skin_width', WIDTH_DEF)
+    THEIGHT=sources.get('skin_text_height', THEIGHT_DEF)
+    LHEIGHT=sources.get('skin_list_height', LHEIGHT_DEF)
+    MARGIN=sources.get('skin_margins', MARGIN_DEF)
+    TFSIZE=sources.get('skin_text_font_size', TFSIZE_DEF)
+    LFSIZE=sources.get('skin_list_font_size', LFSIZE_DEF)
+    FONT=sources.get('skin_font_name', FONT_DEF)
     skin_geometry={
       'SWIDTH': WIDTH, 'SHEIGHT': THEIGHT+LHEIGHT+2*MARGIN,
       'TLEFT': MARGIN, 'TTOP': MARGIN, 'TWIDTH': WIDTH-2*MARGIN, 'THEIGHT': THEIGHT,
@@ -286,9 +301,9 @@ class SourceSelectionScreen(Screen):
       Screen.setTitle(self, title=sources.get("title", ""))
     elif title:
       Screen.setTitle(self, title=title)
-    self.device = sources.get("device", DEVICE_DEF)
-    self.opTypes = sources.get("optypes", None)
-    self.sources = sources.get("data", None)
+    self.device = sources.get('device', DEVICE_DEF)
+    self.opTypes = sources.get('optypes', None)
+    self.sources = sources.get('data', None)
     self.sources_names = []
     self.sources_hash = {}
     if not self.sources:
