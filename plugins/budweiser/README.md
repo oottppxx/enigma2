@@ -22,7 +22,9 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 
 On the MIPS receivers tested, the service audio can't be muted separately via
 IOCTL, so an (ugly but smart) hack was "borrowed" from Ziko IPAUDIO plugin.
-This requires stop/starting the entire service, so a video glitch is seen.
+This requires stop/starting the entire service, so a video glitch is seen, it
+can be desabled by setting "mute_tweak" to false in the sources.json file (see
+below).
 
 In some of the above, the example AAC stream does not, or might not, play.
 
@@ -92,7 +94,7 @@ longer needed.
 
 ## Notes
 
-* The internet radio example sources were retrieved from the
+* The internet radio example sources were initially retrieved from the
 http://fmstream.org/ site.
 
 * The more astute readers might have noticed that the way it all works is
