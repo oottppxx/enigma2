@@ -43,7 +43,7 @@ except:
   pass
 
 
-PLUGIN_VERSION='6.2.3p'
+PLUGIN_VERSION='6.2.3q'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -258,8 +258,8 @@ def runCommand(op=None, data=None, opTypes=None, device=None):
           BUFFERS = buffers
       CUR = op
       # Keep the order, so we can include %(DEVICE)s and %(BUFFERS)s in %(URL)s.
-      argv = [str(x) % {"URL": url, "DEVICE": device, "BUFFERS": buffers} for x in argv]
-      argv = [str(x) % {"DEVICE": device, "BUFFERS": buffers} for x in argv]
+      argv = [str(x) % {"URL": url, "DEVICE": device, "BUFFERS": BUFFERS} for x in argv]
+      argv = [str(x) % {"DEVICE": device, "BUFFERS": BUFFERS} for x in argv]
       audioProcess(argv)
     if selectExits:
       return True
