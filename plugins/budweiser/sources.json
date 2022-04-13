@@ -8,7 +8,7 @@
     ["Antena2", "M3U8URLantena123", 100, "https://streaming-live.rtp.pt/liveradio/antena280a/chunklist_DVR.m3u8", "Ditto", 1, true],
     ["Antena3", "M3U8URLantena123", 100, "https://streaming-live.rtp.pt/liveradio/antena380a/chunklist_DVR.m3u8", "Ditto", 1, true],
     ["=Spain=", "MARKER", 0, "", "", 0, false],
-    ["COPE MP3", "MP3URL", 100, "https://flucast06-o-cloud.flumotion.com/cope/net1.mp3", "Radio Cope Espana", 1, true],
+    ["COPE MP3", "MP3URL", 100, "https://wecast-b02-04.flumotion.com/copesedes/merida.mp3", "Radio Cope Espana", 1, true],
     ["COPE M3U", "M3UURLcope", 100, "https://net1-cope-flucast.flumotion.com/cope/net1.mp3.m3u", "Example M3U stream", 1, true],
     ["COPE TJ MP3", "MP3URL", 100, "https://flucast-rb01-02.flumotion.com/cope/net2.mp3", "Example MP3 stream", 1, true],
     ["COPE TJ M3U", "M3UURLcope", 100, "https://net2-cope-flucast.flumotion.com/cope/net2.mp3.m3u", "Example M3U stream", 1, true],
