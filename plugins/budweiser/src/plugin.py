@@ -43,7 +43,7 @@ except:
   pass
 
 
-PLUGIN_VERSION='6.2.3q'
+PLUGIN_VERSION='6.2.3r'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -315,6 +315,8 @@ class SourceSelectionScreen(Screen):
       self.sources_names.append(entry[0])
       self.sources_hash[entry[0]] = entry[1:]
     self.sources_names = EXTRA_OPS + self.sources_names
+    if self.sources_hash.get(CUR, None):
+      self.sources_names = [CUR] + self.sources_names
     debug('sources_names: %s\n' % self.sources_names)
     debug('sources_hash: %s\n' % self.sources_hash)
     self.myList =  MenuList(self.sources_names)
