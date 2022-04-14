@@ -81,10 +81,10 @@ There's no need to reload the plugin after each edit, the file is read on each
 invocation. To troubleshoot any errors/parsing errors on the file, please turn
 on debug and examine the output (see Settings).
 
-The plugin always inserts a pre-defined audio source at the top of the list:
-CTRL^Z. Selecting this source will (try to) stop any previously selected
-alternative audio source, resume/unmute the current service audio, and close the
-list.
+The plugin always inserts a pre-defined audio source at or very near the top of
+the list: CTRL^Z. Selecting this source will (try to) stop any previously
+selected alternative audio source, resume/unmute the current service audio, and
+close the list.
 
 ## Settings
 
