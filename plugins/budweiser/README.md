@@ -8,6 +8,7 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Abcom Pulse 4k - OpenBH 5.1
 * Amiko Viper 4k v40 - OpenBH 5.1
+* Edision MIO 4k - OpenBH 5.1
 * Gigablue UE 4k - TeamBlue 6.4
 * Mut@nt HD51 - OpenATV 7.0, PurE2 6.5
 * Octagon SF4008 - OpenLD 3.4
@@ -21,6 +22,15 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * VU+ Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
 * Zgemma H7C - OpenATV 6.2|6.4
 * Zgemma Star H2 - OpenPLi 8.1
+
+One some decoders sometimes the alternative audio doesn't play for some
+box/distro combos which were tested as successful by others. Investigation is
+ongoing to check for interactions with other software/plugins that might be
+installed on the problematic devices, but no smoking gun yet, so no known fix.
+
+One some decoders, sometimes audio does not resume if the unmute option is
+selected: to get service sound back, just zap to another service (or eventually
+restart the current service, if you have the right plugin to do so installed).
 
 On the MIPS receivers tested, the service audio can't be muted separately via
 IOCTL, so an (ugly but smart) hack was "borrowed" from Ziko IPAUDIO plugin.
@@ -40,12 +50,6 @@ VU+ BlackHole was also tested, but it doesn't seem to have any alternative and
 usable audio devices/sinks other than the dvbaudiosink, which is of course busy
 once services are in use? As such, unless a proper system audio device/sink is
 found, this plugin won't work there.
-
-More on VU+ decoders: sometimes the alternative audio doesn't play for some
-box/distro combos which were tested as successful by others. Investigation is
-ongoing to check for interactions with other software/plugins that might be
-installed on the problematic devices, but no smoking gun yet, so no known fix.
-
 
 ## Description
 
