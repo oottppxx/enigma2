@@ -10,7 +10,7 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Gigablue UE 4k - TeamBlue 6.4
 * Mut@nt HD51 - OpenATV 7.0, PurE2 6.5
 * Octagon SF4008 - OpenLD 3.4
-* Octagon SF8008 - OpenSPA 7.5
+* Octagon SF8008 - OpenBH 5.1, OpenSPA 7.5
 * uClan Ustym 4K - OpenATV 6.4
 * VU+ Solo 4k - Egami 10.0, OpenATV 7.0|7.1, OpenBlackHole 5.0, OpenViX 6.0.
 * VU+ Solo2 - OpenATV 6.x.
