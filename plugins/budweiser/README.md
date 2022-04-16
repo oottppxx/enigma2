@@ -88,9 +88,12 @@ close the list.
 
 ## Settings
 
-None; to enable debugging, create the /tmp/budweiser-debug.log file for further
+All settings are controlled from the same file as the alternative audio sources.
+
+To enable debugging, create the /tmp/budweiser-debug.log file for further
 inspection of the plugin inner workings; don't forget to remove it when no
-longer needed.
+longer needed. There are a couple of example entries in the list, to enable
+debugging, save the file with a timestamp, and disable.
 
 ## Notes
 
