@@ -43,7 +43,7 @@ except:
   pass
 
 
-PLUGIN_VERSION='6.2.3r'
+PLUGIN_VERSION='6.2.3s'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -71,6 +71,7 @@ BUFFERS_SMALL_STEP=10
 BUFFERS_DEF=100
 BUFFERS=BUFFERS_DEF
 CUR=None
+PERSIST_LAST_DEF=True
 EXTRA_OPS=["CTRL^Z"]
 
 def debug(s):
@@ -278,6 +279,7 @@ class SourceSelectionScreen(Screen):
     global ALSA_TWEAK
     MUTE_TWEAK=sources.get('mute_tweak', MUTE_TWEAK)
     ALSA_TWEAK=sources.get('mute_tweak', ALSA_TWEAK)
+    PERSIST_LAST=sources.get('persist_last', PERSIST_LAST_DEF)
     WIDTH=sources.get('skin_width', WIDTH_DEF)
     THEIGHT=sources.get('skin_text_height', THEIGHT_DEF)
     LHEIGHT=sources.get('skin_list_height', LHEIGHT_DEF)
@@ -288,12 +290,12 @@ class SourceSelectionScreen(Screen):
     skin_geometry={
       'SWIDTH': WIDTH, 'SHEIGHT': THEIGHT+LHEIGHT+2*MARGIN,
       'TLEFT': MARGIN, 'TTOP': MARGIN, 'TWIDTH': WIDTH-2*MARGIN, 'THEIGHT': THEIGHT,
-      'FONT': FONT, 'TFSIZE': TFSIZE, 'LFSIZE': LFSIZE,
+      'FONT': FONT, 'TFSIZE': TFSIZE, 'LFSIZE': LFSIZE, 'LIHEIGHT': LFSIZE+10,
       'LLEFT': MARGIN, 'LTOP': MARGIN+THEIGHT, 'LWIDTH': WIDTH-2*MARGIN, 'LHEIGHT': LHEIGHT,
     }
     self.skin = """<screen position="center,center" size="%(SWIDTH)d,%(SHEIGHT)d">
         <widget source="myText" render="Label" position="%(TLEFT)d,%(TTOP)d" size="%(TWIDTH)d,%(THEIGHT)d" font="%(FONT)s;%(TFSIZE)d"/>
-        <widget name="myList" position="%(LLEFT)d, %(LTOP)d" size="%(LWIDTH)d,%(LHEIGHT)d" font="%(FONT)s;%(LFSIZE)d"/>
+        <widget name="myList" position="%(LLEFT)d, %(LTOP)d" size="%(LWIDTH)d,%(LHEIGHT)d" font="%(FONT)s;%(LFSIZE)d" itemHeight="%(LIHEIGHT)d" transparent="1"/>
         </screen>""" % skin_geometry
     self.session = session
     Screen.__init__(self, session)
@@ -315,7 +317,7 @@ class SourceSelectionScreen(Screen):
       self.sources_names.append(entry[0])
       self.sources_hash[entry[0]] = entry[1:]
     self.sources_names = EXTRA_OPS + self.sources_names
-    if self.sources_hash.get(CUR, None):
+    if self.sources_hash.get(CUR, None) and PERSIST_LAST:
       self.sources_names = [CUR] + self.sources_names
     debug('sources_names: %s\n' % self.sources_names)
     debug('sources_hash: %s\n' % self.sources_hash)

@@ -16,6 +16,10 @@
     ["Marca", "MP3URL", 100, "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOMARCA_NACIONAL.mp3", "Radio Marca Espana", 1, true],
     ["RAC1", "MP3URL", 100, "https://25633.live.streamtheworld.com/RAC_1.mp3", "RAC1", 1, true],
     ["Once", "AACURL", 100, "https://19983.live.streamtheworld.com/LOS40AAC_SC", "Example AAC stream", 1, true],
+    ["=Italy=", "MARKER", 0, "", "", 0, false],
+    ["RAI Radio 1", "MP3URL", 100, "https://icestreaming.rai.it/1.mp3", "RAI Radio 1", 1, true],
+    ["Radio Verona", "AACURL", 100, "http://ice02.fluidstream.net/fluid013.aac", "Radio Verona", 1, true],
+    ["Telecronaca Inter", "MP3URLhttp-only", 100, "http://live.inter.it:8000/inter", "Telecronaca Inter", 1, true],
     ["=UK=", "MARKER", 0, "", "", 0, false],
     ["Radio4", "MP3URL", 100, "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_fourfm", "Example MP3 (https) stream", 1, true],
     ["Radio5", "MP3URL", 100, "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk", "Ditto", 1, true],
@@ -33,6 +37,10 @@
     "AACURL": [
         "/bin/sh", "-c",
         "(/usr/bin/gst-launch-1.0 souphttpsrc location=%(URL)s ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
+      ],
+    "AACURLhttps": [
+        "/bin/sh", "-c",
+        "(/usr/bin/wget -qO- %(URL)s|/usr/bin/gst-launch-1.0 fdsrc fd=0 ! decodebin ! queue2 use-buffering=true max-size-buffers=%(BUFFERS)s max-size-bytes=0 max-size-time=0 ! %(DEVICE)s)>/dev/null 2>&1"
       ],
     "E2URL": [
         "/bin/sh", "-c",
@@ -70,6 +78,7 @@
     "SHELL": ["/bin/sh", "-c", "%(URL)s"]
   },
 "device": "alsasink device=hw:0",
+"persist_last": true,
 "mute_tweak": true,
 "alsa_tweak": false,
 "skin_width": 200,
