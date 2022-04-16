@@ -8,7 +8,7 @@ to help with testing, provide ideas and all kind of suggestions or comments!
 This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Abcom Pulse 4k - OpenBH 5.1
 * Amiko Viper 4k v40 - OpenBH 5.1
-* Edision MIO 4k - OpenBH 5.1
+* Edision MIO 4k+ - OpenBH 5.1
 * Gigablue UE 4k - TeamBlue 6.4
 * Mut@nt HD51 - OpenATV 7.0, PurE2 6.5
 * Octagon SF4008 - OpenLD 3.4
