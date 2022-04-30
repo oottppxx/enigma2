@@ -7,6 +7,8 @@ import traceback
 
 from fcntl import ioctl
 
+from enigma import eTimer
+
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
@@ -43,7 +45,7 @@ except:
   pass
 
 
-PLUGIN_VERSION='6.2.3s'
+PLUGIN_VERSION='6.2.3t'
 PLUGIN_NAME='Budweiser'
 PLUGIN_DESC='Dub weiser'
 PLUGIN_ICON='budweiser.png'
@@ -66,6 +68,8 @@ TITLE_DEF="Sources"
 DEVICE_DEF="alsasink device=hw:0"
 MIN_BUFFERS=0
 MAX_BUFFERS=2000
+BUF_STEP_SMOOTHNESS=17
+BUF_STEP_TIMER_MS=250
 BUFFERS_BIG_STEP=100
 BUFFERS_SMALL_STEP=10
 BUFFERS_DEF=100
@@ -321,21 +325,22 @@ class SourceSelectionScreen(Screen):
       self.sources_names = [CUR] + self.sources_names
     debug('sources_names: %s\n' % self.sources_names)
     debug('sources_hash: %s\n' % self.sources_hash)
+    self.bufTimer = eTimer()
+    self.bufStep = 1
     self.myList =  MenuList(self.sources_names)
     self['myList'] = self.myList
     self['myText'] = StaticText('Buf.: %s' % str(BUFFERS))
-    self['myActionMap'] = ActionMap(['WizardActions', 'ShortcutActions', 'TextEntryActions'],
+    self['myActionMap'] = ActionMap(['BudweiserActions'],
         {
-          'back': self.exit,
           'ok': self.ok,
-          'nextBouquet': self.bigIncreaseBuffers,
-          'prevBouquet': self.bigDecreaseBuffers,
-          'deleteForward': self.smallIncreaseBuffers,
-          'deleteBackward': self.smallDecreaseBuffers,
+          'back': self.exit,
+          'chanUp': self.bigIncreaseBuffers,
+          'chanDown': self.bigDecreaseBuffers,
+          'next': self.smallIncreaseBuffers,
+          'previous': self.smallDecreaseBuffers,
+          'volUp': self.progressiveIncreaseBuffers,
+          'volDown': self.progressiveDecreaseBuffers,
        }, -1)
-
-  def exit(self):
-    self.close()
 
   def ok(self):
     try:
@@ -348,6 +353,9 @@ class SourceSelectionScreen(Screen):
       debug(traceback.format_exc())
       self.exit()
       
+  def exit(self):
+    self.close()
+
   def increaseBuffers(self, step=BUFFERS_BIG_STEP):
     global BUFFERS
     debug('increaseBuffers() step: %s!\n' % str(step))
@@ -373,6 +381,29 @@ class SourceSelectionScreen(Screen):
     except:
       debug('decreaseBuffers() exception!\n')
       debug(traceback.format_exc())
+      
+  def bufStepAdvance(self):
+    debug('bufStepAdvance() starting w/step %d\n' % self.bufStep)
+    if self.bufTimer.isActive():
+      debug('bufTimer active...\n')
+      self.bufStep += self.bufStep
+      if BUF_STEP_SMOOTHNESS:
+        self.bufStep = int(min(MAX_BUFFERS/BUF_STEP_SMOOTHNESS, self.bufStep))
+      else:
+        self.bufStep = min(MAX_BUFFERS, self.bufStep)
+      self.bufStep = max(1, self.bufStep)
+    else:
+      debug('bufTimer inactive...\n')
+      self.bufStep = 1
+    self.bufTimer.start(BUF_STEP_TIMER_MS, True)
+    debug('returning step as %d\n' % self.bufStep)
+    return self.bufStep
+
+  def progressiveIncreaseBuffers(self):
+    self.increaseBuffers(step=self.bufStepAdvance())
+    
+  def progressiveDecreaseBuffers(self):
+    self.decreaseBuffers(step=self.bufStepAdvance())
 
   def bigIncreaseBuffers(self):
     self.increaseBuffers(step=BUFFERS_BIG_STEP)

@@ -2,3 +2,7 @@ enigma2-plugin-extensions-budweiser-6.2.3s.ipk
 MD5 33a831e1d01a9c3b964fcc2ead2949f0
 SHA 0a250d84a74e4fbf02c319b5c12a418f839a71e2
 
+enigma2-plugin-extensions-budweiser-6.2.3t.ipk
+MD5 af86f16187086d6c36b763301c65e5ce
+SHA 1a7c95796c7daea9facc040b3bb4772e729cbe28
+

@@ -72,12 +72,14 @@ OK key) should:
   closed via the EXIT key.
 
 The current buffering value can be increased/decreased by using the CHANNEL
-UP/DOWN keys and the PREV/NEXT keys, respectively (the range is currently 0 to
-2000 - beware that a very small value might cause the alternative audio stream
-not to play). Once the buffer value is adjusted, you need to (re)select the
-source for it to take effect - beware that the audio won't start playing until
-the buffer is full, which means that for a high value it might take a while
-(experimentally, a value of a 1000 is about 30 seconds of delay).
+UP/DOWN keys (by 100), the PREV/NEXT keys (by 10), and the VOLUME UP/DOWN keys
+(progressive) - the range is currently 0 to 2000, beware that a very small value
+might cause the alternative audio stream not to play). Once the buffer value is
+adjusted, you need to (re)select the source for it to take effect - beware that
+the audio won't start playing until the buffer is full, which means that for a
+high value it might take a while (experimentally, a value of a 1000 is about 30
+seconds of delay, but as the setting is in buffers, it will heavily depend on
+the stream type).
 
 The list of alternative audio sources is a simple JSON text file, placed in the
 /usr/lib/enigma2/Plugins/Extensions/Budweiser/sources.json path. Of course the

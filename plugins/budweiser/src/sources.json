@@ -7,6 +7,7 @@
     ["Antena1", "M3U8URLantena123", 100, "https://streaming-live.rtp.pt/liveradio/antena180a/chunklist_DVR.m3u8", "Example M3U8 AAC stream", 1, true],
     ["Antena2", "M3U8URLantena123", 100, "https://streaming-live.rtp.pt/liveradio/antena280a/chunklist_DVR.m3u8", "Ditto", 1, true],
     ["Antena3", "M3U8URLantena123", 100, "https://streaming-live.rtp.pt/liveradio/antena380a/chunklist_DVR.m3u8", "Ditto", 1, true],
+    ["Renascenca", "MP3URL", 100, "http://20723.live.streamtheworld.com:3690/RADIO_RENASCENCA_SC", "Example MP3 stream", 1, true],
     ["=Spain=", "MARKER", 0, "", "", 0, false],
     ["COPE M3U", "M3UURLcope", 100, "https://net1-cope-flucast.flumotion.com/cope/net1.mp3.m3u", "Example M3U stream", 1, true],
     ["COPE TJ M3U", "M3UURLcope", 100, "https://net2-cope-flucast.flumotion.com/cope/net2.mp3.m3u", "Example M3U stream", 1, true],
@@ -30,6 +31,7 @@
     ["Example Mp3", "MP3FILE", 0, "/home/root/mp3-file.mp3", "Example MP3 file", 1, true],
     ["=Debug=", "MARKER", 0, "", "", 0, false],
     ["Start", "SHELL", 0, "touch /tmp/budweiser-debug.log", "Start or restart debugging", 0, true],
+    ["Extra", "SHELL", 0, "(grep -r . /proc/asound /proc/stb ; cat /etc/asound.conf ; ps -AFHj)>>/tmp/budweiser-debug.log", "Collect extra debug info", 0, true],
     ["Copy", "SHELL", 0, "cp /tmp/budweiser-debug.log /home/root/budweiser-debug.$(date +%%Y-%%m-%%d.%%H:%%M:%%S).log", "Copy file to ~ with timestamp", 0, true],
     ["Stop", "SHELL", 0, "rm -f /tmp/budweiser-debug.log", "Stop debugging (copy file first to keep)", 0, true]
   ],
