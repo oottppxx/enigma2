@@ -23,12 +23,12 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * Zgemma H7C - OpenATV 6.2|6.4
 * Zgemma Star H2 - OpenPLi 8.1
 
-One some decoders sometimes the alternative audio doesn't play for some
+On some decoders sometimes the alternative audio doesn't play for some
 box/distro combos which were tested as successful by others. Investigation is
 ongoing to check for interactions with other software/plugins that might be
 installed on the problematic devices, but no smoking gun yet, so no known fix.
 
-One some decoders, sometimes audio does not resume if the unmute option is
+On some decoders, sometimes audio does not resume if the unmute option is
 selected: to get service sound back, just zap to another service (or eventually
 restart the current service, if you have the right plugin to do so installed).
 
