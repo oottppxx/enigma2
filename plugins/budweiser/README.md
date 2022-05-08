@@ -35,7 +35,7 @@ restart the current service, if you have the right plugin to do so installed).
 On the MIPS receivers tested, the service audio can't be muted separately via
 IOCTL, so an (ugly but smart) hack was "borrowed" from Ziko IPAUDIO plugin.
 This requires stop/starting the entire service, so a video glitch is seen, it
-can be desabled by setting "mute_tweak" to false in the sources.json file (see
+can be disabled by setting "mute_tweak" to false in the sources.json file (see
 below).
 
 In some of the above, the example AAC stream does not, or might not, play.
