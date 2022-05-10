@@ -9,10 +9,12 @@ try:
 except:
   ADJUST={}
   openatv_like = False
-# Quick fix for Vix
+# Quick fix for Vix >= 5.x(?) and OpenBH >= 4.4
 try:
   import boxbranding
   if "openvix" in boxbranding.getImageDistro().lower():
+    openatv_like = True
+  if "openbh" in boxbranding.getImageDistro().lower():
     openatv_like = True
 except:
   pass
@@ -42,7 +44,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0q'
+PLUGIN_VERSION='6.2.0s'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -67,7 +69,7 @@ GUI_CHECK_4=GUI_CHECK_INFOBAR+GUI_CHECK_POSTPONE
 GUI_CHECK_5=GUI_CHECK_ANY+GUI_CHECK_IGNORE
 GUI_CHECK_6=GUI_CHECK_ANY+GUI_CHECK_POSTPONE
 GUI_CHECK_DISABLE='Disable'
-GUI_CHECK_DEF=GUI_CHECK_1
+GUI_CHECK_DEF=GUI_CHECK_2
 GUI_CHECK=GUI_CHECK_DEF
 GUI_CHECK_CHOICES=[
     (GUI_CHECK_1, GUI_CHECK_1),
@@ -90,6 +92,12 @@ RESTART_INDICATOR_CHOICES=[
     (RESTART_INDICATOR_1, RESTART_INDICATOR_1),
     (RESTART_INDICATOR_NONE, RESTART_INDICATOR_NONE)
 ]
+EXT_HACK_DEF='5002'
+EXT_HACK=EXT_HACK_DEF
+EXT_DELAY_DEF=1000
+EXT_DELAY=EXT_DELAY_DEF
+EXT_DELAY_START_DEF=EXT_DELAY_DEF*10
+EXT_DELAY_START=EXT_DELAY_START_DEF
 STUCK_HACK_DEF=''
 STUCK_HACK=STUCK_HACK_DEF
 STUCK_DELAY_DEF=2500
@@ -108,6 +116,8 @@ RESTART_TIME=0
 STUCK_PREVIOUS=None
 STUCK_RE=''
 STUCK_TIMER=eTimer()
+EXT_RE=''
+EXT_TIMER=eTimer()
 VISIBLE_WIDTH=20
 
 try:
@@ -167,6 +177,9 @@ config.plugins.quarterpounder.gui_check = ConfigSelection(default=GUI_CHECK_DEF,
 config.plugins.quarterpounder.ignore_strings = ConfigText(default=IGNORE_STRINGS_DEF, fixed_size=False, visible_width=VISIBLE_WIDTH)
 config.plugins.quarterpounder.restart_delay = ConfigNumber(default=RESTART_DELAY_DEF)
 config.plugins.quarterpounder.restart_indicator = ConfigSelection(default=RESTART_INDICATOR_DEF, choices=RESTART_INDICATOR_CHOICES)
+config.plugins.quarterpounder.ext_hack = ConfigText(default=EXT_HACK_DEF, fixed_size=False, visible_width=VISIBLE_WIDTH)
+config.plugins.quarterpounder.ext_delay = ConfigNumber(default=EXT_DELAY_DEF)
+config.plugins.quarterpounder.ext_delay_start = ConfigNumber(default=EXT_DELAY_START_DEF)
 config.plugins.quarterpounder.stuck_hack = ConfigText(default=STUCK_HACK_DEF, fixed_size=False, visible_width=VISIBLE_WIDTH)
 config.plugins.quarterpounder.stuck_delay = ConfigNumber(default=STUCK_DELAY_DEF)
 config.plugins.quarterpounder.debug = ConfigBoolean(default=DEBUG_ACTIVE_DEF)
@@ -188,6 +201,8 @@ def DEBUG(s):
 def restartService():
   ods = None
   DEBUG('Service restarting...\n')
+  DEBUG('  unconditional ext hack stop...\n')
+  EXT_TIMER.stop()
   if SESSION:
     previous = SESSION.nav.getCurrentlyPlayingServiceReference()
     if previous is None:
@@ -237,6 +252,19 @@ def restartService():
 
 STUCK_TIMER.callback.append(restartService)
 
+def pollExternalService():
+  DEBUG('  ext polling...\n')
+  EXT_TIMER.changeInterval(EXT_DELAY)
+  try:
+    open('/dev/dvb/adapter0/video0', 'r+').close()
+  except:
+    DEBUG('  ext OK...\n')
+    return
+  DEBUG('  ext NOK...\n')
+  restartService()
+  
+EXT_TIMER.callback.append(pollExternalService)
+
 
 def serviceRecEvent(rec_svc, evt):
   # Logging only, for now... ePtr()s are hard.
@@ -259,15 +287,21 @@ def serviceEvent(evt):
   DEBUG('-> %s\n' % EVENT_STRINGS.get(evt, 'UNKNOWN %d' % int(evt)))
   if SESSION:
     if (evt == iPlayableService.evStart):
+      DEBUG('  unconditional ext hack stop...\n')
+      EXT_TIMER.stop()
       DEBUG('  handling...\n')
+      previous = STUCK_PREVIOUS
+      STUCK_PREVIOUS = SESSION.nav.getCurrentlyPlayingServiceReference().toString()
       if STUCK_HACK and STUCK_RE:
-        previous = STUCK_PREVIOUS
-        STUCK_PREVIOUS = SESSION.nav.getCurrentlyPlayingServiceReference().toString()
         if previous != STUCK_PREVIOUS:
           if STUCK_RE.search(STUCK_PREVIOUS):
             DEBUG('  restarting hack...\n')
             STUCK_TIMER.start(STUCK_DELAY, True)
             return
+        if EXT_HACK and EXT_RE:
+          if EXT_RE.search(STUCK_PREVIOUS):
+            DEBUG('  ext hack start...\n')
+            EXT_TIMER.start(EXT_DELAY_START, False)
       RESTART_TIME=int(time.time())
       return
     if (evt == iPlayableService.evEOF):
@@ -288,6 +322,10 @@ def reConfig():
   global IGNORE_RE
   global RESTART_DELAY
   global RESTART_INDICATOR
+  global EXT_HACK
+  global EXT_RE
+  global EXT_DELAY
+  global EXT_DELAY_START
   global STUCK_HACK
   global STUCK_RE
   global STUCK_DELAY
@@ -305,12 +343,20 @@ def reConfig():
     config.plugins.quarterpounder.ignore_strings._value = IGNORE_STRINGS_DEF
   RESTART_DELAY = config.plugins.quarterpounder.restart_delay.value
   RESTART_INDICATOR = config.plugins.quarterpounder.restart_indicator.value
+  EXT_HACK = config.plugins.quarterpounder.ext_hack.value
+  if EXT_HACK:
+    try:
+      EXT_RE = re.compile(str('|'.join(['^%s:' % x for x in EXT_HACK.split(',') if x])), flags=re.IGNORECASE)
+    except:
+      EXT_RE = ''
+  EXT_DELAY = config.plugins.quarterpounder.ext_delay.value
+  EXT_DELAY_START = config.plugins.quarterpounder.ext_delay_start.value
   STUCK_HACK = config.plugins.quarterpounder.stuck_hack.value
   if STUCK_HACK:
     try:
       STUCK_RE = re.compile(str('|'.join(STUCK_HACK.split(','))), flags=re.IGNORECASE)
     except:
-      STUCK_RE=''
+      STUCK_RE = ''
   STUCK_DELAY = config.plugins.quarterpounder.stuck_delay.value
   DEBUG_ACTIVE = config.plugins.quarterpounder.debug.value
   config.plugins.quarterpounder.save()

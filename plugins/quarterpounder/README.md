@@ -67,6 +67,23 @@ enabled).
   to display during restarts, independently of what's configured in the main box
   settings.
 
+**External**
+* "Stream types handled by external players to poll for (comma separated list)."
+* Default: "5002".
+* As stated, list of stream types that are handled by external players, and that
+  should be polled for working status (in a very simple way, checking if the
+  video device is in use).
+
+**External Delay**
+* "Polling interval (ms)."
+* Default: 1000.
+* Interval between polling for usage of the video device, if the current service
+  stream is of a type that should be polled for.
+
+**External Delay Start**
+* "Initial polling delay (ms)."
+* Default: 10x the External Delay setting (see above).
+* Initial time after a service start event before polling begins.
 
 **"Stuck Channels Hack"**
 * "Hack around stuck DVB channels."
