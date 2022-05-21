@@ -76,7 +76,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.2x'
+PLUGIN_VERSION='6.2.2y'
 PLUGIN_MONIKER='[Hz]'
 PLUGIN_NAME='Heinz'
 PLUGIN_DESC='Poor man\'s "ketchup"'
@@ -348,10 +348,10 @@ class myMessageBox(MessageBox):
     if ok_actions:
       self['actions'].contexts.extend(ok_actions[0])
       for a in ok_actions[1]:
-        self['actions'].actions[a] = self.ok
+        self['actions'].actions[a] = self.cancel
     if remap_ok_actions:
       for a in remap_ok_actions:
-        self['actions'].actions[a] = self.ok
+        self['actions'].actions[a] = self.cancel
     self.text = str(self.__dict__)
 
   def timeoutCallback(self):
