@@ -16,6 +16,8 @@ try:
     openatv_like = True
   if "openbh" in boxbranding.getImageDistro().lower():
     openatv_like = True
+  if "openspa" in boxbranding.getImageDistro().lower():
+    openatv_like = True
 except:
   pass
 # Quick fix for OpenVision 11.2(?)
@@ -44,7 +46,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0s'
+PLUGIN_VERSION='6.2.0t'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -394,12 +396,12 @@ def sessionStart(reason, **kwargs):
 
 def main(session, **kwargs):
   global SAVED_SETUP
-  reConfig()
-  if session:
-    if openatv_like:
-      session.openWithCallback(onSetupClose, Setup, setup=SETUP_KEY, plugin=PLUGIN_PATH)
-    else:
-      try:
+  try:
+    reConfig()
+    if session:
+      if openatv_like:
+        session.openWithCallback(onSetupClose, Setup, setup=SETUP_KEY, plugin=PLUGIN_PATH)
+      else:
         setup_file = file(PLUGIN_PATH + '/setup.xml', 'r')
         new_setupdom = xml.etree.cElementTree.parse(setup_file)
         setup_file.close()
@@ -407,8 +409,8 @@ def main(session, **kwargs):
         Screens.Setup.setupdom = new_setupdom
         session.openWithCallback(onSetupClose, Screens.Setup.Setup, SETUP_KEY)
         Screens.Setup.setupdom = SAVED_SETUP
-      except:
-        pass
+  except:
+    DEBUG(traceback.format_exc())
 
 
 def Plugins(**kwargs):
