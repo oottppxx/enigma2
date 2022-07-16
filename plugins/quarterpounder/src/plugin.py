@@ -46,7 +46,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0t'
+PLUGIN_VERSION='6.2.0u'
 PLUGIN_NAME='QuarterPounder'
 PLUGIN_DESC='A Tasty Treat 2'
 PLUGIN_ICON='quarterpounder.png'
@@ -203,7 +203,7 @@ def DEBUG(s):
 def restartService():
   ods = None
   DEBUG('Service restarting...\n')
-  DEBUG('  unconditional ext hack stop...\n')
+  DEBUG('  unconditional ext hack stop... (restartService)\n')
   EXT_TIMER.stop()
   if SESSION:
     previous = SESSION.nav.getCurrentlyPlayingServiceReference()
@@ -289,11 +289,17 @@ def serviceEvent(evt):
   DEBUG('-> %s\n' % EVENT_STRINGS.get(evt, 'UNKNOWN %d' % int(evt)))
   if SESSION:
     if (evt == iPlayableService.evStart):
-      DEBUG('  unconditional ext hack stop...\n')
+      DEBUG('  unconditional ext hack stop...(evStart)\n')
       EXT_TIMER.stop()
       DEBUG('  handling...\n')
       previous = STUCK_PREVIOUS
-      STUCK_PREVIOUS = SESSION.nav.getCurrentlyPlayingServiceReference().toString()
+      current_service = SESSION.nav.getCurrentlyPlayingServiceReference()
+      if current_service:
+        STUCK_PREVIOUS = current_service.toString()
+      else:
+        DEBUG('  no service reference on start service event?!?!')
+        return
+      DEBUG('  starting %s\n' % STUCK_PREVIOUS)
       if STUCK_HACK and STUCK_RE:
         if previous != STUCK_PREVIOUS:
           if STUCK_RE.search(STUCK_PREVIOUS):
