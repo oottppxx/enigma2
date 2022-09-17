@@ -20,7 +20,7 @@ This plugin is EXPERIMENTAL; it has been successfully tested on:
 * VU+ Uno - OpenPLi 8.1
 * VU+ Uno|Duo 4k [SE] - OpenATV 6.4, OpenPLi 8.1, OpenSPA 7.5
 * VU+ Zero - OpenATV 6.4, OpenBlackHole 4.4, OpenPLi 8.1
-* Zgemma H7C - OpenATV 6.2|6.4
+* Zgemma H7C - Egami 10.1, OpenATV 6.2|6.4
 * Zgemma Star H2 - OpenPLi 8.1
 
 On some decoders sometimes the alternative audio doesn't play for some
