@@ -2,7 +2,7 @@
 PKG_NAME=$(grep OE control.tmpl | cut -d" " -f2)
 CONTROL_FILES="postrm postinst preinst"
 DATA_PATH=/usr/lib/enigma2/python/Plugins/Extensions/AutoOff
-DATA_FILES="README.txt autooff.png plugin.pyo __init__.pyo setup.xml"
+DATA_FILES="README.txt autooff.png plugin.py __init__.py setup.xml"
 VERSION_FILE=plugin.py
 VERSION=$(grep VERSION= ${VERSION_FILE} | cut -d= -f2 | tr -d \')
 
@@ -10,7 +10,6 @@ rm -rf ipk
 rm -rf control.tar.gz data.tar.gz ${PKG_NAME}*ipk
 mkdir -p ipk/${DATA_PATH}
 touch plugin.py __init__.py
-python -O -m compileall plugin.py __init__.py
 cp ${DATA_FILES} ipk/${DATA_PATH}
 cat control.tmpl | sed "s#VERSION#${VERSION}#g" > control
 tar czvf control.tar.gz control ${CONTROL_FILES}

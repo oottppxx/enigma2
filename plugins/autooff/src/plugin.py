@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 openatv_like = True
 try:
   # This works in OpenATV (and similar code bases) but fails on OpenPLi.
@@ -33,7 +35,7 @@ else:
   from Components.config import configfile
 
 
-PLUGIN_VERSION='6.2.0g'
+PLUGIN_VERSION='6.2.0h'
 PLUGIN_NAME='AutoOff'
 PLUGIN_DESC='Stop On Standby'
 PLUGIN_ICON='autooff.png'
@@ -81,7 +83,7 @@ def DEBUG(s):
     f = open(DEBUG_FILE, 'a+')
     f.write(s)
     f.close()
-    print s
+    print(s)
 
 SLEEP_TIME=2
 THREAD=None
@@ -214,7 +216,7 @@ def bootCmd():
 
 
 def autoStart(reason, **kwargs):
-  print 'AutoOff autostart!'
+  print('AutoOff autostart!')
   onSetupClose()
 
 
